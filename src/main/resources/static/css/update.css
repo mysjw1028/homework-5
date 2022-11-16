@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+#cotainer {
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+.titleupdate{
+	font-size: 35px;
+	margin-bottom:15px;
+}
+
+#btnupdate{
+	background: skyblue;
+}
+
+.updatetbutton {
+	font-size: 16px;
+	color: black;
+	background: skyblue;
+	text-decoration: none;
+}

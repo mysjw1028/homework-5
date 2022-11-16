@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+#cotainer {
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+#btnproductNameSameCheck {
+	background: skyblue;
+	font-size: 16px;
+	color: black;
+}
+
+#btnproductNameSameCheck a{
+	color: white;
+	text-decoration: none;
+}
+
+
+.titleinsert {
+	font-size: 35px;
+	margin-bottom: 15px;
+}
+
+#btnInsert {
+	background: skyblue;
+}
+
+.insertbutton {
+	font-size: 16px;
+	color: black;
+	background: skyblue;
+	text-decoration: none;
+}
