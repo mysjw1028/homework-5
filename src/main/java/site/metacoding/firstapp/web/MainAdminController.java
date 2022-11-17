@@ -53,7 +53,6 @@ public class MainAdminController {
 		if (loginRespDto != null) {
 			return "redirect:/";
 		}
-		System.out.println("중앙관리자 로그인에 실패했다");
 		return "mainadmin/mainadminlogin";// 인증실패하면
 	}
 //		if (mainAdmin.getPasswordMainadmin() != "4567") {
