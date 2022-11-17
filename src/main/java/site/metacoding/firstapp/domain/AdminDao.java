@@ -4,7 +4,6 @@ import java.util.List;
 
 import site.metacoding.firstapp.web.dto.request.admin.AdminLoginDto;
 
-
 public interface AdminDao {
 
 	public Admin login(AdminLoginDto adminLoginDto);
@@ -18,5 +17,4 @@ public interface AdminDao {
 	public int update(Admin admin);
 
 	public int deleteById(Integer id);
-
 }

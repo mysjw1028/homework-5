@@ -22,6 +22,7 @@ admin
  onclick="javascript: form.action='/admin/login'; 를 걸어줬다.
  mainadmin
  -> admin/ user 관리를 위해서 테이블 생성 (로그인 / 회원가입도 별도로 만들예정)
+ ->  중앙관리자용 패스워드 미 입력시 가입 및 로그인 불가
  
 ### 4. 테이블 생성
 ```sql

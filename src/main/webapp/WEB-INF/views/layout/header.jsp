@@ -28,6 +28,7 @@
 							<li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
 							<li class="nav-item"><a class="nav-link" href="/join">개인회원가입</a></li>
 							<li class="nav-item"><a class="nav-link" href="/admin/join">관리자회원가입</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Mainadmin/joinpage">중앙관리자회원가입</a></li>
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
