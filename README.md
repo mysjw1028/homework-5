@@ -20,6 +20,9 @@
 admin
 -> 회원가입시 user와 같은 페이지를 공유하기 때문에 user_name을 넣어 준 후 자바스크립트에
  onclick="javascript: form.action='/admin/login'; 를 걸어줬다.
+ mainadmin
+ -> admin/ user 관리를 위해서 테이블 생성 (로그인 / 회원가입도 별도로 만들예정)
+ 
 ### 4. 테이블 생성
 ```sql
 create table product(
@@ -51,6 +54,15 @@ create table admin(
    admin_name varchar(20) NOT null,
    user_name varchar(20),
    password varchar(20) NOT null,
+   email varchar(20) NOT null,
+   created_at TIMESTAMP NOT null
+);
+
+create table mainadmin(
+ 	id int KEY auto_increment,
+   mainadmin_name varchar(20) NOT null,
+   password varchar(20) NOT null,
+   password_mainadmin varchar(20) NOT NULL,
    email varchar(20) NOT null,
    created_at TIMESTAMP NOT null
 );
