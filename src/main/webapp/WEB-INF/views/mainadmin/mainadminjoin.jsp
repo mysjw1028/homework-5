@@ -3,16 +3,16 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="container">
-	<form action="/join/insert" method="post">
+	<form action="/Mainadmin/joinpage/insert" method="post">
 		<div class="mb-3 mt-3">
-			<input id="MainadminName" class="form-control" placeholder="Enter username" name="MainadminName">
+			<input id="mainadminName" class="form-control" placeholder="Enter mainadminName" name="mainadminName">
 		</div>
 		<div class="mb-3">
 			<input id="password" type="password" class="form-control" placeholder="Enter password"
 				name="password">
 		</div>
 		<div class="mb-3">
-			<input id="passwordMainadmin" type="password" class="form-control" placeholder="Enter dMainadmin password"
+			<input id="passwordMainadmin" type="password" class="form-control" placeholder="Enter Mainadmin password"
 				name="passwordMainadmin" >
 		</div>
 		<div class="mb-3">

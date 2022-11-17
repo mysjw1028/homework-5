@@ -3,6 +3,7 @@ package site.metacoding.firstapp.web.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import site.metacoding.firstapp.domain.Admin;
+import site.metacoding.firstapp.domain.MainAdmin;
 import site.metacoding.firstapp.domain.Users;
 
 @Getter
@@ -11,15 +12,21 @@ public class LoginRespDto {
 	private Integer id;
 	private String adminName;
 	private String userName;
+	private String mainadminName;
 
-	public LoginRespDto(Users users) {
+	public LoginRespDto(Users users) {//구매자
 		this.id = users.getId();
 		this.userName = users.getUserName();
 	}
 
-	public LoginRespDto(Admin admin) {
+	public LoginRespDto(Admin admin) {//일반 관리자
 		this.id = admin.getId();
 		this.adminName = admin.getAdminName();
+	}
+
+	public LoginRespDto(MainAdmin mainAdmin) {//중앙 관리자
+		this.id = mainAdmin.getId();
+		this.mainadminName = mainAdmin.getMainadminName();
 	}
 
 }
