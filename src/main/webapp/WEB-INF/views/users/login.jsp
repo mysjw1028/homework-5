@@ -13,9 +13,6 @@
 		<button type="submit" class="btn btn-primary">개인 로그인</button>
 		<button type="submit" class="btn btn-primary" onclick="javascript: form.action='/admin/login';">관리자
 			로그인</button>
-		<a href="/"><button type="submit" class="btn btn-primary"
-				onclick="javascript: form.action='/Mainadmin/loginpage';">중앙 관리자 로그인 페이지로 이동</button></a>
-	</form>
-</div>
+</div
 
 <%@ include file="../layout/footer.jsp"%>

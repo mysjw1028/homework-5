@@ -26,6 +26,7 @@
 					<c:choose>
 						<c:when test="${empty principal}">
 							<li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
+							<li class="nav-item"><a class="nav-link" href="/mainadmin/loginpage">중앙관리자로그인</a></li>
 							<li class="nav-item"><a class="nav-link" href="/join">개인회원가입</a></li>
 							<li class="nav-item"><a class="nav-link" href="/admin/join">관리자회원가입</a></li>
 							<li class="nav-item"><a class="nav-link" href="/Mainadmin/joinpage">중앙관리자회원가입</a></li>
@@ -43,10 +44,13 @@
 
 					<c:if test="${ principal.adminName != null}">
 						<li class="nav-item"><a class="nav-link" href="/product/insert">상품 등록하기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/">개인회원 정보보기</a></li>
 					</c:if>
 
-
+					<c:if test="${ principal.mainadminName != null}">
+						<li class="nav-item"><a class="nav-link" href="/product/insert">상품 등록하기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/Mainadmin/userlist">개인회원 정보보기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/Mainadmin/adminlist">관리자 정보보기</a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>

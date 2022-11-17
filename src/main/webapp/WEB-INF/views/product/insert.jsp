@@ -6,7 +6,7 @@
 
 <div id=cotainer>
 	<form>
-		<h3>추가하기</h3>
+		<h2>상품등록하기</h2>
 
 		<div class="mb-3 mt-3">
 			<input id="productName" type="text" name="name" class="form-control" placeholder="상품이름">

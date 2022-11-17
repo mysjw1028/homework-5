@@ -30,12 +30,16 @@
 		</table>
 
 
-		<c:if test="${ principal.adminName != null}">
+		<c:if test="${ principal.adminName != null}" >
 			<a href="/product/${productId}/edit"><button id="btnUpdate" type="button"
 					class="btn btn-primary">상품수정</button></a>
 			<a href="/product/${productId}/delete"><button id="btnDelete" class="btn btn-danger">상품삭제</button></a>
 		</c:if>
-
+		<c:if test="${ principal.mainadminName != null}">
+			<a href="/product/${productId}/edit"><button id="btnUpdate" type="button"
+					class="btn btn-primary">상품수정</button></a>
+			<a href="/product/${productId}/delete"><button id="btnDelete" class="btn btn-danger">상품삭제</button></a>
+		</c:if>
 	</form>
 	<c:if test="${ principal.userName != null}">
 		<a href="/buy/${productId}"><button class="btn  btn-primary" type="button">상품구매</button></a>

@@ -6,10 +6,18 @@
 
 	<insert id="insert" useGeneratedKeys="false"
 		keyProperty="mainadminId">
-		insert into mainadmin(mainadmin_name, password, password_mainadmin,email,
+		insert into mainadmin(mainadmin_name, password,
+		password_mainadmin,email,
 		created_at)
-		VALUES(#{mainadminName}, #{password},#{passwordMainadmin},#{email}, NOW())
+		VALUES(#{mainadminName},
+		#{password},#{passwordMainadmin},#{email}, NOW())
 	</insert>
 
-
+	<select id="login"
+		resultType="site.metacoding.firstapp.domain.MainAdmin">
+		SELECT * FROM mainadmin WHERE mainadmin_name =#{mainadminName} AND
+		password=#{password} AND password_mainadmin = #{passwordMainadmin}
+	</select>
+	
+	
 </mapper>

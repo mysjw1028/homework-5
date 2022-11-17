@@ -13,7 +13,8 @@ public class LoginRespDto {
 	private String adminName;
 	private String userName;
 	private String mainadminName;
-
+	
+	
 	public LoginRespDto(Users users) {//구매자
 		this.id = users.getId();
 		this.userName = users.getUserName();

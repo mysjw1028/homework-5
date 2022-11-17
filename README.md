@@ -24,6 +24,13 @@ admin
  -> admin/ user 관리를 위해서 테이블 생성 (로그인 / 회원가입도 별도로 만들예정)
  ->  중앙관리자용 패스워드 미 입력시 가입 및 로그인 불가
  
+컬럼추가 코드 
+alter table users add main_adminid VARCHAR(20);
+select * from users;
+
+alter table admin add main_adminid VARCHAR(20);
+select * from admin;
+ 
 ### 4. 테이블 생성
 ```sql
 create table product(
