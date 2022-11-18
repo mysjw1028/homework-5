@@ -30,10 +30,7 @@ public class MainAdminController {
 
 	@PostMapping("/Mainadmin/joinpage/insert")
 	public String 중앙관리자회원가입(MainAdmin mainAdmin) {// 로그인시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 구매자 / 일반관리자 페이지로 이동
-		System.out.println(mainAdmin.getMainadminName());
-		System.out.println(mainAdmin.getPasswordMainadmin());
-		if (mainAdmin.getPasswordMainadmin().equals("5678")) {
-			System.out.println(mainAdmin.getPasswordMainadmin());
+		if (mainAdmin.getPasswordMainadmin().equals("5678")) {// String은 객체여서 equals("비교값")로 비교해야 한다.
 			mainAdminDao.insert(mainAdmin);
 			return "mainadmin/mainadminlogin";
 		} else {
@@ -48,17 +45,21 @@ public class MainAdminController {
 
 	@PostMapping("/Mainadmin/loginpage")
 	public String 중앙관리자로그인(MainAdminLoginDto mainAdminLoginDto) {
-		LoginRespDto loginRespDto = new LoginRespDto(mainAdminDao.login(mainAdminLoginDto));
-		session.setAttribute("principal", loginRespDto);
-		if (loginRespDto != null) {
-			return "redirect:/";
+		MainAdmin mainAdmin = mainAdminDao.login(mainAdminLoginDto);
+		if (mainAdmin == null) {
+			return "mainadmin/mainadminlogin";
 		}
-		return "mainadmin/mainadminlogin";// 인증실패하면 다시 로그인해야함
-	}// 회원가입하면서 중앙관리자 체크함
+		LoginRespDto loginRespDto = new LoginRespDto(mainAdmin);
+		session.setAttribute("principal", loginRespDto);
+		return "redirect:/";
+	}
+	// 회원가입하면서 중앙관리자 체크함
+	// mainAdminLoginDto이 null이니까 LoginRespDto에 값을 넣어줄때 mainAdmin이 null일때
+	// maindamin.get... 메서드가 생성자체가 되지 않았고 그러므로 업는 값이라고 나타남
 
 	@GetMapping("/Mainadmin/userlist")
 	public String userlist() {// 주소창 입력시 화면에 출력
-		//@PathVariable Integer userId, Model model
+		// @PathVariable Integer userId, Model model
 //		model.addAttribute("users", usersDao.findById(userId));
 		return "mainadmin/userlist";
 

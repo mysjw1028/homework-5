@@ -13,21 +13,24 @@ public class LoginRespDto {
 	private String adminName;
 	private String userName;
 	private String mainadminName;
-	
+	private String role;	
 	
 	public LoginRespDto(Users users) {//구매자
 		this.id = users.getId();
 		this.userName = users.getUserName();
+		this.role=users.getRole();
 	}
 
 	public LoginRespDto(Admin admin) {//일반 관리자
 		this.id = admin.getId();
 		this.adminName = admin.getAdminName();
+		this.role=admin.getRole();
 	}
 
 	public LoginRespDto(MainAdmin mainAdmin) {//중앙 관리자
 		this.id = mainAdmin.getId();
 		this.mainadminName = mainAdmin.getMainadminName();
+		this.role=mainAdmin.getRole();
 	}
 
 }

@@ -17,13 +17,12 @@ public class Admin {
 	private String adminName;
 	private String password;
 	private String email;
+	private String role;
 	private Timestamp createdAt;
-	
-	
+
 	public Admin(AdminLoginDto adminloginDto) {
 		this.adminName = adminloginDto.getUserName();
 		this.password = adminloginDto.getPassword();
 	}
-	
-	
+
 }

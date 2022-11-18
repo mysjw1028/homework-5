@@ -15,9 +15,24 @@
 
 	<select id="login"
 		resultType="site.metacoding.firstapp.domain.MainAdmin">
-		SELECT * FROM mainadmin WHERE mainadmin_name =#{mainadminName} AND
-		password=#{password} AND password_mainadmin = #{passwordMainadmin}
+		SELECT * FROM mainadmin 
+		WHERE mainadmin_name
+		=#{mainadminName} AND
+		password=#{password} AND 
+		password_mainadmin =
+		#{passwordMainadmin}
 	</select>
-	
-	
+
+	<select id="AdminListDto"
+		resultType="site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto">
+		SELECT row_number() over(order BY id )as NO
+		, mm.id
+		, am.admin_name
+		, am.password
+		, am.email
+		FROM mainadmin mm
+		INNER JOIN admin am
+		ON mm.id = #{adminId}
+	</select>
+
 </mapper>

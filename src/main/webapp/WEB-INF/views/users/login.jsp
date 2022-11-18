@@ -12,9 +12,10 @@
 			<input type="password" class="form-control" placeholder="Enter password" name="password">
 		</div>
 		<button type="submit" class="btn btn-primary">개인 로그인</button>
-		<button type="submit" class="btn btn-primary" onclick="javascript: form.action='/admin/login';">관리자
+		<button type="button" class="btn btn-primary" onclick="javascript: form.action='/admin/login';">관리자
 			로그인</button>
 		<a class="btn btn-primary" href="/mainadmin/loginpage">중앙 관리자 로그인 페이지로 이동</a>
+		<%--a태그는 무조건 get을 때림 / 버튼 디자인은  class ="btn btn-primary "에 맞춰주면 됨--%>
 </div>
 
 

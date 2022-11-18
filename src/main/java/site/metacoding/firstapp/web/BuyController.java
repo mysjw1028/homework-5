@@ -42,22 +42,17 @@ public class BuyController {
 			return "redirect:/";
 		} // setAttribute를 쓰는게 아니라 getAttribute를 써야한다
 			// - LoginRespDto에 있는 값을 들고와서 쓰는거기때문에 getAttribute
-			// - 다운캐스팅해서 넣어줘야함 이유 -> 값 크기 ? 가 안 맞아서 넣어줘야 실행이 된다.
+			// - 다운캐스팅해서 넣어줘야함 이유 -> 담을수 있는 값 크기가 안 맞아서 다운캐스팅을 해야 실행이 된다.
 
 		// 1. findById로 p1에 사려던 품목을 담김
 		Product p1 = productDao.findById(buyDto.getProductId());
-		System.out.println(buyDto.getProductId());
 		// 2. buyCount에 기존 DB의 상품갯수 - 구매하려고 한 상품 갯수 정보 담기
 
 		Integer buyCount = p1.getProductQty() - buyDto.getBuyQty();
 		if (p1.getProductQty() - buyDto.getBuyQty() < 0) {
 			return "redirect:/";
 		} // 0이하는 못들어가게 -> 남은갯수보다 살려는 갯수가 많으면 메인으로 튕겨짐
-
-		System.out.println("사려던 갯수 : " + buyDto.getBuyQty());
-		System.out.println("남은 개수 : " + buyCount);
-
-		// 3. buyDto에 담은 정보로 insert함
+			// 3. buyDto에 담은 정보로 insert함
 		buyDao.insert(buyDto);
 
 		// 4. buyCount와 buyDto에 담긴 productId로 qty 업데이트
@@ -80,13 +75,19 @@ public class BuyController {
 		return "users/buylist";
 	}
 
-	@PostMapping("/buy/buylist/{id}/delete") // 5번 deleteById -> 삭제하기 -> post로 값 삭제
+	@PostMapping("/buy/buylist/{id}/delete")
 	public String 삭제하기(@PathVariable Integer id, BuyDto buyDto) {
-		System.out.println("디버그: "+ buyDto.getBuyQty());
-		System.out.println("디버그: "+ buyDto.getProductId());
+		System.out.println("디버그: " + buyDto.getBuyQty());
+		System.out.println("디버그: " + buyDto.getProductId());
 		buyDao.deleteById(id);
 		productDao.buyProductQty(buyDto);
 
 		return "redirect:/";
 	}
+	// buyDao.deleteById(id); -> id -> productId 를 주문 취소를 해준후
+	// productDao.buyProductQty(buyDto);에서 재고를 추가해주는 쿼리를 넣음
+	// productDao.buyProductQty 추가적으로 생성(product.xml에 쿼리 넣음)
+	// 삭제 / 업데이트 위치는 크게 상관이 없다 (위치변경 테스트 진행해봄 -> 어차피 값이 삭제된후 창고에 저장이 되었다가
+	// productDao가 실행되면서 창고에서 다시 꺼내와 productQty에 추가가 된다. -> 이때 주문 취소된 물건 id 기준으로 진행이
+	// 됨)
 }

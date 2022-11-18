@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.AdminDao;
+import site.metacoding.firstapp.domain.MainAdmin;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
 import site.metacoding.firstapp.web.dto.request.admin.AdminLoginDto;
 
@@ -39,16 +40,17 @@ public class AdminController {
 
 	@PostMapping("/admin/login")
 	public String 관리자로그인(AdminLoginDto adminLoginDto) {// 로그인 / xml에 쿼리 있는지 확인 / login jsp name 확인하기
-		LoginRespDto loginRespDto = new LoginRespDto(adminDao.login(adminLoginDto));
-		System.out.println("==============================");
-		System.out.println(loginRespDto.getAdminName());
-		System.out.println("==============================");
-		session.setAttribute("principal", loginRespDto);
-		if (loginRespDto != null) {
-			return "redirect:/";// model를 사용 했을때 "redirect:/" 이거를 사용해야 화면이 보여진다.
-		} else {// 인증실패하면
-			return "admin/login";
+		Admin admin = adminDao.login(adminLoginDto);
+		if (admin == null) {
+			return "redirect:/";
 		}
+
+		LoginRespDto loginRespDto = new LoginRespDto(admin);
+		session.setAttribute("principal", loginRespDto);
+		return "users/login";
+
 	}
+
+	// model를 사용 했을때 "redirect:/" 이거를 사용해야 화면이 보여진다.
 
 }
