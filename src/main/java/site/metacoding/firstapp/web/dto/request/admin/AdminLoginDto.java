@@ -9,5 +9,4 @@ import site.metacoding.firstapp.domain.Users;
 public class AdminLoginDto {
 	private String userName;
 	private String password;
-	
 }

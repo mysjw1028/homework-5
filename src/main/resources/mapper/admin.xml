@@ -4,11 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.metacoding.firstapp.domain.AdminDao">
 
-	<insert id="insert" useGeneratedKeys="true"
+	<insert id="insert" useGeneratedKeys="false"
 		keyProperty="adminId">
 		insert into admin(admin_name, password, email, created_at)
 		VALUES(#{adminName},#{password},#{email}, NOW())
 	</insert>
+	
 	<select id="login"
 		resultType="site.metacoding.firstapp.domain.Admin">
 		SELECT * FROM admin WHERE admin_name =#{userName} AND
