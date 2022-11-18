@@ -40,17 +40,16 @@ public class AdminController {
 
 	@PostMapping("/admin/login")
 	public String 관리자로그인(AdminLoginDto adminLoginDto) {// 로그인 / xml에 쿼리 있는지 확인 / login jsp name 확인하기
-		Admin admin = adminDao.login(adminLoginDto);
-		if (admin == null) {
-			return "redirect:/";
+		System.out.println("돌아감????????????");
+		Admin admins = adminDao.login(adminLoginDto);
+		System.out.println("돌아감????????????");
+		if (admins == null) {
+			System.out.println(adminLoginDto.getUserName());
+			return "users/login";
 		}
-
-		LoginRespDto loginRespDto = new LoginRespDto(admin);
+		LoginRespDto loginRespDto = new LoginRespDto(admins);
 		session.setAttribute("principal", loginRespDto);
-		return "users/login";
-
+		return "redirect:/";
 	}
-
-	// model를 사용 했을때 "redirect:/" 이거를 사용해야 화면이 보여진다.
 
 }

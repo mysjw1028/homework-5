@@ -45,7 +45,7 @@ public class UsersController {
 		}
 		LoginRespDto loginRespDto = new LoginRespDto(users);
 		session.setAttribute("principal", loginRespDto);
-		return "product/product";// "redirect:/" 이거를 사용해야 화면이 보여진다.
+		return "redirect:/";// "redirect:/" 이거를 사용해야 화면이 보여진다.
 	}
 
 	@GetMapping("/logout") // 화면 출력되는지 확인 완료
