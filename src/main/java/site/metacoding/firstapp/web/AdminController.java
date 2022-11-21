@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.AdminDao;
-import site.metacoding.firstapp.domain.MainAdmin;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
 import site.metacoding.firstapp.web.dto.request.admin.AdminLoginDto;
 
@@ -27,13 +26,7 @@ public class AdminController {
 	@PostMapping("/admin/join/insert")
 	public String 관리자회원가입(Admin admin) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
-		System.out.println("=====================================");
-		System.out.println(admin.getAdminName());
-		System.out.println("=====================================");
 		adminDao.insert(admin);
-		System.out.println("=====================================");
-		System.out.println(admin.getAdminName());
-		System.out.println("=====================================");
 		return "redirect:/";
 	}// 완료
 

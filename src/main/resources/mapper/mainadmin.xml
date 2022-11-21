@@ -23,16 +23,14 @@
 		#{passwordMainadmin}
 	</select>
 
-	<select id="AdminListDto"
+	<select id="adminList"
 		resultType="site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto">
 		SELECT row_number() over(order BY id )as NO
 		, mm.id
 		, am.admin_name
-		, am.password
-		, am.email
 		FROM mainadmin mm
 		INNER JOIN admin am
 		ON mm.id = #{adminId}
 	</select>
-
+<!-- 아니... id랑 다오랑 맞는지 확인좀 해라,,,,   -->
 </mapper>

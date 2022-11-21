@@ -1,5 +1,7 @@
 package site.metacoding.firstapp.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -9,19 +11,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.firstapp.domain.AdminDao;
 import site.metacoding.firstapp.domain.MainAdmin;
 import site.metacoding.firstapp.domain.MainAdminDao;
-import site.metacoding.firstapp.domain.UsersDao;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
+import site.metacoding.firstapp.web.dto.request.buy.BuyDto;
+import site.metacoding.firstapp.web.dto.request.buy.BuyListDto;
+import site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminLoginDto;
-import site.metacoding.firstapp.web.dto.request.users.LoginDto;
 
 @RequiredArgsConstructor
 @Controller
 public class MainAdminController {
 	private final HttpSession session;
 	private final MainAdminDao mainAdminDao;
-	private final UsersDao usersDao;
+	private final AdminDao adminDao;
 
 	@GetMapping("/Mainadmin/joinpage")
 	public String mainadminjoin() {
@@ -57,16 +61,28 @@ public class MainAdminController {
 	// mainAdminLoginDto이 null이니까 LoginRespDto에 값을 넣어줄때 mainAdmin이 null일때
 	// maindamin.get... 메서드가 생성자체가 되지 않았고 그러므로 업는 값이라고 나타남
 
-	@GetMapping("/Mainadmin/userlist")
-	public String userlist() {// 주소창 입력시 화면에 출력
-		// @PathVariable Integer userId, Model model
-//		model.addAttribute("users", usersDao.findById(userId));
-		return "mainadmin/userlist";
-
+	@GetMapping("/Mainadmin/adminlist/{id}")
+	public String adminlist(@PathVariable Integer id, Model model) {// 주소창 입력시 화면에 출력
+		// 아이디를 받기 // 리스트에 담고
+		List<AdminListDto> adminList = mainAdminDao.adminList(id);
+		for (AdminListDto e : adminList = mainAdminDao.adminList(id)) {
+			System.out.println(e.getId());
+		}
+		model.addAttribute("admin", adminList);
+		return "mainadmin/adminlist";
 	}
 
-	@GetMapping("/Mainadmin/adminlist")
-	public String adminlist() {// 주소창 입력시 화면에 출력
-		return "mainadmin/adminlist";
+	@PostMapping("/Mainadmin/adminlist/{id}/delete")
+	public String 삭제하기(@PathVariable Integer id, AdminListDto adminListDto) {
+		System.out.println("디버그: " + adminListDto.getAdminName());
+		System.out.println("디버그: " + adminListDto.getNo());
+		mainAdminDao.deleteById(id);
+		adminDao.deleteById(id);
+		return "redirect:/";
+	}
+
+	@GetMapping("/Mainadmin/userlist")
+	public String userlist() {// 주소창 입력시 화면에 출력
+		return "mainadmin/userlist";
 	}
 }

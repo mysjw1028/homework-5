@@ -25,7 +25,7 @@
 					<th>상품이름</th>
 					<th>구매갯수</th>
 					<th>상품개당가격</th>
-					<th>구매시시간</th>
+					<th>구매시간</th>
 					<th>구매 취소</th>
 					<th class="hidden" name="id">물건아이디</th>
 				</tr>
@@ -42,7 +42,7 @@
 						<td class="hidden" name="id">${buy.id}</td>
 
 						<form action="/buy/buylist/${buy.id}/delete" method="POST">
-							<input type="hidden" value="${buy.buyQty}" , name="buyQty"> <input type="hidden"
+							<input type="hidden" value="${buy.buyQty}"  name="buyQty"> <input type="hidden"
 								value="${buy.productId}" , name="productId">
 							<td><button type="submit" class="btn btn-danger">구매취소</button></td>
 						</form>

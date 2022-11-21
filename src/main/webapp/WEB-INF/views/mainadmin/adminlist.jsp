@@ -18,32 +18,32 @@
 
 
 		<h2>관리자 리스트</h2>
-		<table class="table table-product" id="datatable" border="2">
+		<table class="table table-admin" id="datatable" border="2">
 			<thead>
 				<tr>
 					<th>번호</th>
 					<th>관리자 이름</th>
-					<th>관리자 정보 수정</th>
+					<th></th>
 					<th>관리자 삭제</th>
+					<th class="hidden" name="adminId">관리자 아이디</th>
 				</tr>
 			</thead>
 
-			<%--	<tbody>
-				<c:forEach var="buy" items="${buy}">
+			<tbody>
+				<c:forEach var="admin" items="${admin}">
 					<tr>
-						<td>${buy.no}</td>
-						<td>${buy.buyName}</td>
-						<td>${buy.buyQty}</td>
-						<td>${buy.buyPrice}</td>
-						<td>${buy.createdAt}</td>
-						<form action="/buy/buylist/${buy.id}/delete" method="POST">
-							<input type="hidden" value="${buy.buyQty}" , name="buyQty"> <input type="hidden"
-								value="${buy.productId}" , name="productId">
-							<td><button type="submit" class="btn btn-danger">구매취소</button></td> 
+						<td>${admin.no}</td>
+						<td><a href="/">${admin.adminName}</a></td>
+						<td>${admin.createdAt}</td>
+						<td class="hidden" name="id">${admin.id}</td>
+
+						<form action="/Mainadmin/adminlist/${admin.id}/delete" method="POST">
+							<input type="hidden" value="${admin.adminId}" name="adminId">
+							<td><button type="submit" class="btn btn-danger">관리자 삭제</button></td>
 						</form>
 
 					</tr>
-				</c:forEach> 정보값 수정하기--%>
+				</c:forEach>
 
 			</tbody>
 		</table>
