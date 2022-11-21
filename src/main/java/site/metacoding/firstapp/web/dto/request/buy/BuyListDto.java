@@ -15,6 +15,7 @@ public class BuyListDto {
 	private Integer buyQty;
 	private Integer buyPrice;
 	private Timestamp createdAt;
+
 	// 엔티티가 아닌 필드
 	private Integer no;
 }

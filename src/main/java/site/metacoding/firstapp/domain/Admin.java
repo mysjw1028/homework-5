@@ -25,4 +25,8 @@ public class Admin {
 		this.password = adminloginDto.getPassword();
 	}
 
+	public void update(Admin admin) {
+		this.adminName = admin.getAdminName();
+		this.email = admin.getEmail();
+	}
 }

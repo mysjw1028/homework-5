@@ -57,7 +57,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/product/{productId}/edit")
-	public String update(@PathVariable Integer productId, Model model) {
+	public String edit(@PathVariable Integer productId, Model model) {
 		Product productPS = productDao.findById(productId);
 		model.addAttribute("product", productPS);
 		// System.out.println(productId);//해당 아이디 숫자 출력됨

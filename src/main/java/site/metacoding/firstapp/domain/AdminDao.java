@@ -10,7 +10,7 @@ public interface AdminDao {
 
 	public void insert(Admin admin);
 
-	public Admin findById(Integer id);
+	public Admin findById(Integer adminId);
 
 	public List<Admin> findAll();
 

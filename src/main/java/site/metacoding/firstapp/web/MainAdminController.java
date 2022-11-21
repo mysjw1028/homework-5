@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.AdminDao;
 import site.metacoding.firstapp.domain.MainAdmin;
 import site.metacoding.firstapp.domain.MainAdminDao;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
-import site.metacoding.firstapp.web.dto.request.buy.BuyDto;
-import site.metacoding.firstapp.web.dto.request.buy.BuyListDto;
+
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminLoginDto;
 
@@ -73,12 +73,27 @@ public class MainAdminController {
 	}
 
 	@PostMapping("/Mainadmin/adminlist/{id}/delete")
-	public String 삭제하기(@PathVariable Integer id, AdminListDto adminListDto) {
+	public String 관리자삭제(@PathVariable Integer id, AdminListDto adminListDto) {
 		System.out.println("디버그: " + adminListDto.getAdminName());
-		System.out.println("디버그: " + adminListDto.getNo());
 		mainAdminDao.deleteById(id);
 		adminDao.deleteById(id);
 		return "redirect:/";
+	}
+
+	@PostMapping("/Mainadmin/adminlist/{adminId}/edit")
+	public String 관리자정보수정(@PathVariable Integer adminId, Admin admin) {
+		Admin adminPS = adminDao.findById(adminId);
+		adminPS.update(admin);
+		adminDao.update(adminPS);
+		return "redirect:/";
+	}
+
+	@GetMapping("/Mainadmin/adminlist/{adminId}/edit")
+	public String adminedit(@PathVariable Integer adminId, Model model) {
+		Admin adminPS = adminDao.findById(adminId);
+		model.addAttribute("admin", adminPS);
+		System.out.println(adminId);
+		return "mainadmin/adminupdate";
 	}
 
 	@GetMapping("/Mainadmin/userlist")

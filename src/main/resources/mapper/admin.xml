@@ -9,11 +9,19 @@
 		insert into admin(admin_name, password, email, created_at)
 		VALUES(#{adminName},#{password},#{email}, NOW())
 	</insert>
-	
+
 	<select id="login"
 		resultType="site.metacoding.firstapp.domain.Admin">
 		SELECT * FROM admin WHERE admin_name =#{userName} AND
 		password=#{password}
 	</select>
+
+	<update id="update">
+		UPDATE admin SET admin_name = #{adminName},
+		email = #{email}
+		WHERE
+		id = #{id}
+	</update>
+
 
 </mapper>

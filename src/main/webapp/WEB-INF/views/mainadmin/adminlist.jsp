@@ -24,6 +24,7 @@
 					<th>번호</th>
 					<th>관리자 이름</th>
 					<th></th>
+					<th>관리자 정보 수정</th>
 					<th>관리자 삭제</th>
 					<th class="hidden" name="adminId">관리자 아이디</th>
 				</tr>
@@ -33,9 +34,14 @@
 				<c:forEach var="admin" items="${admin}">
 					<tr>
 						<td>${admin.no}</td>
-						<td><a href="/">${admin.adminName}</a></td>
+						<td>${admin.adminName}</td>
 						<td>${admin.createdAt}</td>
 						<td class="hidden" name="id">${admin.id}</td>
+
+						<form action="/Mainadmin/adminlist/${admin.id}/update" method="POST">
+							<input type="hidden" value="${admin.adminId}" name="adminId">
+							<td><button type="submit" class="btn btn-primary">관리자 정보 수정</button></td>
+						</form>
 
 						<form action="/Mainadmin/adminlist/${admin.id}/delete" method="POST">
 							<input type="hidden" value="${admin.adminId}" name="adminId">

@@ -15,10 +15,10 @@
 
 	<select id="login"
 		resultType="site.metacoding.firstapp.domain.MainAdmin">
-		SELECT * FROM mainadmin 
+		SELECT * FROM mainadmin
 		WHERE mainadmin_name
 		=#{mainadminName} AND
-		password=#{password} AND 
+		password=#{password} AND
 		password_mainadmin =
 		#{passwordMainadmin}
 	</select>
@@ -26,11 +26,12 @@
 	<select id="adminList"
 		resultType="site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto">
 		SELECT row_number() over(order BY id )as NO
-		, mm.id
+		, am.id
 		, am.admin_name
+		, am.email
 		FROM mainadmin mm
 		INNER JOIN admin am
 		ON mm.id = #{adminId}
 	</select>
-<!-- 아니... id랑 다오랑 맞는지 확인좀 해라,,,,   -->
+	<!-- 아니... id랑 다오랑 맞는지 확인좀 해라,,,, -->
 </mapper>
