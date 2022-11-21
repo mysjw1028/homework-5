@@ -29,5 +29,8 @@
 		id = #{id}
 	</update>
 
+	<delete id="deleteById">
+		DELETE FROM admin WHERE id = #{adminId}
+	</delete>
 
 </mapper>

@@ -23,7 +23,7 @@
 				<tr>
 					<th>번호</th>
 					<th>관리자 이름</th>
-					<th></th>
+					<th>관리자 이메일</th>
 					<th>관리자 정보 수정</th>
 					<th>관리자 삭제</th>
 					<th class="hidden" name="adminId">관리자 아이디</th>
@@ -35,8 +35,7 @@
 					<tr>
 						<td>${admin.no}</td>
 						<td>${admin.adminName}</td>
-						<td>${admin.createdAt}</td>
-						<td class="hidden" name="id">${admin.id}</td>
+						<td>${admin.email}</td>
 
 						<form action="/Mainadmin/adminlist/${admin.id}/edit" method="GET">
 							<input type="hidden" value="${admin.adminId}" name="adminId">
@@ -47,7 +46,9 @@
 							<input type="hidden" value="${admin.adminId}" name="adminId">
 							<td><button type="submit" class="btn btn-danger">관리자 삭제</button></td>
 						</form>
-
+						<td>${admin.createdAt}</td>
+						<td class="hidden" name="id">${admin.id}</td>
+						
 					</tr>
 				</c:forEach>
 

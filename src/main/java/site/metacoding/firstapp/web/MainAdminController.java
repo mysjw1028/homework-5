@@ -72,11 +72,10 @@ public class MainAdminController {
 		return "mainadmin/adminlist";
 	}
 
-	@PostMapping("/Mainadmin/adminlist/{id}/delete")
-	public String 관리자삭제(@PathVariable Integer id, AdminListDto adminListDto) {
-		System.out.println("디버그: " + adminListDto.getAdminName());
-		mainAdminDao.deleteById(id);
-		adminDao.deleteById(id);
+	@PostMapping("/Mainadmin/adminlist/{adminId}/delete")// 변수랑 주소명 좀 맞춰라 ;;
+	public String 관리자삭제(@PathVariable Integer adminId) {
+		Admin adminPS = adminDao.findById(adminId);
+		adminDao.deleteById(adminId);
 		return "redirect:/";
 	}
 
