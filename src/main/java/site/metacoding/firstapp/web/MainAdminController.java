@@ -83,6 +83,12 @@ public class MainAdminController {
 	@PostMapping("/Mainadmin/adminlist/{adminId}/edit")
 	public String 관리자정보수정(@PathVariable Integer adminId, Admin admin) {
 		Admin adminPS = adminDao.findById(adminId);
+		System.out.println("=============================");
+		System.out.println(admin.getAdminName());
+		System.out.println(adminPS.getEmail());
+		System.out.println(admin.getEmail());
+		System.out.println("=============================");
+
 		adminPS.update(admin);
 		adminDao.update(adminPS);
 		return "redirect:/";

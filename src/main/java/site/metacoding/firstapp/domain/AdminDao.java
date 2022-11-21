@@ -10,11 +10,11 @@ public interface AdminDao {
 
 	public void insert(Admin admin);
 
-	public Admin findById(Integer adminId);
+	public Admin findById(Integer id);
 
 	public List<Admin> findAll();
 
-	public int update(Admin admin);
+	public void update(Admin admin);
 
 	public int deleteById(Integer id);
 }

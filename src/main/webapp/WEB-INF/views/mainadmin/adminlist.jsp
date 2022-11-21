@@ -38,7 +38,7 @@
 						<td>${admin.createdAt}</td>
 						<td class="hidden" name="id">${admin.id}</td>
 
-						<form action="/Mainadmin/adminlist/${admin.id}/update" method="POST">
+						<form action="/Mainadmin/adminlist/${admin.id}/edit" method="GET">
 							<input type="hidden" value="${admin.adminId}" name="adminId">
 							<td><button type="submit" class="btn btn-primary">관리자 정보 수정</button></td>
 						</form>

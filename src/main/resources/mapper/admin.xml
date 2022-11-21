@@ -10,6 +10,11 @@
 		VALUES(#{adminName},#{password},#{email}, NOW())
 	</insert>
 
+	<select id="findById"
+		resultType="site.metacoding.firstapp.domain.Admin">
+		SELECT * FROM admin WHERE id = #{adminId}
+	</select>
+
 	<select id="login"
 		resultType="site.metacoding.firstapp.domain.Admin">
 		SELECT * FROM admin WHERE admin_name =#{userName} AND
@@ -18,7 +23,8 @@
 
 	<update id="update">
 		UPDATE admin SET admin_name = #{adminName},
-		email = #{email}
+		email =
+		#{email}
 		WHERE
 		id = #{id}
 	</update>
