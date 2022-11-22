@@ -27,11 +27,27 @@
 		resultType="site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto">
 		SELECT row_number() over(order BY id )as NO
 		, am.id
-		, am.admin_name
+		,am.admin_name
 		, am.email
 		FROM mainadmin mm
 		INNER JOIN admin am
-		ON mm.id = #{adminId}
+		ON mm.id =
+		#{adminId}
 	</select>
 	<!-- 아니... id랑 다오랑 맞는지 확인좀 해라,,,, -->
+
+	<select id="usersList"
+		resultType="site.metacoding.firstapp.web.dto.request.mainadmin.UsersListDto">
+		SELECT row_number() over(order BY id )as NO
+		, us.id
+		,us.user_name
+		, us.email
+		FROM mainadmin mm
+		INNER JOIN users us
+		ON mm.id =
+		#{id}
+	</select>
+
+
+
 </mapper>

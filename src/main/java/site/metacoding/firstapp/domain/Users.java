@@ -18,12 +18,15 @@ public class Users {
 	private String email;
 	private String role;
 	private Timestamp createdAt;
-	
-	
+
 	public Users(LoginDto loginDto) {
 		this.userName = loginDto.getUserName();
 		this.password = loginDto.getPassword();
 	}
-	
-	
+
+	public void update(Users users) {
+		this.userName = users.getUserName();
+		this.email = users.getEmail();
+	}
+
 }

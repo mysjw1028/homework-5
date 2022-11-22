@@ -15,10 +15,13 @@ import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.AdminDao;
 import site.metacoding.firstapp.domain.MainAdmin;
 import site.metacoding.firstapp.domain.MainAdminDao;
+import site.metacoding.firstapp.domain.Users;
+import site.metacoding.firstapp.domain.UsersDao;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
 
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminLoginDto;
+import site.metacoding.firstapp.web.dto.request.mainadmin.UsersListDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -26,6 +29,7 @@ public class MainAdminController {
 	private final HttpSession session;
 	private final MainAdminDao mainAdminDao;
 	private final AdminDao adminDao;
+	private final UsersDao usersDao;
 
 	@GetMapping("/Mainadmin/joinpage")
 	public String mainadminjoin() {
@@ -72,7 +76,7 @@ public class MainAdminController {
 		return "mainadmin/adminlist";
 	}
 
-	@PostMapping("/Mainadmin/adminlist/{adminId}/delete")// 변수랑 주소명 좀 맞춰라 ;;
+	@PostMapping("/Mainadmin/adminlist/{adminId}/delete") // 변수랑 주소명 좀 맞춰라 ;;
 	public String 관리자삭제(@PathVariable Integer adminId) {
 		Admin adminPS = adminDao.findById(adminId);
 		adminDao.deleteById(adminId);
@@ -101,8 +105,42 @@ public class MainAdminController {
 		return "mainadmin/adminupdate";
 	}
 
-	@GetMapping("/Mainadmin/userlist")
-	public String userlist() {// 주소창 입력시 화면에 출력
+	@GetMapping("/Mainadmin/userlist/{id}")
+	public String userslist(@PathVariable Integer id, Model model) {// 주소창 입력시 화면에 출력
+		List<UsersListDto> userslist = mainAdminDao.usersList(id);
+		for (UsersListDto e : userslist = mainAdminDao.usersList(id)) {
+			System.out.println(e.getId());
+		}
+		model.addAttribute("users", userslist);
 		return "mainadmin/userlist";
 	}
+
+	@PostMapping("/Mainadmin/userlist/{usersId}/delete") // 변수랑 주소명 좀 맞춰라 ;;
+	public String 구매자삭제(@PathVariable Integer usersId) {
+		Users usersPS = usersDao.findById(usersId);
+		adminDao.deleteById(usersId);
+		return "redirect:/";
+	}
+
+	@PostMapping("/Mainadmin/userlist/{id}/edit")
+	public String 구매자정보수정(@PathVariable Integer id, Users users) {
+		Users usersPS = usersDao.findById(id);
+		System.out.println("=============================");
+		System.out.println(users.getUserName());
+		System.out.println(usersPS.getEmail());
+		System.out.println(users.getEmail());
+		System.out.println("=============================");
+		usersPS.update(users);
+		usersDao.update(usersPS);
+		return "redirect:/";
+	}
+
+	@GetMapping("/Mainadmin/userlist/{id}/edit")
+	public String usersedit(@PathVariable Integer id, Model model) {
+		Users usersPS = usersDao.findById(id);
+		model.addAttribute("users", usersPS);
+		System.out.println(id);
+		return "mainadmin/userupdate";
+	}
+
 }

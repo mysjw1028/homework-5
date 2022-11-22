@@ -9,19 +9,33 @@
 		insert into users(user_name, password, email, created_at)
 		VALUES(#{userName},#{password},#{email}, NOW())
 	</insert>
-	
-	<select id="findById" resultType="site.metacoding.firstapp.domain.Users">
+
+	<select id="findById"
+		resultType="site.metacoding.firstapp.domain.Users">
 		SELECT * FROM users WHERE users_id = #{usersId}
 	</select>
-	
+
 	<select id="findByIduserName"
 		resultType="site.metacoding.firstapp.domain.Users">
 		SELECT * FROM users WHERE user_name = #{userName}
 	</select>
 
-	<select id="login"  resultType="site.metacoding.firstapp.domain.Users">
-		SELECT * FROM users WHERE user_name =#{userName} AND password=#{password}
+	<select id="login"
+		resultType="site.metacoding.firstapp.domain.Users">
+		SELECT * FROM users WHERE user_name =#{userName} AND
+		password=#{password}
 	</select>
 
-	
+	<update id="update">
+		UPDATE users SET user_name = #{userName},
+		email =
+		#{email}
+		WHERE
+		users_id = #{id}
+	</update>
+
+	<delete id="deleteById">
+		DELETE FROM users_id WHERE id = #{usersId}
+	</delete>
+
 </mapper>
