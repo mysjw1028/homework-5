@@ -10,10 +10,10 @@
 		<h2>관리자 정보 수정하기</h2>
 
 		<div class="mb-8 mt-8">
-			<input id="adminName" type="text" name="adminName" class="form-control" value="${admin.adminName}">
+			<input id="adminName"  type="text" name="adminName" class="form-control" value="${admin.adminName}">
 		</div>
 		<div class="mb-3 mt-3">
-			<input id="email" type="text" name="email" class="form-control"
+			<input id="email" type="email" name="email" class="form-control"
 				value="${admin.email}">
 		</div>
 

@@ -13,7 +13,7 @@
 			<input id="userName" type="text" name="userName" class="form-control" value="${users.userName}">
 		</div>
 		<div class="mb-3 mt-3">
-			<input id="email" type="text" name="email" class="form-control" value="${users.email}">
+			<input id="email" type="email" name="email" class="form-control" value="${users.email}">
 		</div>
 
 		<a href="/"> <%--value가 값이라서 기존에 값을 보여주고 수정이 가능하게 해줌!--%>

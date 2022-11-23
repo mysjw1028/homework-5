@@ -47,10 +47,12 @@
 							<input type="hidden" value="${users.id}" name="userId">
 							<td><button type="submit" class="btn btn-danger">구매자 강제탈퇴</button></td>
 						</form>
-						<%--	<form action="/Mainadmin/adminlist/${admin.id}/delete" method="GET">
-							<input type="hidden" value="${admin.adminId}" name="adminId">
-							<td><button type="submit" class="btn btn-danger"> 구매 내역 페이지 이동</button></td>
-						</form> --%>
+
+						<form action="/buy/buylist/${users.id}" method="GET">
+							<input type="hidden" value="${users.id}" name="adminId">
+							<td><button type="submit" class="btn btn-danger">구매 내역 페이지 이동</button></td>
+						</form>
+
 						<td class="hidden" name="id">${users.id}</td>
 
 					</tr>

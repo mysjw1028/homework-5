@@ -86,12 +86,6 @@ public class MainAdminController {
 	@PostMapping("/Mainadmin/adminlist/{adminId}/edit")
 	public String 관리자정보수정(@PathVariable Integer adminId, Admin admin) {
 		Admin adminPS = adminDao.findById(adminId);
-		System.out.println("=============================");
-		System.out.println(admin.getAdminName());
-		System.out.println(adminPS.getEmail());
-		System.out.println(admin.getEmail());
-		System.out.println("=============================");
-
 		adminPS.update(admin);
 		adminDao.update(adminPS);
 		return "redirect:/";
@@ -101,7 +95,6 @@ public class MainAdminController {
 	public String adminedit(@PathVariable Integer adminId, Model model) {
 		Admin adminPS = adminDao.findById(adminId);
 		model.addAttribute("admin", adminPS);
-		System.out.println(adminId);
 		return "mainadmin/adminupdate";
 	}
 
@@ -118,21 +111,13 @@ public class MainAdminController {
 	@PostMapping("/Mainadmin/userlist/{id}/delete") // 변수랑 주소명 좀 맞춰라 ;;
 	public String 구매자삭제(@PathVariable Integer id) {
 		Users usersPS = usersDao.findById(id);
-		System.out.println(usersPS.getId());
-		System.out.println(id);
 		usersDao.deleteById(id);
-		System.out.println(usersDao.deleteById(id));
 		return "redirect:/";
 	}
 
 	@PostMapping("/Mainadmin/userlist/{id}/edit")
 	public String 구매자정보수정(@PathVariable Integer id, Users users) {
 		Users usersPS = usersDao.findById(id);
-		System.out.println("=============================");
-		System.out.println(users.getUserName());
-		System.out.println(usersPS.getEmail());
-		System.out.println(users.getEmail());
-		System.out.println("=============================");
 		usersPS.update(users);
 		usersDao.update(usersPS);
 		return "redirect:/";
@@ -141,13 +126,7 @@ public class MainAdminController {
 	@GetMapping("/Mainadmin/userlist/{id}/edit")
 	public String usersedit(@PathVariable Integer id, Model model) {
 		Users usersPS = usersDao.findById(id);
-		System.out.println("=======================");
-		System.out.println(usersPS.getId());
-		System.out.println("=======================");
-		System.out.println(usersPS.getEmail());
-		System.out.println("=======================");
 		model.addAttribute("users", usersPS);
-		System.out.println(id);
 		return "mainadmin/userupdate";
 	}
 
