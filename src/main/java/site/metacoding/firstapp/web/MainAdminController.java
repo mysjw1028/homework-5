@@ -115,10 +115,13 @@ public class MainAdminController {
 		return "mainadmin/userlist";
 	}
 
-	@PostMapping("/Mainadmin/userlist/{usersId}/delete") // 변수랑 주소명 좀 맞춰라 ;;
-	public String 구매자삭제(@PathVariable Integer usersId) {
-		Users usersPS = usersDao.findById(usersId);
-		adminDao.deleteById(usersId);
+	@PostMapping("/Mainadmin/userlist/{id}/delete") // 변수랑 주소명 좀 맞춰라 ;;
+	public String 구매자삭제(@PathVariable Integer id) {
+		Users usersPS = usersDao.findById(id);
+		System.out.println(usersPS.getId());
+		System.out.println(id);
+		usersDao.deleteById(id);
+		System.out.println(usersDao.deleteById(id));
 		return "redirect:/";
 	}
 
