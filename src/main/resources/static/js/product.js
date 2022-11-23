@@ -43,11 +43,19 @@ function insert() {
 	}
 
 	if (priceCheck() == false) {
-		alert("가격을  다시 적어주세요");
+		alert("가격을 다시 적어주세요");
+		return;
+	}
+	if (pricesameCheck() == false) {
+		alert("가격을  다시 적어주세요!!");
 		return;
 	}
 	if (qtyCheck() == false) {
 		alert("재고 다시 적어주세요");
+		return;
+	}
+	if (qtysameCheck() == false) {
+		alert("재고 다시 적어주세요!!");
 		return;
 	}
 
@@ -72,6 +80,7 @@ function insert() {
 			alert("상품등록에 실패하였습니다.");
 			history.back();
 		}
+
 	});
 }
 
@@ -95,4 +104,27 @@ function qtyCheck() {
 		return false;
 	}
 }
+
+function pricesameCheck() {
+	let productPrice = $("#productPrice").val();
+
+	if (productPrice.length > 0) {
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
+
+function qtysameCheck() {
+	let productQty = $("#productQty").val();
+
+	if (productQty.length > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 
