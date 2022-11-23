@@ -27,6 +27,8 @@
 					<th>상품개당가격</th>
 					<th>구매시간</th>
 					<th>구매 취소</th>
+					<th>갯수 선택</th>
+					<th>구매 부분취소</th>
 					<th class="hidden" name="id">물건아이디</th>
 				</tr>
 			</thead>
@@ -42,10 +44,27 @@
 						<td class="hidden" name="id">${buy.id}</td>
 
 						<form action="/buy/buylist/${buy.id}/delete" method="POST">
-							<input type="hidden" value="${buy.buyQty}"  name="buyQty"> <input type="hidden"
+							<input type="hidden" value="${buy.buyQty}" name="buyQty"> <input type="hidden"
 								value="${buy.productId}" , name="productId">
 							<td><button type="submit" class="btn btn-danger">구매취소</button></td>
 						</form>
+
+						<form action="/buy/buylist/${buy.id}/delete" method="POST">
+							<input type="hidden" value="${buy.buyQty}" name="buyQty"> <input type="hidden"
+								value="${buy.productId}" , name="productId">
+							</td>
+							<td><select name="buyQty">
+									<option value="">선택해주세요.</option>
+									<c:forEach begin="1" end="10" var="i">
+										<option>${i}</option>
+									</c:forEach>
+							</select> &nbsp;개</td>
+							<td>
+								<button type="submit" class="btn btn-danger">구매 부분 취소</button>
+							</td>
+						</form>
+
+
 
 					</tr>
 				</c:forEach>
