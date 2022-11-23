@@ -15,6 +15,8 @@ public interface ProductDao {
 
 	public int updateQty(@Param("productQty") Integer qty, @Param("productId") Integer id);
 
+	public int updateSameQty(@Param("productQty") Integer qty, @Param("productId") Integer id);
+
 	public int deleteById(Integer productId);
 
 	public int insert(Product product);
@@ -23,4 +25,5 @@ public interface ProductDao {
 
 	public void buyProductQty(BuyDto buyDto);
 //	구매자가 구매취소시 기존 재고에서 늘어나야함
+
 }

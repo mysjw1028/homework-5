@@ -12,7 +12,15 @@
 		users_id, product_id, buy_qty, buy_price,
 		buy_name,
 		created_at
-		FROM buy WHERE users_id = #{id}
+		FROM buy
+		WHERE users_id = #{id}
+	</select>
+
+	<select id="buylistcheck"
+		resultType="site.metacoding.firstapp.web.dto.request.buy.BuyListUpdateDto">
+		SELECT id, users_id, product_id, buy_qty
+		FROM buy
+		WHERE users_id AND id = #{id}
 	</select>
 
 	<insert id="insert">
@@ -22,7 +30,7 @@
 		values(#{id}, #{productId}, #{buyQty},
 		#{buyPrice},#{buyName},NOW())
 	</insert>
-	
+
 	<delete id="deleteById">
 		DELETE FROM buy WHERE id = #{id}
 	</delete>

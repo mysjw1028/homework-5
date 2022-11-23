@@ -49,9 +49,20 @@
 	<delete id="deleteById">
 		DELETE FROM product WHERE product_id = #{productId}
 	</delete>
-	
+
+
 	<update id="buyProductQty">
-		UPDATE product SET product_qty = product_qty+ #{buyQty}
+		UPDATE product SET product_qty = product_qty+
+		#{buyQty}
 		WHERE product_id = #{productId}
 	</update>
+
+	<update id="buyProductSameQty">
+		UPDATE product SET product_qty = product_qty+
+		#{buyQty}
+		WHERE product_id = #{productId}
+	</update>
+
+
+
 </mapper>
