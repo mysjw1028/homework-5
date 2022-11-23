@@ -27,7 +27,7 @@
 					<th>구매자 정보 수정</th>
 					<th>구매자 탈퇴</th>
 					<th>구매자 구매내역 삭제</th>
-					<th class="hidden" name="usersId">관리자 아이디</th>
+					<th class="hidden" name="id">관리자 아이디</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -36,15 +36,15 @@
 						<td>${users.no}</td>
 						<td>${users.userName}</td>
 						<td>${users.email}</td>
-						<th class="hidden" name="usersId">관리자 아이디</th>
+						<th class="hidden" name="id">관리자 아이디</th>
 
-						<form action="/Mainadmin/userlist/${usersId}/edit" method="GET">
-							<input type="hidden" value="${users.usersId}" name="adminId">
+						<form action="/Mainadmin/userlist/${users.id}/edit" method="GET">
+							<input type="hidden" value="${users.id}" name="adminId">
 							<td><button type="submit" class="btn btn-primary">구매자 정보 수정</button></td>
 						</form>
 
-						<form action="/Mainadmin/userlist/${usersId}/delete" method="POST">
-							<input type="hidden" value="${admin.adminId}" name="adminId">
+						<form action="/Mainadmin/userlist/${users.id}/delete" method="POST">
+							<input type="hidden" value="${admin.id}" name="adminId">
 							<td><button type="submit" class="btn btn-danger">관리자 삭제</button></td>
 						</form>
 						<%--	<form action="/Mainadmin/adminlist/${admin.id}/delete" method="POST">

@@ -138,6 +138,11 @@ public class MainAdminController {
 	@GetMapping("/Mainadmin/userlist/{id}/edit")
 	public String usersedit(@PathVariable Integer id, Model model) {
 		Users usersPS = usersDao.findById(id);
+		System.out.println("=======================");
+		System.out.println(usersPS.getId());
+		System.out.println("=======================");
+		System.out.println(usersPS.getEmail());
+		System.out.println("=======================");
 		model.addAttribute("users", usersPS);
 		System.out.println(id);
 		return "mainadmin/userupdate";

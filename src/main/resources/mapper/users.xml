@@ -12,7 +12,7 @@
 
 	<select id="findById"
 		resultType="site.metacoding.firstapp.domain.Users">
-		SELECT * FROM users WHERE users_id = #{usersId}
+		SELECT * FROM users WHERE id = #{id}
 	</select>
 
 	<select id="findByIduserName"
@@ -31,11 +31,11 @@
 		email =
 		#{email}
 		WHERE
-		users_id = #{id}
+		id = #{id}
 	</update>
 
 	<delete id="deleteById">
-		DELETE FROM users_id WHERE id = #{usersId}
+		DELETE FROM users WHERE id = #{usersId}
 	</delete>
 
 </mapper>
