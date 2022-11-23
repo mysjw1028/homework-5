@@ -24,6 +24,8 @@ public interface ProductDao {
 	public Product findByIdProductName(String productName);
 
 	public void buyProductQty(BuyDto buyDto);
-//	구매자가 구매취소시 기존 재고에서 늘어나야함
+
+	// 구매자가 구매취소시 기존 재고에서 늘어나야함
+	public void buyProductsameQty(BuyDto buyDto);
 
 }

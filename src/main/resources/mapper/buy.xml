@@ -20,7 +20,7 @@
 		resultType="site.metacoding.firstapp.web.dto.request.buy.BuyListUpdateDto">
 		SELECT id, users_id, product_id, buy_qty
 		FROM buy
-		WHERE users_id AND id = #{id}
+		Where users_id = ${usersId} and id = ${id}
 	</select>
 
 	<insert id="insert">

@@ -8,9 +8,10 @@
 	<form action="/buy/buylist/${id}/buylistcheck" method="POST">
 
 		<h2>구매 정보 수정하기</h2>
-
+	<input id="productId" type="hidden" name="productId" class="form-control" value=" ${buy.productId}">
+		
 		<div class="mb-3 mt-3">
-			<input id="Qty" type="text" name="productQty" class="form-control" value=" ${buy.buyQty}">
+			<input id="buyQty" type="text" name="buyQty" class="form-control" value=" ${buy.buyQty}">
 		</div>
 
 		<a href="/"> <%--value가 값이라서 기존에 값을 보여주고 수정이 가능하게 해줌!--%>

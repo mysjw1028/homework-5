@@ -80,19 +80,22 @@ public class BuyController {
 		return "redirect:/";
 	}
 
-//	@GetMapping("/buy/buylist/{id}/buylistcheck")// 구매갯수 조절 페이지 -> 구현 못함
-//	public String buylistcheck(@PathVariable Integer id, Model model) {
-//		LoginRespDto loginRespDto = (LoginRespDto) session.getAttribute("principal");
-//		System.out.println("====================================");
-//		System.out.println(loginRespDto.getId());
-//		System.out.println("====================================");
-//		
-//		Buy buyPS = buyDao.buylistcheck(id,loginRespDto.getId());//여기서 오류터짐 
-//		System.out.println(buyDao.buylistcheck(id, id));
-//		model.addAttribute("buy", buyPS);
-//		return "user/buylistcheck";
-//	}
+	@GetMapping("/buy/buylist/{id}/buylistcheck") // 구매갯수 조절 페이지 -> 구현 못함
+	public String buylistcheck(@PathVariable Integer id, Model model) {
+		LoginRespDto loginRespDto = (LoginRespDto) session.getAttribute("principal");
+		BuyListUpdateDto buyListUpdateDtoPS = buyDao.buylistcheck(id, loginRespDto.getId());// 여기서 오류터짐
+		model.addAttribute("buy", buyListUpdateDtoPS);
+		return "users/buylistcheck";
+	}// 값을 뭘로 받아야할지 생각하기
+
+	@PostMapping("/buy/buylist/{id}/buylistcheck")
+	public String 주문내역수정(@PathVariable Integer id, BuyDto buyDto) {
+		productDao.buyProductQty(buyDto);
+		return "redirect:/";
+	}
+
 }
+
 // buyDao.deleteById(id); -> id -> productId 를 주문 취소를 해준후
 // productDao.buyProductQty(buyDto);에서 재고를 추가해주는 쿼리를 넣음
 // productDao.buyProductQty 추가적으로 생성(product.xml에 쿼리 넣음)

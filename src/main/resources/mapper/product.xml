@@ -52,16 +52,12 @@
 
 
 	<update id="buyProductQty">
-		UPDATE product SET product_qty = product_qty+
+		UPDATE product p SET p.product_qty = (
+		SELECT product_qty FROM product WHERE product_id = #{productId})+
 		#{buyQty}
 		WHERE product_id = #{productId}
 	</update>
 
-	<update id="buyProductSameQty">
-		UPDATE product SET product_qty = product_qty+
-		#{buyQty}
-		WHERE product_id = #{productId}
-	</update>
 
 
 
