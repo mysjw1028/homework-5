@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.firstapp.domain.Buy;
 import site.metacoding.firstapp.domain.BuyDao;
 import site.metacoding.firstapp.domain.Product;
 import site.metacoding.firstapp.domain.ProductDao;
@@ -83,14 +82,28 @@ public class BuyController {
 	@GetMapping("/buy/buylist/{id}/buylistcheck") // 구매갯수 조절 페이지 -> 구현 못함
 	public String buylistcheck(@PathVariable Integer id, Model model) {
 		LoginRespDto loginRespDto = (LoginRespDto) session.getAttribute("principal");
-		BuyListUpdateDto buyListUpdateDtoPS = buyDao.buylistcheck(id, loginRespDto.getId());// 여기서 오류터짐
+		BuyListUpdateDto buyListUpdateDtoPS = buyDao.buylistcheck(id, loginRespDto.getId());
+		System.out.println(buyListUpdateDtoPS.getUsersId()); // 여기서 오류터짐
 		model.addAttribute("buy", buyListUpdateDtoPS);
 		return "users/buylistcheck";
 	}// 값을 뭘로 받아야할지 생각하기
 
 	@PostMapping("/buy/buylist/{id}/buylistcheck")
 	public String 주문내역수정(@PathVariable Integer id, BuyDto buyDto) {
-		productDao.buyProductQty(buyDto);
+		System.out.println("=======================================");
+		System.out.println("buyProductQty     " + buyDto);
+		System.out.println("=======================================");
+		productDao.buyResetQty(buyDto);// 애는 돌아감
+		
+		System.out.println("=======================================");
+		System.out.println(buyDto.getBuyQty());
+		System.out.println(buyDto.getBuyQty());
+		System.out.println(buyDto.getProductId());
+		System.out.println(buyDto.getUsersId());
+		System.out.println("buyResetQty                 " + buyDto);
+		System.out.println("=======================================");
+		productDao.buyResetUpdateQty(buyDto);
+
 		return "redirect:/";
 	}
 

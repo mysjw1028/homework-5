@@ -22,10 +22,11 @@ public interface ProductDao {
 	public int insert(Product product);
 
 	public Product findByIdProductName(String productName);
-
+	
 	public void buyProductQty(BuyDto buyDto);
-
 	// 구매자가 구매취소시 기존 재고에서 늘어나야함
-	public void buyProductsameQty(BuyDto buyDto);
+	// 구매자가 주문 수정시
+	public void buyResetQty(BuyDto buyDto);
+	public void buyResetUpdateQty(BuyDto buyDto);
 
 }

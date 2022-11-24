@@ -53,12 +53,20 @@
 
 	<update id="buyProductQty">
 		UPDATE product p SET p.product_qty = (
-		SELECT product_qty FROM product WHERE product_id = #{productId})+
+		SELECT
+		product_qty FROM product WHERE product_id = #{productId})+
 		#{buyQty}
 		WHERE product_id = #{productId}
 	</update>
 
+	<update id="buyResetQty">
+		UPDATE buy b SET b.buy_qty = (b.buy_qty - #{buyQty})
+		WHERE product_id = #{productId} AND b.users_id =#{usersId}
+	</update>
 
-
+	<update id="buyResetUpdateQty">
+		UPDATE buy b SET b.buy_qty = (b.buy_qty - #{buyQty})
+		WHERE product_id = #{productId} AND b.users_id =#{usersId}
+	</update>
 
 </mapper>
