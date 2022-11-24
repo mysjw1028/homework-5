@@ -14,6 +14,7 @@
 		<div class="mb-3 mt-3">
 			<input id="buyQty" type="text" name="buyQty" class="form-control" value=" ${buy.buyQty}">
 			<input id="usersId" type="hidden" name="usersId" class="form-control" value=" ${buy.usersId}">
+			<input id="buyName" type="hidden" name="buyName" class="form-control" value=" ${buy.buyName}">
 
 		</div>
 

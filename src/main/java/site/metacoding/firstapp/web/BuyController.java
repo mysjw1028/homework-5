@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.firstapp.domain.Buy;
 import site.metacoding.firstapp.domain.BuyDao;
 import site.metacoding.firstapp.domain.Product;
 import site.metacoding.firstapp.domain.ProductDao;
@@ -90,20 +91,15 @@ public class BuyController {
 
 	@PostMapping("/buy/buylist/{id}/buylistcheck")
 	public String 주문내역수정(@PathVariable Integer id, BuyDto buyDto) {
-		System.out.println("=======================================");
-		System.out.println("buyProductQty     " + buyDto);
-		System.out.println("=======================================");
-		productDao.buyResetQty(buyDto);// 애는 돌아감
-		
-		System.out.println("=======================================");
-		System.out.println(buyDto.getBuyQty());
-		System.out.println(buyDto.getBuyQty());
-		System.out.println(buyDto.getProductId());
-		System.out.println(buyDto.getUsersId());
-		System.out.println("buyResetQty                 " + buyDto);
-		System.out.println("=======================================");
-		productDao.buyResetUpdateQty(buyDto);
+		Product productPS = productDao.findById(id);
+		Buy buyPS = buyDao.findById(id);
+		Integer buyCount = productPS.getProductQty() + buyDto.getBuyQty();
 
+		productDao.buyResetQty(buyDto);
+		buyPS = buyDao.findById(id);
+		int productCount = productPS.getProductQty() - buyDto.getBuyQty();
+		productPS.setProductQty(productCount);
+		productDao.updateQty(productCount, id);
 		return "redirect:/";
 	}
 

@@ -3,8 +3,9 @@ package site.metacoding.firstapp.domain;
 import java.sql.Timestamp;
 
 import lombok.Getter;
+import lombok.Setter;
 
-
+@Setter
 @Getter
 public class Product {
 	private Integer productId;

@@ -20,7 +20,8 @@
 		resultType="site.metacoding.firstapp.web.dto.request.buy.BuyListUpdateDto">
 		SELECT id, users_id, product_id, buy_qty
 		FROM buy
-		Where users_id = ${usersId} and id = ${id}
+		Where
+		users_id = ${usersId} and id = ${id}
 	</select>
 
 	<insert id="insert">
@@ -34,5 +35,11 @@
 	<delete id="deleteById">
 		DELETE FROM buy WHERE id = #{id}
 	</delete>
+
+
+	<select id="findById"
+		resultType="site.metacoding.firstapp.domain.BuyDao">
+		SELECT * FROM buy WHERE product_id = #{id}
+	</select>
 
 </mapper>

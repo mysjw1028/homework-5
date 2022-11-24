@@ -65,7 +65,7 @@
 	</update>
 
 	<update id="buyResetUpdateQty">
-		UPDATE buy b SET b.buy_qty = (b.buy_qty - #{buyQty})
+		UPDATE buy b SET b.buy_qty = (b.buy_qty + #{buyQty})
 		WHERE product_id = #{productId} AND b.users_id =#{usersId}
 	</update>
 
