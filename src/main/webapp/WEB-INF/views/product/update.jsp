@@ -1,6 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../layout/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="../layout/header.jsp"%>
 
 <!DOCTYPE html>
 
@@ -20,8 +20,7 @@
 	<div class="mb-3 mt-3">
 		<input id="productQty" type="text" name="productQty" class="form-control" value="${product.productQty}">
 	</div>
-	<a href="/product">
-		<%--value값이라서 기존에 값을 보여주고 수정이 가능하게 해줌!--%>
+	<a href="/product"> <%--value값이라서 기존에 값을 보여주고 수정이 가능하게 해줌!--%>
 		<button id="btnupdate" type="submit" class="btn btn-primary">상품수정 완료</button>
 	</a>
 

@@ -27,7 +27,7 @@ public class AdminController {
 		return "admin/adminjoin";
 	}
 
-	@PostMapping("/admin/join/insert")
+	@PostMapping("/admin/join")
 	public String 관리자회원가입(Admin admin) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
 		adminDao.insert(admin);

@@ -6,7 +6,7 @@ $("#btnadminNameSameCheck").click(() => {
 	checkadminName();
 })
 
-$("#btnuserInsert").click(() => {
+$("#btnadminInsert").click(() => {
 	insert();
 })
 
@@ -62,7 +62,7 @@ function insert() {
 		email: $("#email").val(),
 	};
 
-	$.ajax("/admin/join/insert", {
+	$.ajax("/admin/join", {
 		type: "POST",
 		dataType: "json",
 		data: JSON.stringify(data), // http body에 들고갈 요청 데이터
