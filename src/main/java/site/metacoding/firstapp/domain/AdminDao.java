@@ -15,6 +15,9 @@ public interface AdminDao {
 	public List<Admin> findAll();
 
 	public void update(Admin admin);
-
+	
 	public int deleteById(Integer id);
+	
+	public Admin findByIdAdminName(String admintName);
+	
 }

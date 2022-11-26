@@ -5,23 +5,26 @@
 <!DOCTYPE html>
 
 <div id=cotainer>
-	<form action="/product/${product.productId}/edit" method="POST">
 
-		<h3>상품수정하기</h3>
+	<h3>상품수정하기</h3>
 
-		<div class="mb-8 mt-8">
-			<input id="name" type="text" name="productName" class="form-control" value="${product.productName}" >
-		</div>
-		<div class="mb-3 mt-3">
-			<input id="price" type="text" name="productPrice" class="form-control" value="${product.productPrice}">
-		</div>
-		<div class="mb-3 mt-3">
-			<input id="name" type="text" name="productQty" class="form-control" value="${product.productQty}">
-		</div>
-		<a href="/product"><%--value값이라서 기존에 값을 보여주고 수정이 가능하게 해줌!--%>
-			<button id="btnupdate" type="submit" class="btn btn-primary">상품수정 완료</button>
-		</a>
-	</form>
+	<div class="mb-8 mt-8">
+		<input id="productName" type="text" name="productName" class="form-control" value="${product.productName}">
+		<button id="btnproductNameSameCheck" type="button" class="btn btn-primary">상품명 중복 확인</button>
+
+	</div>
+	<div class="mb-3 mt-3">
+		<input id="productPrice" type="text" name="productPrice" class="form-control"
+			value="${product.productPrice}">
+	</div>
+	<div class="mb-3 mt-3">
+		<input id="productQty" type="text" name="productQty" class="form-control" value="${product.productQty}">
+	</div>
+	<a href="/product">
+		<%--value값이라서 기존에 값을 보여주고 수정이 가능하게 해줌!--%>
+		<button id="btnupdate" type="submit" class="btn btn-primary">상품수정 완료</button>
+	</a>
+
 </div>
 
 <%@ include file="../layout/footer.jsp"%>

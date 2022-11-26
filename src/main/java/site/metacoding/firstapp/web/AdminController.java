@@ -5,16 +5,20 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.firstapp.Service.AdminService;
 import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.AdminDao;
+import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
 import site.metacoding.firstapp.web.dto.request.admin.AdminLoginDto;
 
 @RequiredArgsConstructor
 @Controller
 public class AdminController {
+	private final AdminService adminService;
 	private final HttpSession session;
 	private final AdminDao adminDao;
 
@@ -44,6 +48,13 @@ public class AdminController {
 		LoginRespDto loginRespDto = new LoginRespDto(admins);
 		session.setAttribute("principal", loginRespDto);
 		return "redirect:/";
+	}
+
+	@GetMapping("/admin/join/adminNameCheck")
+	public @ResponseBody CMRespDto<Boolean> adminameSameCheck(String adminName) {
+		System.out.println("아이디 : " + adminName);
+		boolean isSame = adminService.관리자중복체크(adminName);
+		return new CMRespDto<>(1, "성공", isSame);
 	}
 
 }

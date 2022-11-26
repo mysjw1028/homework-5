@@ -3,20 +3,20 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="container">
-	<form action="/admin/join/insert" method="post">
-		<div class="mb-3 mt-3">
-			<input id="adminName" class="form-control" placeholder="Enter adminname" name="adminName">
-		</div>
-		<div class="mb-3">
-			<input id="password" type="password" class="form-control" placeholder="Enter password"
-				name="password">
-		</div>
-		<div class="mb-3">
-			<input id="email" type="email" class="form-control" placeholder="Enter email" name="email">
-		</div>
-		<button id="btnuserInsert"  type="submit" class="btn btn-primary">관리자회원가입</button>
+	<div class="mb-3 mt-3">
+		<input id="adminName" class="form-control" placeholder="Enter adminname" name="adminName">
+		<button id="btnadminNameSameCheck" type="button" class="btn btn-primary">관리자 중복 확인</button>
+	</div>
+	<div class="mb-3">
+		<input id="password" type="password" class="form-control" placeholder="Enter password" name="password">
+	</div>
+	<div class="mb-3">
+		<input id="email" type="email" class="form-control" placeholder="Enter email" name="email">
+	</div>
+	<button id="btnuserInsert" type="submit" class="btn btn-primary">관리자회원가입</button>
 
-	</form>
 </div>
+<script src="/js/admin.js"></script>
+
 
 <%@ include file="../layout/footer.jsp"%>

@@ -1,9 +1,9 @@
 
-let userNameSameCheck = false;
-let usertNamechecktag = 1;
+let adminNameSameCheck = false;
+let adminNamechecktag = 1;
 
-$("#btnuserNameSameCheck").click(() => {
-	checkuserName();
+$("#btnadminNameSameCheck").click(() => {
+	checkadminName();
 })
 
 $("#btnuserInsert").click(() => {
@@ -12,18 +12,18 @@ $("#btnuserInsert").click(() => {
 
 
 
-function checkuserName() {
-	let userName = $("#userName").val();
+function checkadminName() {
+	let adminName = $("#adminName").val();
 
-	$.ajax("/join/userNameCheck?userName=" + userName, {
+	$.ajax("/admin/join/adminNameCheck?adminName=" + adminName, {
 		type: "GET",
 		dataType: "json",
 	}).done((res) => {
 		if (res.code == 1) { // 통신 성공
 			if (res.data == false) {
 				alert("중복되지 않았습니다.");
-				userNameSameCheck = true;
-				usertNamechecktag = $("#userName").val();
+				adminNameSameCheck = true;
+				adminNamechecktag = $("#adminName").val();
 			} else {
 				alert("아이디가 중복되었어요. 다른 아이디를 사용해주세요.");
 			}
@@ -33,11 +33,11 @@ function checkuserName() {
 
 function insert() {
 
-	if (checkuserName == false) {
+	if (checkadminName == false) {
 		alert("아이디를 다시 적어주세요");
 		return;
 	}
-	if (usertNamechecktag != $("#userName").val()) {
+	if (adminNamechecktag != $("#adminName").val()) {
 		alert("아이디 중복체크 다시 해주세요");
 		return;
 	}
@@ -57,12 +57,12 @@ function insert() {
 	}
 
 	let data = {
-		userName: $("#userName").val(),
+		adminName: $("#adminName").val(),
 		password: $("#password").val(),
 		email: $("#email").val(),
 	};
 
-	$.ajax("/join/insert", {
+	$.ajax("/admin/join/insert", {
 		type: "POST",
 		dataType: "json",
 		data: JSON.stringify(data), // http body에 들고갈 요청 데이터

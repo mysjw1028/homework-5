@@ -89,19 +89,19 @@ public class BuyController {
 		return "users/buylistcheck";
 	}// 값을 뭘로 받아야할지 생각하기
 
-	@PostMapping("/buy/buylist/{id}/buylistcheck")
-	public String 주문내역수정(@PathVariable Integer id, BuyDto buyDto) {
-		Product productPS = productDao.findById(id);
-		Buy buyPS = buyDao.findById(id);
-		Integer buyCount = productPS.getProductQty() + buyDto.getBuyQty();
-
-		productDao.buyResetQty(buyDto);
-		buyPS = buyDao.findById(id);
-		int productCount = productPS.getProductQty() - buyDto.getBuyQty();
-		productPS.setProductQty(productCount);
-		productDao.updateQty(productCount, id);
-		return "redirect:/";
-	}
+//	@PostMapping("/buy/buylist/{id}/buylistcheck")
+//	public String 주문내역수정(@PathVariable Integer id, BuyDto buyDto) {
+//		Product productPS = productDao.findById(id);
+//		Buy buyPS = buyDao.findById(id);
+//		Integer buyCount = productPS.getProductQty() + buyDto.getBuyQty();
+//
+//		productDao.buyResetQty(buyDto);
+//		buyPS = buyDao.findById(id);
+//		int productCount = productPS.getProductQty() - buyDto.getBuyQty();
+//		productPS.setProductQty(productCount);
+//		productDao.updateQty(productCount, id);
+//		return "redirect:/"; // 다음주에 할것
+//	}
 
 }
 

@@ -15,6 +15,11 @@
 		SELECT * FROM admin WHERE id = #{adminId}
 	</select>
 
+	<select id="findByIdAdminName"
+		resultType="site.metacoding.firstapp.domain.Admin">
+		SELECT * FROM admin WHERE admin_name = #{adminName}
+	</select>
+
 	<select id="login"
 		resultType="site.metacoding.firstapp.domain.Admin">
 		SELECT * FROM admin WHERE admin_name =#{userName} AND
