@@ -2,7 +2,7 @@
 <%@ include file="../layout/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div id="container">
+<div class="container">
 	<form>
 		<div class="mb-3 mt-3">
 			<input id="adminName" class="form-control" placeholder="Enter adminname" name="adminName">

@@ -14,6 +14,7 @@ public interface MainAdminDao {
 	public List<MainAdmin> findAll();
 	public int update(MainAdmin mainAdmin);
 	public int deleteById(Integer id);
+	public MainAdmin findByIdMainAdminName(String MainAdminName);
 	public List<AdminListDto> adminList(Integer id);//구매목록보기 리스트 디티오 추가적으로 넣음
 	public List<UsersListDto> usersList(Integer id);//구매목록보기 리스트 디티오 추가적으로 넣음
 

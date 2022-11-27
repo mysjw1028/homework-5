@@ -9,14 +9,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.firstapp.Service.MainAdminService;
 import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.AdminDao;
 import site.metacoding.firstapp.domain.MainAdmin;
 import site.metacoding.firstapp.domain.MainAdminDao;
 import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.domain.UsersDao;
+import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
 
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto;
@@ -28,6 +32,7 @@ import site.metacoding.firstapp.web.dto.request.mainadmin.UsersListDto;
 public class MainAdminController {
 	private final HttpSession session;
 	private final MainAdminDao mainAdminDao;
+	private final MainAdminService mainAdminService;
 	private final AdminDao adminDao;
 	private final UsersDao usersDao;
 
@@ -37,15 +42,23 @@ public class MainAdminController {
 	}
 
 	@PostMapping("/Mainadmin/joinpage/insert")
-	public String 중앙관리자회원가입(MainAdmin mainAdmin) {// 로그인시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 구매자 / 일반관리자 페이지로 이동
+	public @ResponseBody CMRespDto<?> 중앙관리자회원가입(@RequestBody MainAdmin mainAdmin) {// 로그인시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 구매자 / 일반관리자 페이지로 이동
 		if (mainAdmin.getPasswordMainadmin().equals("5678")) {// String은 객체여서 equals("비교값")로 비교해야 한다.
 			mainAdminDao.insert(mainAdmin);
-			return "mainadmin/mainadminlogin";
+			return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
 		} else {
-			return "mainadmin/mainadminjoin";
+			return new CMRespDto<>(0, "중앙관리자회원가입 실패", null);
 		}
 	}// 회원가입시 PasswordMainadmin에 5678을 넣지 않으면 가입불가
 
+	@GetMapping("/join/MainAdminNameCheck")
+	public @ResponseBody CMRespDto<Boolean> MainAdminNameSameCheck(String MainAdminName) {
+		System.out.println("아이디 : " + MainAdminName);
+		boolean isSame = mainAdminService.중앙관리자중복체크(MainAdminName);
+		return new CMRespDto<>(1, "성공", isSame);
+	}
+	
+	
 	@GetMapping("/mainadmin/loginpage")
 	public String mainadminlogin() {// 주소창 입력시 화면에 출력
 		return "mainadmin/mainadminlogin";
@@ -65,6 +78,13 @@ public class MainAdminController {
 	// mainAdminLoginDto이 null이니까 LoginRespDto에 값을 넣어줄때 mainAdmin이 null일때
 	// maindamin.get... 메서드가 생성자체가 되지 않았고 그러므로 업는 값이라고 나타남
 
+	@GetMapping("/Mainadmin/join/MainadminNameCheck")
+	public @ResponseBody CMRespDto<Boolean> adminameSameCheck(String MainAdminName) {
+		System.out.println("아이디 : " + MainAdminName);
+		boolean isSame = mainAdminService.중앙관리자중복체크(MainAdminName);
+		return new CMRespDto<>(1, "성공", isSame);
+	}
+	
 	@GetMapping("/Mainadmin/adminlist/{id}")
 	public String adminlist(@PathVariable Integer id, Model model) {// 주소창 입력시 화면에 출력
 		// 아이디를 받기 // 리스트에 담고

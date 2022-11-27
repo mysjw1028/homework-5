@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
@@ -28,12 +29,12 @@ public class UsersController {
 	}
 
 	@PostMapping("/join/insert")
-	public String 회원가입(Users users) {
+	public @ResponseBody CMRespDto<?> 회원가입(@RequestBody Users users) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
 		System.out.println(users.getUserName());
 		usersDao.insert(users);
 		System.out.println(users.getUserName());
-		return "redirect:/";
+		return new CMRespDto<>(1, "일반 회원가입 성공", null);
 	}// 디비에 값 들어가는거 확인 완료
 
 	@GetMapping("/login") // 화면 출력되는지 확인 완료

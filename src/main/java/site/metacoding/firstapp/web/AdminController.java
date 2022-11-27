@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
@@ -28,10 +29,13 @@ public class AdminController {
 	}
 
 	@PostMapping("/admin/join")
-	public String 관리자회원가입(Admin admin) {
+	public @ResponseBody CMRespDto<?> 관리자회원가입(@RequestBody Admin admin) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
 		adminDao.insert(admin);
-		return "redirect:/";
+		System.out.println(admin.getAdminName());
+		System.out.println(admin.getPassword());
+		System.out.println(admin.getEmail());
+		return new CMRespDto<>(1, "관리자 회원가입 성공", null);
 	}// 완료
 
 	@GetMapping("/admin/login") // 화면 출력되는지 확인 완료
