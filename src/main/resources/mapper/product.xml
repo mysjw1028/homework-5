@@ -6,7 +6,7 @@
 
 	<select id="findById"
 		resultType="site.metacoding.firstapp.domain.Product">
-		SELECT * FROM product WHERE product_id = #{productId}
+		SELECT * FROM product WHERE product_id = #{id}
 	</select>
 
 	<select id="findByIdProductName"

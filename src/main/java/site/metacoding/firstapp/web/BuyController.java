@@ -80,26 +80,38 @@ public class BuyController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/buy/buylist/{id}/buylistcheck") // 구매갯수 조절 페이지 -> 구현 못함
-	public String buylistcheck(@PathVariable Integer id, Model model) {
-		LoginRespDto loginRespDto = (LoginRespDto) session.getAttribute("principal");
-		BuyListUpdateDto buyListUpdateDtoPS = buyDao.buylistcheck(id, loginRespDto.getId());
-		System.out.println(buyListUpdateDtoPS.getUsersId()); // 여기서 오류터짐
-		model.addAttribute("buy", buyListUpdateDtoPS);
-		return "users/buylistcheck";
-	}// 값을 뭘로 받아야할지 생각하기
-
-//	@PostMapping("/buy/buylist/{id}/buylistcheck")
-//	public String 주문내역수정(@PathVariable Integer id, BuyDto buyDto) {
-//		Product productPS = productDao.findById(id);
+//	@GetMapping("/buy/buylist/{productId}/buylistcheck") // 구매갯수 조절 페이지 -> 구현 못함
+//	public String buylistcheck(@PathVariable Integer productId, Model model) {
+//		LoginRespDto loginRespDto = (LoginRespDto) session.getAttribute("principal");
+//		BuyListUpdateDto buyListUpdateDtoPS = buyDao.buylistcheck(productId, loginRespDto.getId());
+//		System.out.println(buyListUpdateDtoPS.getUsersId()); // 여기서 오류터짐
+//		model.addAttribute("buy", buyListUpdateDtoPS);
+//		return "users/buylistcheck";
+//	}// 값을 뭘로 받아야할지 생각하기
+//
+//	@PostMapping("/buy/buylist/{productId}/buylistcheck")
+//	public String 주문내역수정(@PathVariable Integer productId, BuyDto buyDto) {
+//		System.out.println("=======================================");
+//		System.out.println("id: " + productId);
+//		System.out.println("id: " + buyDto.getProductId());
+//		System.out.println("=======================================");
+//
+//		Product productPS = productDao.findById(productId);// 여기서 부터 출력이 안됨
+//		System.out.println("=======================================");
+//		System.out.println("productPS: " + productPS.getProductPrice());
+//		System.out.println("=======================================");
+//		Buy buyPS = buyDao.findById(productId);
+//
+//		Integer buyCount = productPS.getProductQty() + buyDto.getBuyQty();
 //		Buy buyPS = buyDao.findById(id);
 //		Integer buyCount = productPS.getProductQty() + buyDto.getBuyQty();
 //
+//		
 //		productDao.buyResetQty(buyDto);
-//		buyPS = buyDao.findById(id);
+//		buyPS = buyDao.findById(productId);
 //		int productCount = productPS.getProductQty() - buyDto.getBuyQty();
 //		productPS.setProductQty(productCount);
-//		productDao.updateQty(productCount, id);
+//		productDao.updateQty(productCount, productId);
 //		return "redirect:/"; // 다음주에 할것
 //	}
 

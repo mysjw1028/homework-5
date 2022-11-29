@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import site.metacoding.firstapp.web.dto.request.buy.BuyDto;
 
 public interface ProductDao {
-	public Product findById(Integer productId);
+	public Product findById(Integer id);
 
 	public List<Product> findAll();
 

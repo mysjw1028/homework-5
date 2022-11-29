@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../layout/header.jsp"%>
 
-<!DOCTYPE html>
-
 <div id=cotainer>
 
 	<h3>상품수정하기</h3>
