@@ -32,9 +32,6 @@ public class AdminController {
 	public @ResponseBody CMRespDto<?> 관리자회원가입(@RequestBody Admin admin) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
 		adminDao.insert(admin);
-		System.out.println(admin.getAdminName());
-		System.out.println(admin.getPassword());
-		System.out.println(admin.getEmail());
 		return new CMRespDto<>(1, "관리자 회원가입 성공", null);
 	}// 완료
 
@@ -56,7 +53,6 @@ public class AdminController {
 
 	@GetMapping("/admin/join/adminNameCheck")
 	public @ResponseBody CMRespDto<Boolean> adminameSameCheck(String adminName) {
-		System.out.println("아이디 : " + adminName);
 		boolean isSame = adminService.관리자중복체크(adminName);
 		return new CMRespDto<>(1, "성공", isSame);
 	}

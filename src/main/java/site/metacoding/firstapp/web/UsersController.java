@@ -31,9 +31,7 @@ public class UsersController {
 	@PostMapping("/join/insert")
 	public @ResponseBody CMRespDto<?> 회원가입(@RequestBody Users users) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
-		System.out.println(users.getUserName());
 		usersDao.insert(users);
-		System.out.println(users.getUserName());
 		return new CMRespDto<>(1, "일반 회원가입 성공", null);
 	}// 디비에 값 들어가는거 확인 완료
 
@@ -61,7 +59,6 @@ public class UsersController {
 
 	@GetMapping("/join/userNameCheck")
 	public @ResponseBody CMRespDto<Boolean> usersNameSameCheck(String userName) {
-		System.out.println("아이디 : " + userName);
 		boolean isSame = usersService.아이디중복체크(userName);
 		return new CMRespDto<>(1, "성공", isSame);
 	}

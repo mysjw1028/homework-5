@@ -73,7 +73,6 @@ public class ProductController {
 
 	@GetMapping("/product/productNameCheck")
 	public @ResponseBody CMRespDto<Boolean> productNumberSameCheck(String productName) {
-		System.out.println("상품이름 : " + productName);
 		boolean isSame = productService.상품명중복체크(productName);
 		return new CMRespDto<>(1, "성공", isSame);
 	}

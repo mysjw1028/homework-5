@@ -53,7 +53,6 @@ public class MainAdminController {
 
 	@GetMapping("/join/MainAdminNameCheck")
 	public @ResponseBody CMRespDto<Boolean> MainAdminNameSameCheck(String MainAdminName) {
-		System.out.println("아이디 : " + MainAdminName);
 		boolean isSame = mainAdminService.중앙관리자중복체크(MainAdminName);
 		return new CMRespDto<>(1, "성공", isSame);
 	}
@@ -80,7 +79,6 @@ public class MainAdminController {
 
 	@GetMapping("/Mainadmin/join/MainadminNameCheck")
 	public @ResponseBody CMRespDto<Boolean> adminameSameCheck(String MainAdminName) {
-		System.out.println("아이디 : " + MainAdminName);
 		boolean isSame = mainAdminService.중앙관리자중복체크(MainAdminName);
 		return new CMRespDto<>(1, "성공", isSame);
 	}
