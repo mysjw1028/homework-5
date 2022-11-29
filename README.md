@@ -48,7 +48,8 @@ create table users(
     user_name varchar(20) NOT null,
     password varchar(20) NOT null,
     email varchar(20) NOT null,
-    created_at TIMESTAMP NOT null
+    created_at TIMESTAMP NOT null,
+    role VARCHAR(20) DEFAULT '일반'
 );
 create table buy(
     id int primary KEY auto_increment,
@@ -57,7 +58,8 @@ create table buy(
     buy_qty INT,
     buy_price INT,
     buy_name VARCHAR(50),
-    created_at  TIMESTAMP
+    created_at  TIMESTAMP,
+    main_adminid varchar(20),
 );
 create table admin(
  	id int KEY auto_increment,
@@ -65,7 +67,9 @@ create table admin(
    user_name varchar(20),
    password varchar(20) NOT null,
    email varchar(20) NOT null,
-   created_at TIMESTAMP NOT null
+   created_at TIMESTAMP NOT null,
+   main_adminid varchar(20),
+      role VARCHAR(20) DEFAULT '일반 관리자'
 );
 
 create table mainadmin(
@@ -74,7 +78,8 @@ create table mainadmin(
    password varchar(20) NOT null,
    password_mainadmin varchar(20) NOT NULL,
    email varchar(20) NOT null,
-   created_at TIMESTAMP NOT null
+   created_at TIMESTAMP NOT null,
+   role VARCHAR(20) DEFAULT '중앙관리자'
 );
 ```
 
