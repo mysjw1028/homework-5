@@ -14,6 +14,7 @@ import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.domain.UsersDao;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
+import site.metacoding.firstapp.web.dto.request.users.JoinDto;
 import site.metacoding.firstapp.web.dto.request.users.LoginDto;
 
 @RequiredArgsConstructor
@@ -29,9 +30,12 @@ public class UsersController {
 	}
 
 	@PostMapping("/join/insert")
-	public @ResponseBody CMRespDto<?> 회원가입(@RequestBody Users users) {
+	public @ResponseBody CMRespDto<?> 회원가입(@RequestBody JoinDto joinDto) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
-		usersDao.insert(users);
+		usersService.일반회원가입(joinDto);
+		System.out.println(joinDto.getUserName());
+		System.out.println(joinDto.getPassword());
+		System.out.println(joinDto.getRole());
 		return new CMRespDto<>(1, "일반 회원가입 성공", null);
 	}// 디비에 값 들어가는거 확인 완료
 

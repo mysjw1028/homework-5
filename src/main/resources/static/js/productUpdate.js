@@ -1,68 +1,72 @@
 
-let userNameSameCheck = false;
-let usertNamechecktag = 1;
+let productNameSameCheck = false;
+let productNamechecktag = 1;
 
-$("#btnuserNameSameCheck").click(() => {
-	checkuserName();
+$("#btnproductNameSameCheck").click(() => {
+	checkProducUpdatetName();
 })
 
-$("#btnuserInsert").click(() => {
-	insert();
+$("#btnupdate").click(() => {
+	update();
 })
 
 
 
-function checkuserName() {
-	let userName = $("#userName").val();
+function checkProducUpdatetName() {
+	let productName = $("#productName").val();
 
-	$.ajax("/join/userNameCheck?userName=" + userName, {
+	$.ajax("/product/productNameCheck?productName=" + productName, {
 		type: "GET",
 		dataType: "json",
 	}).done((res) => {
 		if (res.code == 1) { // 통신 성공
 			if (res.data == false) {
 				alert("중복되지 않았습니다.");
-				userNameSameCheck = true;
-				usertNamechecktag = $("#userName").val();
+				productNameSameCheck = true;
+				productNamechecktag = $("#productName").val();
 			} else {
-				alert("아이디가 중복되었어요. 다른 아이디를 사용해주세요.");
+				alert("상품명이 중복되었어요. 다른 상품명 사용해주세요.");
 			}
 		}
 	});
 }
 
-function insert() {
+function update() {
 
-	if (checkuserName == false) {
-		alert("아이디를 다시 적어주세요");
+	if (checkProducUpdatetName == false) {
+		alert("상품명 다시 적어주세요");
 		return;
 	}
-	if (usertNamechecktag != $("#userName").val()) {
-		alert("아이디 중복체크 다시 해주세요");
-		return;
-	}
-
-	if (passwordCheck() == false) {
-		alert("패스워드를  다시 적어주세요");
-		return;
-	}
-	if (emailCheck() == false) {
-		alert("이메일을  다시 적어주세요");
+	if (productNamechecktag != $("#productName").val()) {
+		alert("상품명 중복체크 다시 해주세요");
 		return;
 	}
 
-	if (passwordsameCheck() == false) {
-		alert("패스워드를  다시 적어주세요");
+	if (priceCheck() == false) {
+		alert("가격을 다시 적어주세요");
+		return;
+	}
+	if (pricesameCheck() == false) {
+		alert("가격을  다시 적어주세요!!");
+		return;
+	}
+	if (qtyCheck() == false) {
+		alert("재고 다시 적어주세요");
+		return;
+	}
+	if (qtysameCheck() == false) {
+		alert("재고 다시 적어주세요!!");
 		return;
 	}
 
 	let data = {
-		userName: $("#userName").val(),
-		password: $("#password").val(),
-		email: $("#email").val(),
+		productName: $("#productName").val(),
+		productPrice: $("#productPrice").val(),
+		productQty: $("#productQty").val()
 	};
+	let productId = $("#productId").val();
 
-	$.ajax("/join/insert", {
+	$.ajax("/product/" + productId + "/edit", {
 		type: "POST",
 		dataType: "json",
 		data: JSON.stringify(data), // http body에 들고갈 요청 데이터
@@ -71,19 +75,24 @@ function insert() {
 		}
 	}).done((res) => {
 		if (res.code == 1) { // 성공
-			alert("회원가입에 성공하였습니다.");
+			console.log("1");
+			alert("상품수정에 성공하였습니다.");
 			location.href = "/";
+			console.log("2");
 		} else { // 실패
-			alert("회원가입에 실패하였습니다.");
+			console.log("3");
+			alert("상품수정에 실패하였습니다.");
 			history.back();
+			console.log("4");
 		}
+
 	});
 }
 
 
-function passwordCheck() {
-	let price = $("#password").val();
-	let priceRule = /^[a-zA-Z0-9]*$/;
+function priceCheck() {
+	let price = $("#productPrice").val();
+	let priceRule = /^[0-9]*$/;
 	if (priceRule.test(price)) {
 		return true;
 	} else {
@@ -91,32 +100,36 @@ function passwordCheck() {
 	}
 }
 
+function qtyCheck() {
+	let qty = $("#productQty").val();
+	let qtyRule = /^[0-9]*$/;
+	if (qtyRule.test(qty)) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
-function emailCheck() {
-	let email = $("#email").val();
-	let emailRule = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-	if (emailRule.test(email)) {
+function pricesameCheck() {
+	let productPrice = $("#productPrice").val();
+
+	if (productPrice.length > 0) {
 		return true;
 	} else {
 		return false;
 	}
 
 }
-function passwordsameCheck() {
-	let password = $("#password").val();
 
-	if (password.length > 0) {
+
+function qtysameCheck() {
+	let productQty = $("#productQty").val();
+
+	if (productQty.length > 0) {
 		return true;
 	} else {
 		return false;
 	}
 }
-function emailsameCheck() {
-	let email = $("#email").val();
 
-	if (email.length > 0) {
-		return true;
-	} else {
-		return false;
-	}
-}
+

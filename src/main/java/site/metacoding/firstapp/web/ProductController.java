@@ -15,6 +15,7 @@ import site.metacoding.firstapp.Service.ProductService;
 import site.metacoding.firstapp.domain.Product;
 import site.metacoding.firstapp.domain.ProductDao;
 import site.metacoding.firstapp.web.dto.CMRespDto;
+import site.metacoding.firstapp.web.dto.request.product.ProductUpdateDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -49,11 +50,12 @@ public class ProductController {
 	// **********************POSTMAN으로 테스트****************//
 
 	@PostMapping("/product/{productId}/edit") // 4번 update -> 수정하기 -> post로 값 수정
-	public String 수정하기(@PathVariable Integer productId, Product product) {
-		Product productPS = productDao.findById(productId);
-		productPS.update(product);
-		productDao.update(productPS);
-		return "redirect:/";
+	public @ResponseBody CMRespDto<?> 수정하기(@PathVariable Integer productId, @RequestBody ProductUpdateDto productDto) {
+		productService.상품수정(productId, productDto);
+		System.out.println(productDto.getProductName());
+		System.out.println(productDto.getProductPrice());
+		System.out.println(productDto.getProductQty());
+		return new CMRespDto<>(1, "상품등록성공", null);
 	}
 
 	@GetMapping("/product/{productId}/edit")

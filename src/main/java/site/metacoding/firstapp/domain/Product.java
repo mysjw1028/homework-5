@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+import site.metacoding.firstapp.web.dto.request.product.ProductUpdateDto;
 
 @Setter
 @Getter
@@ -30,10 +31,10 @@ public class Product {
 		this.productQty = productQty;
 	}
 
-	public void update(Product product) {
-		this.productName = product.getProductName();
-		this.productPrice = product.getProductPrice();
-		this.productQty = product.getProductQty();
+	public void update(ProductUpdateDto productDto) {
+		this.productName = productDto.getProductName();
+		this.productPrice = productDto.getProductPrice();
+		this.productQty = productDto.getProductQty();
 	}
 
 }

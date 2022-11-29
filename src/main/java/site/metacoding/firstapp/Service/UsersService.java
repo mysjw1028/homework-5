@@ -5,11 +5,17 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.domain.UsersDao;
+import site.metacoding.firstapp.web.dto.request.users.JoinDto;
 
 @RequiredArgsConstructor
 @Service
 public class UsersService {
 	private final UsersDao usersDao;
+
+	public void 일반회원가입(JoinDto joinDto) {
+		Users users = joinDto.toEntity();
+		usersDao.insert(users);
+	}// 컨트롤러가 일 안함
 
 	public boolean 아이디중복체크(String userName) {
 		Users usersPS = usersDao.findByIdUserName(userName);
