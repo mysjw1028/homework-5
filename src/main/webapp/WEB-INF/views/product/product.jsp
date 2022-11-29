@@ -24,9 +24,9 @@
 			</thead>
 			<tbody>
 				<c:forEach var="product" items="${product}">
-					<tr>
+					<tr class="company_body" onclick="location.href='/product/${product.productId}'" style="cursor: pointer">
 						<td>${product.no}</td>
-						<td><a href="/product/${product.productId}">${product.productName}</a></td>
+						<td>${product.productName}</td>
 						<td>${product.productPrice}</td>
 						<td>${product.productQty}</td>
 						<td>${product.createdAt}</td>

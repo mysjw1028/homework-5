@@ -21,8 +21,7 @@ public interface BuyDao {
 
 	public List<BuyListDto> buyList(Integer id);// 구매목록보기 리스트 디티오 추가적으로 넣음
 
-	public BuyListUpdateDto buylistcheck(@Param("id") Integer id, @Param("usersId") Integer usersId);// 구매목록보기 리스트 디티오
-																										// 추가적으로 넣음
+	public BuyListUpdateDto buylistcheck(@Param("id") Integer id, @Param("usersId") Integer usersId);// 구매목록보기 리스트 디티오  추가적으로 넣음
 
 
 
