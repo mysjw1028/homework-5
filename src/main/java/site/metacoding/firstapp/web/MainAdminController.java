@@ -24,6 +24,7 @@ import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
 
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto;
+import site.metacoding.firstapp.web.dto.request.mainadmin.AdminUpdateDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminJoinDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminLoginDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.UsersListDto;
@@ -109,10 +110,8 @@ public class MainAdminController {
 	}
 
 	@PostMapping("/Mainadmin/adminlist/{adminId}/edit")
-	public String 관리자정보수정(@PathVariable Integer adminId, Admin admin) {
-		Admin adminPS = adminDao.findById(adminId);
-		adminPS.update(admin);
-		adminDao.update(adminPS);
+	public String 관리자정보수정(@PathVariable Integer adminId, AdminUpdateDto adminUpdateDto) {
+		mainAdminService.관리자정보수정(adminId, adminUpdateDto);
 		return "redirect:/";
 	}
 

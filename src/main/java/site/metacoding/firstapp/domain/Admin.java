@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import site.metacoding.firstapp.web.dto.request.admin.AdminLoginDto;
+import site.metacoding.firstapp.web.dto.request.mainadmin.AdminUpdateDto;
 import site.metacoding.firstapp.web.dto.request.users.LoginDto;
 import site.metacoding.firstapp.web.dto.request.users.UpdateDto;
 
@@ -25,10 +26,11 @@ public class Admin {
 		this.password = adminloginDto.getPassword();
 	}
 
-	public void update(Admin admin) {
-		this.adminName = admin.getAdminName();
-		this.email = admin.getEmail();
-	}
+	public void update(AdminUpdateDto adminUpdateDto) {
+		this.adminName = adminUpdateDto.getAdminName();
+		this.email = adminUpdateDto.getEmail();
+	}// 중앙관리자가 일반관리자 관리
+
 	public Admin(String adminName, String password, String email) {
 		this.adminName = adminName;
 		this.password = password;

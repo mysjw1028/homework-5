@@ -11,6 +11,7 @@ public class AdminUpdateDto {
 	private Integer id;
 	private Integer adminId;
 	private String adminName;
+	private String email;
 	private Timestamp createdAt;
 	// 엔티티가아닌 필드 -> 번호로 보이기 위해서
 	private Integer no;
