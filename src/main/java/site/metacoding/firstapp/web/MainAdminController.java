@@ -28,6 +28,7 @@ import site.metacoding.firstapp.web.dto.request.mainadmin.AdminUpdateDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminJoinDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminLoginDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.UsersListDto;
+import site.metacoding.firstapp.web.dto.request.mainadmin.UsersUpdateDto;
 import site.metacoding.firstapp.web.dto.request.users.JoinDto;
 
 @RequiredArgsConstructor
@@ -140,10 +141,9 @@ public class MainAdminController {
 	}
 
 	@PostMapping("/Mainadmin/userlist/{id}/edit")
-	public String 구매자정보수정(@PathVariable Integer id, Users users) {
+	public String 구매자정보수정(@PathVariable Integer id, UsersUpdateDto usersUpdateDto) {
 		Users usersPS = usersDao.findById(id);
-		usersPS.update(users);
-		usersDao.update(usersPS);
+		mainAdminService.구매자정보수정(id, usersUpdateDto);
 		return "redirect:/";
 	}
 

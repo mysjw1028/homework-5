@@ -8,8 +8,11 @@ import site.metacoding.firstapp.domain.AdminDao;
 import site.metacoding.firstapp.domain.MainAdmin;
 import site.metacoding.firstapp.domain.MainAdminDao;
 import site.metacoding.firstapp.domain.Product;
+import site.metacoding.firstapp.domain.Users;
+import site.metacoding.firstapp.domain.UsersDao;
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminUpdateDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminJoinDto;
+import site.metacoding.firstapp.web.dto.request.mainadmin.UsersUpdateDto;
 import site.metacoding.firstapp.web.dto.request.product.ProductUpdateDto;
 
 @RequiredArgsConstructor
@@ -17,7 +20,8 @@ import site.metacoding.firstapp.web.dto.request.product.ProductUpdateDto;
 public class MainAdminService {
 	private final MainAdminDao mainAdminDao;
 	private final AdminDao adminDao;
-	
+	private final UsersDao usersDao;
+
 	public void 중앙관리자회원가입(MainAdminJoinDto mainAdminJoinDto) {
 		MainAdmin mainadmins = mainAdminJoinDto.toEntity();
 		mainAdminDao.insert(mainadmins);
@@ -41,5 +45,16 @@ public class MainAdminService {
 		}
 		adminPS.update(adminUpdateDto);
 		adminDao.update(adminPS);
+	}
+
+	public void 구매자정보수정(Integer id, UsersUpdateDto usersUpdateDto) {
+		// 1. 영속화
+		Users  usersPS = usersDao.findById(id);
+
+		if (usersPS == null) {
+			throw new RuntimeException(id + "의 아이디를 찾을수없습니다.");
+		}
+		usersPS.update(usersUpdateDto);
+		usersDao.update(usersPS);
 	}
 }

@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import site.metacoding.firstapp.web.dto.request.mainadmin.UsersUpdateDto;
 import site.metacoding.firstapp.web.dto.request.users.LoginDto;
 import site.metacoding.firstapp.web.dto.request.users.UpdateDto;
 
@@ -24,9 +25,9 @@ public class Users {
 		this.password = loginDto.getPassword();
 	}
 
-	public void update(Users users) {
-		this.userName = users.getUserName();
-		this.email = users.getEmail();
+	public void update(UsersUpdateDto usersUpdateDto) {
+		this.userName = usersUpdateDto.getUserName();
+		this.email = usersUpdateDto.getEmail();
 	}
 
 	public Users(String userName, String password, String email) {
