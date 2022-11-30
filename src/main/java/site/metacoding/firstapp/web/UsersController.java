@@ -1,8 +1,12 @@
 package site.metacoding.firstapp.web;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,18 +48,55 @@ public class UsersController {
 		return "users/login";
 	}
 
-	@PostMapping("/login")
-	public String 로그인(LoginDto loginDto) {// 로그인 / xml에 쿼리 있는지 확인 / login jsp name 확인하기
-		Users users = usersDao.login(loginDto);
-		System.out.println("컨트롤러 : " + loginDto.getUserName());
-		System.out.println("컨트롤러 :" + loginDto.getPassword());
-		if (users == null) {
-			return "users/login";
+	@GetMapping("/login") // 화면 출력되는지 확인 완료
+	public String logins(Model model, HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("userName")) {
+				model.addAttribute(cookie.getName(), cookie.getValue());
+			}
+			System.out.println("============");
+			System.out.println(cookie.getName());
+			System.out.println(cookie.getValue());
+			System.out.println("============");
 		}
-		LoginRespDto loginRespDto = new LoginRespDto(users);
-		session.setAttribute("principal", loginRespDto);
-		return "redirect:/";// "redirect:/" 이거를 사용해야 화면이 보여진다.
+		return "users/login";
 	}
+
+	@PostMapping("/login")
+	public@ResponseBody CMRespDto<?>로그인(@RequestBody  LoginDto loginDto, HttpServletResponse response) {// 로그인 / xml에 쿼리 있는지 확인 / login jsp name 확인하기
+		System.out.println("===========");
+		System.out.println(loginDto.isRemember());
+		System.out.println("===========");
+
+		if (loginDto.isRemember()) {
+			Cookie cookie = new Cookie("userName", loginDto.getUserName());
+			cookie.setMaxAge(60 * 60 * 24);
+			response.addCookie(cookie);
+		} else {
+			Cookie cookie = new Cookie("userName", null);
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
+		Users principal = usersService.로그인(loginDto);
+		if (principal == null) {
+			return new CMRespDto<>(-1, "로그인실패", null);
+		}
+		session.setAttribute("principal", principal);
+		return new CMRespDto<>(1, "로그인성공", null);
+	}
+
+//cookie 적용 전 코드
+//	Users users = usersDao.login(loginDto);
+//	System.out.println("컨트롤러 : " + loginDto.getUserName());
+//	System.out.println("컨트롤러 :" + loginDto.getPassword());
+//	if (users == null) {
+//		return "users/login";
+//	}
+//	LoginRespDto loginRespDto = new LoginRespDto(users);
+//	session.setAttribute("principal", loginRespDto);
+//	return "redirect:/";// "redirect:/" 이거를 사용해야 화면이 보여진다.
+//	
 
 	@GetMapping("/logout") // 화면 출력되는지 확인 완료
 	public String loginout() {

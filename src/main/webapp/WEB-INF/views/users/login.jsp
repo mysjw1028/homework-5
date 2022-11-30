@@ -14,7 +14,7 @@
 		<div class="form-check mb-3">
 			<label class="form-check-label"> <input id="remember" class="form-check-input" type="checkbox">
 				Remember me
-			</label>
+			</label><%-- 아이디 정보 저장하는 체크박스 --%>
 		</div>
 		<button type="submit" class="btn btn-primary">개인 로그인</button>
 		<button type="submit" class="btn btn-primary" onclick="javascript: form.action='/admin/login';">관리자
