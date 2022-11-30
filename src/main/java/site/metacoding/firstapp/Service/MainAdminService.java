@@ -12,6 +12,7 @@ import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.domain.UsersDao;
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminUpdateDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminJoinDto;
+import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminLoginDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.UsersUpdateDto;
 import site.metacoding.firstapp.web.dto.request.product.ProductUpdateDto;
 
@@ -57,4 +58,18 @@ public class MainAdminService {
 		usersPS.update(usersUpdateDto);
 		usersDao.update(usersPS);
 	}
+	public MainAdmin 중앙관관리자로그인(MainAdminLoginDto mainAdminLoginDto) {
+		MainAdmin mainAdminsPS = mainAdminDao.findByIdMainAdminName(mainAdminLoginDto.getMainadminName());
+
+		if(mainAdminsPS == null) {
+			return null;
+		}
+		
+		if(mainAdminsPS.getPassword().equals(mainAdminLoginDto.getPassword())) {
+			return mainAdminsPS;
+		}else {
+			return null;
+		}
+	}
+	
 }
