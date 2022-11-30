@@ -24,8 +24,10 @@ import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
 
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto;
+import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminJoinDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminLoginDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.UsersListDto;
+import site.metacoding.firstapp.web.dto.request.users.JoinDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -42,13 +44,19 @@ public class MainAdminController {
 	}
 
 	@PostMapping("/Mainadmin/joinpage/insert")
-	public @ResponseBody CMRespDto<?> 중앙관리자회원가입(@RequestBody MainAdmin mainAdmin) {// 로그인시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 구매자 / 일반관리자 페이지로 이동
-		if (mainAdmin.getPasswordMainadmin().equals("5678")) {// String은 객체여서 equals("비교값")로 비교해야 한다.
-			mainAdminDao.insert(mainAdmin);
+	public @ResponseBody CMRespDto<?> 중앙관리자회원가입(@RequestBody MainAdminJoinDto mainAdminJoinDto) {
+		System.out.println(mainAdminJoinDto.getMainadminName());
+		System.out.println(mainAdminJoinDto.getPassword());
+		System.out.println(mainAdminJoinDto.getPasswordMainadmin());
+		if (mainAdminJoinDto.getPasswordMainadmin().equals("5678")) {// String은 객체여서 equals("비교값")로 비교해야 한다.
+			System.out.println(mainAdminJoinDto.getPasswordMainadmin());
+			mainAdminService.중앙관리자회원가입(mainAdminJoinDto);
 			return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
+
 		} else {
 			return new CMRespDto<>(0, "중앙관리자회원가입 실패", null);
 		}
+		// 로그인시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 구매자 / 일반관리자 페이지로 이동
 	}// 회원가입시 PasswordMainadmin에 5678을 넣지 않으면 가입불가
 
 	@GetMapping("/join/MainAdminNameCheck")
@@ -56,8 +64,7 @@ public class MainAdminController {
 		boolean isSame = mainAdminService.중앙관리자중복체크(MainAdminName);
 		return new CMRespDto<>(1, "성공", isSame);
 	}
-	
-	
+
 	@GetMapping("/mainadmin/loginpage")
 	public String mainadminlogin() {// 주소창 입력시 화면에 출력
 		return "mainadmin/mainadminlogin";
@@ -82,7 +89,7 @@ public class MainAdminController {
 		boolean isSame = mainAdminService.중앙관리자중복체크(MainAdminName);
 		return new CMRespDto<>(1, "성공", isSame);
 	}
-	
+
 	@GetMapping("/Mainadmin/adminlist/{id}")
 	public String adminlist(@PathVariable Integer id, Model model) {// 주소창 입력시 화면에 출력
 		// 아이디를 받기 // 리스트에 담고

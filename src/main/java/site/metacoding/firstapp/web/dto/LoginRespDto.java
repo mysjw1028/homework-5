@@ -14,6 +14,7 @@ public class LoginRespDto {
 	private String userName;
 	private String mainadminName;
 	private String role;	
+	private String password;
 	
 	public LoginRespDto(Users users) {//구매자
 		this.id = users.getId();

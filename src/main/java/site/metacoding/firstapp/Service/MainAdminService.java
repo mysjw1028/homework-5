@@ -5,11 +5,17 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.MainAdmin;
 import site.metacoding.firstapp.domain.MainAdminDao;
+import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminJoinDto;
 
 @RequiredArgsConstructor
 @Service
 public class MainAdminService {
 	private final MainAdminDao mainAdminDao;
+
+	public void 중앙관리자회원가입(MainAdminJoinDto mainAdminJoinDto) {
+		MainAdmin mainadmins= mainAdminJoinDto.toEntity();
+		mainAdminDao.insert(mainadmins);
+	}//
 
 	public boolean 중앙관리자중복체크(String MainAdminName) {
 		MainAdmin MainAdminPS = mainAdminDao.findByIdMainAdminName(MainAdminName);

@@ -16,5 +16,5 @@ public class JoinDto {
 	public Users toEntity() {
 		Users users = new Users(this.userName, this.password, this.email);
 		return users;
-}
+	}
 }

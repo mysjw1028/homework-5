@@ -14,6 +14,7 @@ import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.AdminDao;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
+import site.metacoding.firstapp.web.dto.request.admin.AdminJoinDto;
 import site.metacoding.firstapp.web.dto.request.admin.AdminLoginDto;
 
 @RequiredArgsConstructor
@@ -29,11 +30,14 @@ public class AdminController {
 	}
 
 	@PostMapping("/admin/join")
-	public @ResponseBody CMRespDto<?> 관리자회원가입(@RequestBody Admin admin) {
+	public @ResponseBody CMRespDto<?> 관리자회원가입(@RequestBody AdminJoinDto adminJoinDto) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
-		adminDao.insert(admin);
-		return new CMRespDto<>(1, "관리자 회원가입 성공", null);
-	}// 완료
+		adminService.관리자회원가입(adminJoinDto);
+		System.out.println(adminJoinDto.getAdminName());
+		System.out.println(adminJoinDto.getPassword());
+		System.out.println(adminJoinDto.getRole());
+		return new CMRespDto<>(1, "일반 회원가입 성공", null);
+	}// 디비에 값 들어가는거 확인 완료
 
 	@GetMapping("/admin/login") // 화면 출력되는지 확인 완료
 	public String adminlogin() {// 주소창 입력시 화면에 출력
@@ -48,6 +52,8 @@ public class AdminController {
 		}
 		LoginRespDto loginRespDto = new LoginRespDto(admins);
 		session.setAttribute("principal", loginRespDto);
+		System.out.println(adminLoginDto.getUserName());//admin 임!!
+		System.out.println(adminLoginDto.getPassword());
 		return "redirect:/";
 	}
 

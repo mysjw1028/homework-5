@@ -28,6 +28,11 @@ public class MainAdmin {
 		this.passwordMainadmin = mainAdminLoginDto.getPasswordMainadmin();
 	}
 
+	public MainAdmin(String mainadminName, String password, String passwordMainadmin, String email) {
+		this.mainadminName = mainadminName;
+		this.password = password;
+		this.passwordMainadmin = passwordMainadmin;
+		this.email = email;
+	}
 
-	
 }

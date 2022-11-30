@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.domain.UsersDao;
+import site.metacoding.firstapp.web.dto.LoginRespDto;
 import site.metacoding.firstapp.web.dto.request.users.JoinDto;
 
 @RequiredArgsConstructor
@@ -25,4 +26,19 @@ public class UsersService {
 			return true;
 		}
 	}
+
+	public Users 로그인(LoginRespDto loginRespDto) {
+		Users usersPS = usersDao.findByUsername(loginRespDto.getUserName());
+
+		if (usersPS == null) {
+			return null;
+		}
+
+		if (usersPS.getPassword().equals(loginRespDto.getPassword())) {
+			return usersPS;
+		} else {
+			return null;
+		}
+	}
+
 }

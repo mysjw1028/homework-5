@@ -29,4 +29,9 @@ public class Admin {
 		this.adminName = admin.getAdminName();
 		this.email = admin.getEmail();
 	}
+	public Admin(String adminName, String password, String email) {
+		this.adminName = adminName;
+		this.password = password;
+		this.email = email;
+	}
 }

@@ -2,6 +2,7 @@ package site.metacoding.firstapp.web.dto.request.admin;
 
 import lombok.Getter;
 import lombok.Setter;
+import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.Users;
 
 @Setter
@@ -13,4 +14,8 @@ public class AdminJoinDto {
 	private String role;
 	private String email;
 
+	public Admin toEntity() {
+		Admin admin = new Admin(this.adminName, this.password, this.email);
+		return admin;
+}
 }
