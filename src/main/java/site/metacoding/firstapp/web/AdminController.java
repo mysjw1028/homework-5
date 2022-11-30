@@ -33,9 +33,9 @@ public class AdminController {
 	public @ResponseBody CMRespDto<?> 관리자회원가입(@RequestBody AdminJoinDto adminJoinDto) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
 		adminService.관리자회원가입(adminJoinDto);
-		System.out.println(adminJoinDto.getAdminName());
-		System.out.println(adminJoinDto.getPassword());
-		System.out.println(adminJoinDto.getRole());
+		System.out.println("관리자회원가입 : " + adminJoinDto.getAdminName());
+		System.out.println("관리자회원가입 : " + adminJoinDto.getPassword());
+		System.out.println("관리자회원가입 : " + adminJoinDto.getRole());
 		return new CMRespDto<>(1, "일반 회원가입 성공", null);
 	}// 디비에 값 들어가는거 확인 완료
 
@@ -48,11 +48,13 @@ public class AdminController {
 	public String 관리자로그인(AdminLoginDto adminLoginDto) {// 로그인 / xml에 쿼리 있는지 확인 / login jsp name 확인하기
 		Admin admins = adminDao.login(adminLoginDto);
 		if (admins == null) {
+			System.out.println("관리자회원가입 : " + adminLoginDto.getUserName());//로그인시 같은 페이지 사용하기 위해서 username을 사용햇다.
+			System.out.println("관리자회원가입 : " + adminLoginDto.getPassword());
 			return "users/login";
 		}
 		LoginRespDto loginRespDto = new LoginRespDto(admins);
 		session.setAttribute("principal", loginRespDto);
-		System.out.println(adminLoginDto.getUserName());//admin 임!!
+		System.out.println(adminLoginDto.getUserName());// admin 임!!
 		System.out.println(adminLoginDto.getPassword());
 		return "redirect:/";
 	}

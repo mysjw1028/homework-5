@@ -29,7 +29,6 @@ import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminJoinDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminLoginDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.UsersListDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.UsersUpdateDto;
-import site.metacoding.firstapp.web.dto.request.users.JoinDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -47,12 +46,11 @@ public class MainAdminController {
 
 	@PostMapping("/Mainadmin/joinpage/insert")
 	public @ResponseBody CMRespDto<?> 중앙관리자회원가입(@RequestBody MainAdminJoinDto mainAdminJoinDto) {
-		System.out.println(mainAdminJoinDto.getMainadminName());
-		System.out.println(mainAdminJoinDto.getPassword());
-		System.out.println(mainAdminJoinDto.getPasswordMainadmin());
 		if (mainAdminJoinDto.getPasswordMainadmin().equals("5678")) {// String은 객체여서 equals("비교값")로 비교해야 한다.
-			System.out.println(mainAdminJoinDto.getPasswordMainadmin());
 			mainAdminService.중앙관리자회원가입(mainAdminJoinDto);
+			System.out.println("중앙관리자 회원가입 : " + mainAdminJoinDto.getMainadminName());
+			System.out.println("중앙관리자 회원가입 : " + mainAdminJoinDto.getPassword());
+			System.out.println("중앙관리자 회원가입 : " + mainAdminJoinDto.getPasswordMainadmin());
 			return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
 
 		} else {
@@ -75,6 +73,9 @@ public class MainAdminController {
 	@PostMapping("/Mainadmin/loginpage")
 	public String 중앙관리자로그인(MainAdminLoginDto mainAdminLoginDto) {
 		MainAdmin mainAdmin = mainAdminDao.login(mainAdminLoginDto);
+		System.out.println("중앙관리자 로그인 : " + mainAdminLoginDto.getMainadminName());
+		System.out.println("중앙관리자 로그인 : " + mainAdminLoginDto.getPassword());
+		System.out.println("중앙관리자 로그인 : " + mainAdminLoginDto.getPasswordMainadmin());
 		if (mainAdmin == null) {
 			return "mainadmin/mainadminlogin";
 		}

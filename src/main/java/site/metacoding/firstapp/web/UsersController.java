@@ -33,11 +33,11 @@ public class UsersController {
 	public @ResponseBody CMRespDto<?> 회원가입(@RequestBody JoinDto joinDto) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
 		usersService.일반회원가입(joinDto);
-		System.out.println(joinDto.getUserName());
-		System.out.println(joinDto.getPassword());
-		System.out.println(joinDto.getRole());
+		System.out.println("구매자 회원가입 : " + joinDto.getUserName());
+		System.out.println("구매자 회원가입 : " + joinDto.getPassword());
+		System.out.println("구매자 회원가입 : " + joinDto.getRole());
 		return new CMRespDto<>(1, "일반 회원가입 성공", null);
-	}// 디비에 값 들어가는거 확인 완료
+	}// DB에 디폴트로 일반 회원으로 들어가서 null이 나온다.
 
 	@GetMapping("/login") // 화면 출력되는지 확인 완료
 	public String login() {
@@ -47,6 +47,8 @@ public class UsersController {
 	@PostMapping("/login")
 	public String 로그인(LoginDto loginDto) {// 로그인 / xml에 쿼리 있는지 확인 / login jsp name 확인하기
 		Users users = usersDao.login(loginDto);
+		System.out.println("컨트롤러 : " + loginDto.getUserName());
+		System.out.println("컨트롤러 :" + loginDto.getPassword());
 		if (users == null) {
 			return "users/login";
 		}

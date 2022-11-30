@@ -50,7 +50,7 @@ public class MainAdminService {
 
 	public void 구매자정보수정(Integer id, UsersUpdateDto usersUpdateDto) {
 		// 1. 영속화
-		Users  usersPS = usersDao.findById(id);
+		Users usersPS = usersDao.findById(id);
 
 		if (usersPS == null) {
 			throw new RuntimeException(id + "의 아이디를 찾을수없습니다.");
@@ -58,18 +58,18 @@ public class MainAdminService {
 		usersPS.update(usersUpdateDto);
 		usersDao.update(usersPS);
 	}
+
 	public MainAdmin 중앙관관리자로그인(MainAdminLoginDto mainAdminLoginDto) {
 		MainAdmin mainAdminsPS = mainAdminDao.findByIdMainAdminName(mainAdminLoginDto.getMainadminName());
 
-		if(mainAdminsPS == null) {
+		if (mainAdminsPS == null) {
 			return null;
 		}
-		
-		if(mainAdminsPS.getPassword().equals(mainAdminLoginDto.getPassword())) {
+		if (mainAdminsPS.getPassword().equals(mainAdminLoginDto.getPassword())) {
 			return mainAdminsPS;
-		}else {
+		} else {
 			return null;
 		}
 	}
-	
+
 }
