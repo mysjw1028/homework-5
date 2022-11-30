@@ -7,14 +7,12 @@ import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.AdminDao;
 import site.metacoding.firstapp.domain.MainAdmin;
 import site.metacoding.firstapp.domain.MainAdminDao;
-import site.metacoding.firstapp.domain.Product;
 import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.domain.UsersDao;
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminUpdateDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminJoinDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.MainAdminLoginDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.UsersUpdateDto;
-import site.metacoding.firstapp.web.dto.request.product.ProductUpdateDto;
 
 @RequiredArgsConstructor
 @Service

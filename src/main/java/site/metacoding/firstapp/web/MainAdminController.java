@@ -35,9 +35,9 @@ import site.metacoding.firstapp.web.dto.request.mainadmin.UsersUpdateDto;
 public class MainAdminController {
 	private final HttpSession session;
 	private final MainAdminDao mainAdminDao;
-	private final MainAdminService mainAdminService;
 	private final AdminDao adminDao;
 	private final UsersDao usersDao;
+	private final MainAdminService mainAdminService;
 
 	@GetMapping("/Mainadmin/joinpage")
 	public String mainadminjoin() {

@@ -5,21 +5,16 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.AdminDao;
-import site.metacoding.firstapp.domain.Users;
-import site.metacoding.firstapp.web.dto.LoginRespDto;
 import site.metacoding.firstapp.web.dto.request.admin.AdminJoinDto;
 import site.metacoding.firstapp.web.dto.request.admin.AdminLoginDto;
-import site.metacoding.firstapp.web.dto.request.users.JoinDto;
-
 
 @RequiredArgsConstructor
 @Service
 public class AdminService {
 	private final AdminDao adminDao;
 
-	
 	public void 관리자회원가입(AdminJoinDto adminJoinDto) {
-		Admin admins= adminJoinDto.toEntity();
+		Admin admins = adminJoinDto.toEntity();
 		adminDao.insert(admins);
 	}// 컨트롤러가 일 안함
 
@@ -27,11 +22,11 @@ public class AdminService {
 		Admin adminPS = adminDao.findByIdAdminName(adminName);
 		if (adminPS == null) { // 관리자아이디가 중복 안됨
 			return false;
-		} else { //  관리자가 중복됨
+		} else { // 관리자가 중복됨
 			return true;
 		}
 	}
-	
+
 	public Admin 관리자로그인(AdminLoginDto adminLoginDto) {
 		Admin adminPS = adminDao.findByIdAdminName(adminLoginDto.getUserName());
 

@@ -37,7 +37,7 @@ public class UsersController {
 		System.out.println("구매자 회원가입 : " + joinDto.getPassword());
 		System.out.println("구매자 회원가입 : " + joinDto.getRole());
 		return new CMRespDto<>(1, "일반 회원가입 성공", null);
-	}// DB에 디폴트로 일반 회원으로 들어가서 null이 나온다.
+	}// role은 DB에 디폴트로 일반 회원으로 들어가서 null이 나온다.
 
 	@GetMapping("/login") // 화면 출력되는지 확인 완료
 	public String login() {
