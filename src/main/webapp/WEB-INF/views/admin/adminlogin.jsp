@@ -3,13 +3,13 @@
 
 <div class="container">
 	<div class="mb-3 mt-3">
-		<input type="text" class="form-control" id="adminName" placeholder="Enter adminName" name="adminName">
+		<input type="text" class="form-control" id="adminName" placeholder="Enter adminName" name="adminName"  value="${adminName}">
 	</div>
 	<div class="mb-3">
 		<input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
 	</div>
 	<div class="form-check mb-3">
-		<label class="form-check-label"> <input id="remember" class="form-check-input" type="checkbox">
+		<label class="form-check-label"> <input id="rememberadmin" class="form-check-input" type="checkbox">
 			Remember me
 		</label>
 		<%-- 아이디 정보 저장하는 체크박스 --%>

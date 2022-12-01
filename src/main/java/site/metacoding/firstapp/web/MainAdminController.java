@@ -24,7 +24,6 @@ import site.metacoding.firstapp.domain.MainAdminDao;
 import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.domain.UsersDao;
 import site.metacoding.firstapp.web.dto.CMRespDto;
-import site.metacoding.firstapp.web.dto.LoginRespDto;
 
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto;
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminUpdateDto;
@@ -72,7 +71,7 @@ public class MainAdminController {
 	public String mainadminlogin(Model model, HttpServletRequest request) {// 주소창 입력시 화면에 출력
 		Cookie[] cookies = request.getCookies();
 		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals("userName")) {
+			if (cookie.getName().equals("mainadminName")) {
 				model.addAttribute(cookie.getName(), cookie.getValue());
 			}
 		}
@@ -92,11 +91,11 @@ public class MainAdminController {
 		if (mainAdminLoginDto.isRemember()) {
 			System.out.println("===========");
 			System.out.println("컨트롤러 : 실행됨!!!!");
-			Cookie cookie = new Cookie("mainAdminName", mainAdminLoginDto.getMainadminName()); // 실행안됨
+			Cookie cookie = new Cookie("mainadminName", mainAdminLoginDto.getMainadminName()); // 실행안됨
 			cookie.setMaxAge(60 * 60 * 24);
 			response.addCookie(cookie);
 		} else {
-			Cookie cookie = new Cookie("mainAdminName", null);
+			Cookie cookie = new Cookie("mainadminName", null);
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}

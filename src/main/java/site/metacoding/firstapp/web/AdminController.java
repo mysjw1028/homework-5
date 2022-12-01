@@ -45,7 +45,7 @@ public class AdminController {
 	public String acminlogin(Model model, HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals("userName")) {
+			if (cookie.getName().equals("adminName")) {
 				model.addAttribute(cookie.getName(), cookie.getValue());
 			}
 		}

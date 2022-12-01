@@ -15,11 +15,12 @@ import site.metacoding.firstapp.domain.Buy;
 import site.metacoding.firstapp.domain.BuyDao;
 import site.metacoding.firstapp.domain.Product;
 import site.metacoding.firstapp.domain.ProductDao;
-
+import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
 import site.metacoding.firstapp.web.dto.request.buy.BuyDto;
 import site.metacoding.firstapp.web.dto.request.buy.BuyListDto;
 import site.metacoding.firstapp.web.dto.request.buy.BuyListUpdateDto;
+import site.metacoding.firstapp.web.dto.request.users.LoginDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -36,8 +37,8 @@ public class BuyController {
 
 	@PostMapping("/buy/{productId}")
 	public String buy(BuyDto buyDto) {// 테이블 수정후 jsp name 확인하기
-		LoginRespDto loginRespDto = (LoginRespDto) session.getAttribute("principal");
-		if (loginRespDto == null) {
+		Users principal = (Users) session.getAttribute("principal");
+		if (principal == null) {
 			return "redirect:/";
 		} // setAttribute를 쓰는게 아니라 getAttribute를 써야한다
 			// - LoginRespDto에 있는 값을 들고와서 쓰는거기때문에 getAttribute

@@ -5,8 +5,8 @@
 
 <div class="container">
 	<div class="mb-3 mt-3">
-		<input type="text" class="form-control" id="userName" placeholder="Enter username" name="userName">
-	</div>
+		<input type="text" class="form-control" id="userName" placeholder="Enter username" name="userName"  value="${userName}">
+	</div><%--value해서 이름값을 넣어줘야 저장이 된다!! --%>
 	<div class="mb-3">
 		<input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
 	</div>

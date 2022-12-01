@@ -5,7 +5,7 @@
 <div class="container">
 
 		<div class="mb-3 mt-3">
-			<input id="mainadminName"  type="text" class="form-control" placeholder="Enter mainadminName" name="mainadminName">
+			<input id="mainadminName"  type="text" class="form-control" placeholder="Enter mainadminName" name="mainadminName" value="${mainadminName}">
 		</div> 
 
 		<div class="mb-3">
