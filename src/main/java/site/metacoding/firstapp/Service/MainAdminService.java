@@ -60,10 +60,6 @@ public class MainAdminService {
 	public MainAdmin 중앙관관리자로그인(MainAdminLoginDto mainAdminLoginDto) {
 		MainAdmin mainAdminPS = mainAdminDao.login(mainAdminLoginDto.getPasswordMainadmin(),
 				mainAdminLoginDto.getPassword(), mainAdminLoginDto.getMainadminName());
-		System.out.println("서비스 : " + mainAdminLoginDto.getMainadminName());
-		System.out.println("서비스 " + mainAdminLoginDto.getPassword());
-		System.out.println("서비스 : " + mainAdminPS);
-		System.out.println("서비스 : " + mainAdminLoginDto);
 		if (mainAdminPS == null) {
 			return null;
 		}

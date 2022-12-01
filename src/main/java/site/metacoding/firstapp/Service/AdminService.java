@@ -29,13 +29,8 @@ public class AdminService {
 		}
 	}
 
-
 	public Admin 로그인(AdminLoginDto adminLoginDto) {
 		Admin adminPS = adminDao.login(adminLoginDto.getPassword(), adminLoginDto.getAdminName());
-		System.out.println("서비스 : " + adminLoginDto.getAdminName());
-		System.out.println("서비스 " + adminLoginDto.getPassword());
-		System.out.println("서비스 : " + adminPS);
-		System.out.println("서비스 : " + adminLoginDto);
 		if (adminPS == null) {
 			return null;
 		}

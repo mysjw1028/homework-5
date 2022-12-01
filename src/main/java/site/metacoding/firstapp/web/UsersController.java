@@ -34,9 +34,6 @@ public class UsersController {
 	public @ResponseBody CMRespDto<?> 회원가입(@RequestBody JoinDto joinDto) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
 		usersService.일반회원가입(joinDto);
-		System.out.println("구매자 회원가입 : " + joinDto.getUserName());
-		System.out.println("구매자 회원가입 : " + joinDto.getPassword());
-		System.out.println("구매자 회원가입 : " + joinDto.getRole());
 		return new CMRespDto<>(1, "일반 회원가입 성공", null);
 	}// role은 DB에 디폴트로 일반 회원으로 들어가서 null이 나온다.
 
@@ -53,19 +50,9 @@ public class UsersController {
 
 	@PostMapping("/login")
 	public @ResponseBody CMRespDto<?> 로그인(@RequestBody LoginDto loginDto, HttpServletResponse response) {// 로그인 / xml에
-		System.out.println("===========");
-		System.out.println("컨트롤러 : 실행됨!!!!");
-		System.out.println("컨트롤러 : " + loginDto.getUserName());
-		System.out.println("컨트롤러 " + loginDto.getPassword());
-		System.out.println("컨트롤러 : " + loginDto.isRemember());
-		System.out.println("컨트롤러 : 실행됨!!!!");
-		System.out.println("===========");
-		System.out.println("컨트롤러 : 실행됨!!!!");
 		if (loginDto.isRemember()) {
-			System.out.println("===========");
-			System.out.println("컨트롤러 : 실행됨!!!!");
-			Cookie cookie = new Cookie("userName", loginDto.getUserName()); // 실행안됨
-			cookie.setMaxAge(60 * 60 * 24);
+			Cookie cookie = new Cookie("userName", loginDto.getUserName());
+			cookie.setMaxAge(60 * 60 * 24);// 쿠키 시간 설정
 			response.addCookie(cookie);
 		} else {
 			Cookie cookie = new Cookie("userName", null);

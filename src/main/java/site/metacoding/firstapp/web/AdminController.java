@@ -35,9 +35,6 @@ public class AdminController {
 	public @ResponseBody CMRespDto<?> 관리자회원가입(@RequestBody AdminJoinDto adminJoinDto) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
 		adminService.관리자회원가입(adminJoinDto);
-		System.out.println("관리자회원가입 : " + adminJoinDto.getAdminName());
-		System.out.println("관리자회원가입 : " + adminJoinDto.getPassword());
-		System.out.println("관리자회원가입 : " + adminJoinDto.getRole());
 		return new CMRespDto<>(1, "일반 회원가입 성공", null);
 	}// 디비에 값 들어가는거 확인 완료
 
@@ -55,18 +52,9 @@ public class AdminController {
 
 	@PostMapping("/admin/login")
 	public @ResponseBody CMRespDto<?> 관리자로그인(@RequestBody AdminLoginDto adminLoginDto, HttpServletResponse response) {// 로그인
-		System.out.println("===========");
-		System.out.println("컨트롤러 : 실행됨!!!!");
-		System.out.println("컨트롤러 : " + adminLoginDto.getAdminName());
-		System.out.println("컨트롤러 " + adminLoginDto.getPassword());
-		System.out.println("컨트롤러 : " + adminLoginDto.isRemember());
-		System.out.println("컨트롤러 : 실행됨!!!!");
-		System.out.println("===========");
-		System.out.println("컨트롤러 : 실행됨!!!!");
+
 		if (adminLoginDto.isRemember()) {
-			System.out.println("===========");
-			System.out.println("컨트롤러 : 실행됨!!!!");
-			Cookie cookie = new Cookie("adminName", adminLoginDto.getAdminName()); // 실행안됨
+			Cookie cookie = new Cookie("adminName", adminLoginDto.getAdminName()); 
 			cookie.setMaxAge(60 * 60 * 24);
 			response.addCookie(cookie);
 		} else {

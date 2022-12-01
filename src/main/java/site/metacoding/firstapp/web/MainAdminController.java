@@ -50,9 +50,6 @@ public class MainAdminController {
 	public @ResponseBody CMRespDto<?> 중앙관리자회원가입(@RequestBody MainAdminJoinDto mainAdminJoinDto) {
 		if (mainAdminJoinDto.getPasswordMainadmin().equals("5678")) {// String은 객체여서 equals("비교값")로 비교해야 한다.
 			mainAdminService.중앙관리자회원가입(mainAdminJoinDto);
-			System.out.println("중앙관리자 회원가입 : " + mainAdminJoinDto.getMainadminName());
-			System.out.println("중앙관리자 회원가입 : " + mainAdminJoinDto.getPassword());
-			System.out.println("중앙관리자 회원가입 : " + mainAdminJoinDto.getPasswordMainadmin());
 			return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
 
 		} else {
@@ -79,19 +76,11 @@ public class MainAdminController {
 	}
 
 	@PostMapping("/mainadmin/loginpage")
-	public  @ResponseBody CMRespDto<?> 중앙관리자로그인(@RequestBody MainAdminLoginDto mainAdminLoginDto, HttpServletResponse response) {
-		System.out.println("===========");
-		System.out.println("컨트롤러 : 실행됨!!!!");
-		System.out.println("컨트롤러 : " + mainAdminLoginDto.getMainadminName());
-		System.out.println("컨트롤러 " + mainAdminLoginDto.getPassword());
-		System.out.println("컨트롤러 : " + mainAdminLoginDto.isRemember());
-		System.out.println("컨트롤러 : 실행됨!!!!");
-		System.out.println("===========");
-		System.out.println("컨트롤러 : 실행됨!!!!");
+	public @ResponseBody CMRespDto<?> 중앙관리자로그인(@RequestBody MainAdminLoginDto mainAdminLoginDto,
+			HttpServletResponse response) {
+
 		if (mainAdminLoginDto.isRemember()) {
-			System.out.println("===========");
-			System.out.println("컨트롤러 : 실행됨!!!!");
-			Cookie cookie = new Cookie("mainadminName", mainAdminLoginDto.getMainadminName()); // 실행안됨
+			Cookie cookie = new Cookie("mainadminName", mainAdminLoginDto.getMainadminName()); 
 			cookie.setMaxAge(60 * 60 * 24);
 			response.addCookie(cookie);
 		} else {
@@ -99,7 +88,7 @@ public class MainAdminController {
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-		MainAdmin principal =  mainAdminService.중앙관관리자로그인(mainAdminLoginDto);
+		MainAdmin principal = mainAdminService.중앙관관리자로그인(mainAdminLoginDto);
 		if (principal == null) {
 			return new CMRespDto<>(-1, "로그인실패", null);
 		}
