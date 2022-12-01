@@ -26,7 +26,7 @@ public class ProductService {
 		// 1. 영속화
 		Product productPS = productDao.findById(id);
 
-		if (productPS == null) {
+		if (productPS == null  && productPS.equals(" ")) {
 			throw new RuntimeException(id + "의 아이디를 찾을수없습니다.");
 		}
 		productPS.update(productUpdateDto);

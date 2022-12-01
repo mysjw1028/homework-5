@@ -29,7 +29,7 @@ public class UsersService {
 
 	public Users 로그인(LoginDto loginDto) {
 		Users usersPS = usersDao.login(loginDto.getPassword(), loginDto.getUserName());
-		if (usersPS == null) {
+		if (usersPS == null && usersPS.equals(" ")){
 			return null;
 		}
 

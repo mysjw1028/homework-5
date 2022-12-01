@@ -28,7 +28,7 @@ public class MainAdminService {
 
 	public boolean 중앙관리자중복체크(String MainAdminName) {
 		MainAdmin MainAdminPS = mainAdminDao.findByIdMainAdminName(MainAdminName);
-		if (MainAdminPS == null) { // 중앙관리자아이디가 중복 안됨
+		if (MainAdminPS == null && MainAdminPS.equals(" ")) { // 중앙관리자아이디가 중복 안됨
 			return false;
 		} else { // 중앙관리자가 중복됨
 			return true;
@@ -39,7 +39,7 @@ public class MainAdminService {
 		// 1. 영속화
 		Admin adminPS = adminDao.findById(id);
 
-		if (adminPS == null) {
+		if (adminPS == null && adminPS.equals(" ")) {
 			throw new RuntimeException(id + "의 아이디를 찾을수없습니다.");
 		}
 		adminPS.update(adminUpdateDto);
@@ -50,7 +50,7 @@ public class MainAdminService {
 		// 1. 영속화
 		Users usersPS = usersDao.findById(id);
 
-		if (usersPS == null) {
+		if (usersPS == null && usersPS.equals(" ")) {
 			throw new RuntimeException(id + "의 아이디를 찾을수없습니다.");
 		}
 		usersPS.update(usersUpdateDto);
@@ -60,7 +60,7 @@ public class MainAdminService {
 	public MainAdmin 중앙관관리자로그인(MainAdminLoginDto mainAdminLoginDto) {
 		MainAdmin mainAdminPS = mainAdminDao.login(mainAdminLoginDto.getPasswordMainadmin(),
 				mainAdminLoginDto.getPassword(), mainAdminLoginDto.getMainadminName());
-		if (mainAdminPS == null) {
+		if (mainAdminPS == null && mainAdminPS.equals(" ")) {
 			return null;
 		}
 
