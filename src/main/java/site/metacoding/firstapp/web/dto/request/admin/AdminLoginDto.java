@@ -7,6 +7,8 @@ import site.metacoding.firstapp.domain.Users;
 @Setter
 @Getter
 public class AdminLoginDto {
-	private String userName;
+	private String adminName;
 	private String password;
+	private boolean remember;
+
 }

@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.AdminDao;
+import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.web.dto.request.admin.AdminJoinDto;
 import site.metacoding.firstapp.web.dto.request.admin.AdminLoginDto;
+import site.metacoding.firstapp.web.dto.request.users.LoginDto;
 
 @RequiredArgsConstructor
 @Service
@@ -27,9 +29,13 @@ public class AdminService {
 		}
 	}
 
-	public Admin 관리자로그인(AdminLoginDto adminLoginDto) {
-		Admin adminPS = adminDao.findByIdAdminName(adminLoginDto.getUserName());
 
+	public Admin 로그인(AdminLoginDto adminLoginDto) {
+		Admin adminPS = adminDao.login(adminLoginDto.getPassword(), adminLoginDto.getAdminName());
+		System.out.println("서비스 : " + adminLoginDto.getAdminName());
+		System.out.println("서비스 " + adminLoginDto.getPassword());
+		System.out.println("서비스 : " + adminPS);
+		System.out.println("서비스 : " + adminLoginDto);
 		if (adminPS == null) {
 			return null;
 		}

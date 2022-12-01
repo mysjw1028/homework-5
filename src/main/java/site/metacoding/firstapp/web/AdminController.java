@@ -1,8 +1,12 @@
 package site.metacoding.firstapp.web;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,9 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.Service.AdminService;
 import site.metacoding.firstapp.domain.Admin;
-import site.metacoding.firstapp.domain.AdminDao;
+
 import site.metacoding.firstapp.web.dto.CMRespDto;
-import site.metacoding.firstapp.web.dto.LoginRespDto;
 import site.metacoding.firstapp.web.dto.request.admin.AdminJoinDto;
 import site.metacoding.firstapp.web.dto.request.admin.AdminLoginDto;
 
@@ -22,7 +25,6 @@ import site.metacoding.firstapp.web.dto.request.admin.AdminLoginDto;
 public class AdminController {
 	private final AdminService adminService;
 	private final HttpSession session;
-	private final AdminDao adminDao;
 
 	@GetMapping("/admin/join") // 화면 출력되는지 확인 완료
 	public String adminjoin() {
@@ -40,29 +42,44 @@ public class AdminController {
 	}// 디비에 값 들어가는거 확인 완료
 
 	@GetMapping("/admin/login") // 화면 출력되는지 확인 완료
-	public String adminlogin() {// 주소창 입력시 화면에 출력
-		return "users/login";
+	public String acminlogin(Model model, HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("userName")) {
+				model.addAttribute(cookie.getName(), cookie.getValue());
+			}
+		}
+		return "admin/adminlogin";
+
 	}
 
 	@PostMapping("/admin/login")
-	public String 관리자로그인(AdminLoginDto adminLoginDto) {// 로그인 / xml에 쿼리 있는지 확인 / login jsp name 확인하기
-		Admin admins = adminDao.login(adminLoginDto);
-		if (admins == null) {
-			System.out.println("관리자회원가입 : " + adminLoginDto.getUserName());//로그인시 같은 페이지 사용하기 위해서 username을 사용햇다.
-			System.out.println("관리자회원가입 : " + adminLoginDto.getPassword());
-			return "users/login";
+	public @ResponseBody CMRespDto<?> 관리자로그인(@RequestBody AdminLoginDto adminLoginDto, HttpServletResponse response) {// 로그인
+		System.out.println("===========");
+		System.out.println("컨트롤러 : 실행됨!!!!");
+		System.out.println("컨트롤러 : " + adminLoginDto.getAdminName());
+		System.out.println("컨트롤러 " + adminLoginDto.getPassword());
+		System.out.println("컨트롤러 : " + adminLoginDto.isRemember());
+		System.out.println("컨트롤러 : 실행됨!!!!");
+		System.out.println("===========");
+		System.out.println("컨트롤러 : 실행됨!!!!");
+		if (adminLoginDto.isRemember()) {
+			System.out.println("===========");
+			System.out.println("컨트롤러 : 실행됨!!!!");
+			Cookie cookie = new Cookie("adminName", adminLoginDto.getAdminName()); // 실행안됨
+			cookie.setMaxAge(60 * 60 * 24);
+			response.addCookie(cookie);
+		} else {
+			Cookie cookie = new Cookie("adminName", null);
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
 		}
-		LoginRespDto loginRespDto = new LoginRespDto(admins);
-		session.setAttribute("principal", loginRespDto);
-		System.out.println(adminLoginDto.getUserName());// admin 임!!
-		System.out.println(adminLoginDto.getPassword());
-		return "redirect:/";
-	}
-
-	@GetMapping("/admin/join/adminNameCheck")
-	public @ResponseBody CMRespDto<Boolean> adminameSameCheck(String adminName) {
-		boolean isSame = adminService.관리자중복체크(adminName);
-		return new CMRespDto<>(1, "성공", isSame);
+		Admin principal = adminService.로그인(adminLoginDto);
+		if (principal == null) {
+			return new CMRespDto<>(-1, "로그인실패", null);
+		}
+		session.setAttribute("principal", principal);
+		return new CMRespDto<>(1, "로그인성공", null);
 	}
 
 }

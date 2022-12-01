@@ -1,11 +1,9 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-
-
 <div class="container">
 	<div class="mb-3 mt-3">
-		<input type="text" class="form-control" id="userName" placeholder="Enter username" name="userName">
+		<input type="text" class="form-control" id="adminName" placeholder="Enter adminName" name="adminName">
 	</div>
 	<div class="mb-3">
 		<input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
@@ -16,11 +14,9 @@
 		</label>
 		<%-- 아이디 정보 저장하는 체크박스 --%>
 	</div>
-	<button id="btnuserLogin" type="button" class="btn btn-primary">개인 로그인</button>
-	<a class="btn btn-primary" href="/admin/login"> 관리자 로그인 페이지로 이동</a> <a class="btn btn-primary"
-		href="/mainadmin/loginpage">중앙 관리자 로그인 페이지로 이동</a>
-	<%--a태그는 무조건 get을 때림 / 버튼 디자인은  class ="btn btn-primary "에 맞춰주면 됨--%>
+	<button id="btnadminLogin" type="button" class="btn btn-primary">관리자 로그인</button>
+
 </div>
 
-<script src="/js/usersLogin.js"></script>
+<script src="/js/adminLogin.js"></script>
 <%@ include file="../layout/footer.jsp"%>

@@ -2,11 +2,12 @@ package site.metacoding.firstapp.domain;
 
 import java.util.List;
 
-import site.metacoding.firstapp.web.dto.request.admin.AdminLoginDto;
+import org.apache.ibatis.annotations.Param;
+
 
 public interface AdminDao {
 
-	public Admin login(AdminLoginDto adminLoginDto);
+	public Admin login(@Param("password") String password, @Param("userName") String userName);
 
 	public void insert(Admin admin);
 

@@ -21,8 +21,12 @@ public class Admin {
 	private String role;
 	private Timestamp createdAt;
 
+	//디비에 없는값
+	private String userName;
+	private String MainadminName;
+
 	public Admin(AdminLoginDto adminloginDto) {
-		this.adminName = adminloginDto.getUserName();
+		this.adminName = adminloginDto.getAdminName();
 		this.password = adminloginDto.getPassword();
 	}
 

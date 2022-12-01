@@ -2,6 +2,9 @@ package site.metacoding.firstapp.web;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -66,22 +69,43 @@ public class MainAdminController {
 	}
 
 	@GetMapping("/mainadmin/loginpage")
-	public String mainadminlogin() {// 주소창 입력시 화면에 출력
+	public String mainadminlogin(Model model, HttpServletRequest request) {// 주소창 입력시 화면에 출력
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("userName")) {
+				model.addAttribute(cookie.getName(), cookie.getValue());
+			}
+		}
 		return "mainadmin/mainadminlogin";
 	}
 
-	@PostMapping("/Mainadmin/loginpage")
-	public String 중앙관리자로그인(MainAdminLoginDto mainAdminLoginDto) {
-		MainAdmin mainAdmin = mainAdminDao.login(mainAdminLoginDto);
-		System.out.println("중앙관리자 로그인 : " + mainAdminLoginDto.getMainadminName());
-		System.out.println("중앙관리자 로그인 : " + mainAdminLoginDto.getPassword());
-		System.out.println("중앙관리자 로그인 : " + mainAdminLoginDto.getPasswordMainadmin());
-		if (mainAdmin == null) {
-			return "mainadmin/mainadminlogin";
+	@PostMapping("/mainadmin/loginpage")
+	public  @ResponseBody CMRespDto<?> 중앙관리자로그인(@RequestBody MainAdminLoginDto mainAdminLoginDto, HttpServletResponse response) {
+		System.out.println("===========");
+		System.out.println("컨트롤러 : 실행됨!!!!");
+		System.out.println("컨트롤러 : " + mainAdminLoginDto.getMainadminName());
+		System.out.println("컨트롤러 " + mainAdminLoginDto.getPassword());
+		System.out.println("컨트롤러 : " + mainAdminLoginDto.isRemember());
+		System.out.println("컨트롤러 : 실행됨!!!!");
+		System.out.println("===========");
+		System.out.println("컨트롤러 : 실행됨!!!!");
+		if (mainAdminLoginDto.isRemember()) {
+			System.out.println("===========");
+			System.out.println("컨트롤러 : 실행됨!!!!");
+			Cookie cookie = new Cookie("mainAdminName", mainAdminLoginDto.getMainadminName()); // 실행안됨
+			cookie.setMaxAge(60 * 60 * 24);
+			response.addCookie(cookie);
+		} else {
+			Cookie cookie = new Cookie("mainAdminName", null);
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
 		}
-		LoginRespDto loginRespDto = new LoginRespDto(mainAdmin);
-		session.setAttribute("principal", loginRespDto);
-		return "redirect:/";
+		MainAdmin principal =  mainAdminService.중앙관관리자로그인(mainAdminLoginDto);
+		if (principal == null) {
+			return new CMRespDto<>(-1, "로그인실패", null);
+		}
+		session.setAttribute("principal", principal);
+		return new CMRespDto<>(1, "로그인성공", null);
 	}
 	// 회원가입하면서 중앙관리자 체크함
 	// mainAdminLoginDto이 null이니까 LoginRespDto에 값을 넣어줄때 mainAdmin이 null일때

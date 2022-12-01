@@ -10,4 +10,6 @@ public class MainAdminLoginDto {
 	private String mainadminName;
 	private String password;
 	private String passwordMainadmin;
+	private boolean remember;
+
 }

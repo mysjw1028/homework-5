@@ -58,13 +58,18 @@ public class MainAdminService {
 	}
 
 	public MainAdmin 중앙관관리자로그인(MainAdminLoginDto mainAdminLoginDto) {
-		MainAdmin mainAdminsPS = mainAdminDao.findByIdMainAdminName(mainAdminLoginDto.getMainadminName());
-
-		if (mainAdminsPS == null) {
+		MainAdmin mainAdminPS = mainAdminDao.login(mainAdminLoginDto.getPasswordMainadmin(),
+				mainAdminLoginDto.getPassword(), mainAdminLoginDto.getMainadminName());
+		System.out.println("서비스 : " + mainAdminLoginDto.getMainadminName());
+		System.out.println("서비스 " + mainAdminLoginDto.getPassword());
+		System.out.println("서비스 : " + mainAdminPS);
+		System.out.println("서비스 : " + mainAdminLoginDto);
+		if (mainAdminPS == null) {
 			return null;
 		}
-		if (mainAdminsPS.getPassword().equals(mainAdminLoginDto.getPassword())) {
-			return mainAdminsPS;
+
+		if (mainAdminPS.getPassword().equals(mainAdminPS.getPassword())) {
+			return mainAdminPS;
 		} else {
 			return null;
 		}

@@ -20,6 +20,9 @@ public class Users {
 	private String role;
 	private Timestamp createdAt;
 
+	//디비에 없는값
+	private String adminName;
+	private String MainadminName;
 	public Users(LoginDto loginDto) {
 		this.userName = loginDto.getUserName();
 		this.password = loginDto.getPassword();

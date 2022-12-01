@@ -19,6 +19,9 @@ public class MainAdmin {
 	private String role;
 	private Timestamp createdAt;
 
+	//디비에 없는 값
+	private String userName;
+	private String adminName;
 	// 엔티티가 아닌 필드 번호로해서 보일려고
 	private Integer no;
 

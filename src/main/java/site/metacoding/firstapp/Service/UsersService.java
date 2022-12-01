@@ -28,7 +28,10 @@ public class UsersService {
 	}
 
 	public Users 로그인(LoginDto loginDto) {
-		Users usersPS = usersDao.findByUsername(loginDto.getUserName());
+		Users usersPS = usersDao.login(loginDto.getPassword(), loginDto.getUserName());
+		System.out.println("서비스 : " + loginDto.getUserName());
+		System.out.println("서비스 " + loginDto.getPassword());
+		System.out.println("서비스 : " + usersPS);
 		System.out.println("서비스 : " + loginDto);
 		if (usersPS == null) {
 			return null;
