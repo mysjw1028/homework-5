@@ -52,10 +52,21 @@ public class ProductController {
 	@PostMapping("/product/{productId}/edit") // 4번 update -> 수정하기 -> post로 값 수정
 	public @ResponseBody CMRespDto<?> 수정하기(@PathVariable Integer productId, @RequestBody ProductUpdateDto productDto) {
 		productService.상품수정(productId, productDto);
+		if (productDto.getProductName() == null && productDto.equals(" ")) {
+			return new CMRespDto<>(-1, "상품수정실패", null);
+
+		} else if (productDto.getProductPrice() == null && productDto.equals(" ")) {
+			return new CMRespDto<>(-1, "상품수정실패", null);
+
+		} else if (productDto.getProductQty() == null && productDto.equals(" ")) {
+			return new CMRespDto<>(-1, "상품수정실패", null);
+		}
+		System.out.println("===========성공시================");
 		System.out.println(productDto.getProductName());
 		System.out.println(productDto.getProductPrice());
 		System.out.println(productDto.getProductQty());
-		return new CMRespDto<>(1, "상품등록성공", null);
+		System.out.println("===============성공시========");
+		return new CMRespDto<>(1, "상품수정성공", null);
 	}
 
 	@GetMapping("/product/{productId}/edit")
