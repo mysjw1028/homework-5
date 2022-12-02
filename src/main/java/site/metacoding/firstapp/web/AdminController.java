@@ -34,17 +34,17 @@ public class AdminController {
 	@PostMapping("/admin/join")
 	public @ResponseBody CMRespDto<?> 관리자회원가입(@RequestBody AdminJoinDto adminJoinDto) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
-		if (adminJoinDto.getAdminName() == null || adminJoinDto.equals("")) {
+		if (adminJoinDto.getAdminName() == null || adminJoinDto.getAdminName().equals("")) {
 			System.out.println("관리자 이름 " + adminJoinDto.getAdminName());
 			System.out.println("실행!!");
 			return new CMRespDto<>(-1, "관리자회원가입 실패", null);
 		}
-		if (adminJoinDto.getPassword() == null || adminJoinDto.equals("")) {
+		if (adminJoinDto.getPassword() == null || adminJoinDto.getPassword().equals("")) {
 			System.out.println("비밀번호  " + adminJoinDto.getPassword());
 			System.out.println("실행!!");
 			return new CMRespDto<>(-1, "관리자회원가입 실패", null);
 		}
-		if (adminJoinDto.getEmail() == null || adminJoinDto.equals("")) {
+		if (adminJoinDto.getEmail() == null || adminJoinDto.getEmail().equals("")) {
 			System.out.println("이메일 " + adminJoinDto.getEmail());
 			System.out.println("실행!!");
 			return new CMRespDto<>(-1, "관리자회원가입 실패", null);
