@@ -156,20 +156,31 @@ public class MainAdminController {
 	}
 
 	@PostMapping("/Mainadmin/adminlist/{adminId}/edit")
-	public String 관리자정보수정(@PathVariable Integer adminId, AdminUpdateDto adminUpdateDto) {
+	public @ResponseBody CMRespDto<?> 관리자정보수정(@PathVariable Integer adminId,
+			@RequestBody AdminUpdateDto adminUpdateDto) {
+		if (adminUpdateDto.getAdminName() == null || adminUpdateDto.getAdminName().isEmpty()) {
+			System.out.println("이름 : " + adminUpdateDto.getAdminName());
+			System.out.println("실패!");
+			return new CMRespDto<>(-1, "구매자정보수정실패", null);
+
+		} else if (adminUpdateDto.getEmail() == null || adminUpdateDto.getEmail().equals("")) {
+			System.out.println(" 이메일변경  : " + adminUpdateDto.getEmail());
+			System.out.println("실패!");
+			return new CMRespDto<>(-1, "구매자정보수정 실패", null);
+
+		}
 		mainAdminService.관리자정보수정(adminId, adminUpdateDto);
-		if (adminUpdateDto.getAdminName() == null || adminUpdateDto.equals("")) {
-			return "mainadmin/adminupdate";
-		}
-		if (adminUpdateDto.getEmail() == null || adminUpdateDto.equals("")) {
-			return "mainadmin/adminupdate";
-		}
-		return "redirect:/";
+
+		System.out.println("===========성공시================");
+		System.out.println(adminUpdateDto.getAdminName());
+		System.out.println(adminUpdateDto.getEmail());
+		System.out.println("===============성공시========");
+		return new CMRespDto<>(1, "구매자정보수정 성공", null);
 	}
 
-	@GetMapping("/Mainadmin/adminlist/{adminId}/edit")
-	public String adminedit(@PathVariable Integer adminId, Model model) {
-		Admin adminPS = adminDao.findById(adminId);
+	@GetMapping("/Mainadmin/adminlist/{id}/edit")
+	public String adminedit(@PathVariable Integer id, Model model) {
+		Admin adminPS = adminDao.findById(id);
 		model.addAttribute("admin", adminPS);
 		return "mainadmin/adminupdate";
 	}
@@ -192,17 +203,35 @@ public class MainAdminController {
 	}
 
 	@PostMapping("/Mainadmin/userlist/{id}/edit")
-	public String 구매자정보수정(@PathVariable Integer id, UsersUpdateDto usersUpdateDto) {
-		Users usersPS = usersDao.findById(id);
+	public @ResponseBody CMRespDto<?> 구매자정보수정(@PathVariable Integer id, @RequestBody UsersUpdateDto usersUpdateDto) {
+
+		if (usersUpdateDto.getUserName() == null || usersUpdateDto.getUserName().isEmpty()) {
+			System.out.println("이름 : " + usersUpdateDto.getUserName());
+			System.out.println("실패!");
+			return new CMRespDto<>(-1, "구매자정보수정실패", null);
+
+		} else if (usersUpdateDto.getEmail() == null || usersUpdateDto.getEmail().equals("")) {
+			System.out.println(" 이메일변경  : " + usersUpdateDto.getEmail());
+			System.out.println("실패!");
+			return new CMRespDto<>(-1, "구매자정보수정 실패", null);
+
+		}
 		mainAdminService.구매자정보수정(id, usersUpdateDto);
-		if (usersUpdateDto.getUserName() == null && usersUpdateDto.equals(" ")) {
-			return "mainadmin/userupdate";
-		}
-		if (usersUpdateDto.getEmail() == null && usersUpdateDto.equals(" ")) {
-			return "mainadmin/userupdate";
-		}
-		return "redirect:/";
+
+		System.out.println("===========성공시================");
+		System.out.println(usersUpdateDto.getUserName());
+		System.out.println(usersUpdateDto.getEmail());
+		System.out.println("===============성공시========");
+		return new CMRespDto<>(1, "구매자정보수정 성공", null);
 	}
+
+//		  Users usersPS = usersDao.findById(id); mainAdminService.구매자정보수정(id,
+//		  usersUpdateDto); if (id == null || id.equals("")) { return
+//		  "mainadmin/userupdate"; } if (usersUpdateDto.getUserName() == null ||
+//		  usersUpdateDto.getUserName().isEmpty()) { return "mainadmin/userupdate"; } if
+//		  (usersUpdateDto.getEmail() == null || usersUpdateDto.getEmail().isEmpty()) {
+//		  return "mainadmin/userupdate"; } return "redirect:/";
+//		
 
 	@GetMapping("/Mainadmin/userlist/{id}/edit")
 	public String usersedit(@PathVariable Integer id, Model model) {
