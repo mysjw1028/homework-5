@@ -51,13 +51,19 @@ public class ProductController {
 
 	@PostMapping("/product/{productId}/edit") // 4번 update -> 수정하기 -> post로 값 수정
 	public @ResponseBody CMRespDto<?> 수정하기(@PathVariable Integer productId, @RequestBody ProductUpdateDto productDto) {
-		if (productDto.getProductName() == null && productDto.equals(" ")) {
+		if (productDto.getProductName() == null || productDto.getProductName().isEmpty()) {
+			System.out.println("상품이름 : " + productDto.getProductName());
+			System.out.println("실패!");
 			return new CMRespDto<>(-1, "상품수정실패", null);
 
-		} else if (productDto.getProductPrice() == null) {
+		} else if (productDto.getProductPrice() == null || productDto.getProductPrice().equals("")) {
+			System.out.println(" 가격변경  : " + productDto.getProductPrice());
+			System.out.println("실패!");
 			return new CMRespDto<>(-1, "상품수정실패", null);
 
-		} else if (productDto.getProductQty() == null) {
+		} else if (productDto.getProductQty() == null || productDto.getProductQty().equals("")) {
+			System.out.println("갯수 : " + productDto.getProductQty());
+			System.out.println("실패!");
 			return new CMRespDto<>(-1, "상품수정실패", null);
 		}
 		productService.상품수정(productId, productDto);
