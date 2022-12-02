@@ -46,25 +46,51 @@ public class MainAdminController {
 		return "mainadmin/mainadminjoin";// 회원가입시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 메인 페이지로 이동
 	}
 
-	@PostMapping("/Mainadmin/joinpage/insert")
+	@PostMapping("/Mainadmin/joinpage/insert") // String은 객체여서 equals("비교값")로 비교해야 한다.
 	public @ResponseBody CMRespDto<?> 중앙관리자회원가입(@RequestBody MainAdminJoinDto mainAdminJoinDto) {
-		if (mainAdminJoinDto.getPasswordMainadmin().equals("5678")) {// String은 객체여서 equals("비교값")로 비교해야 한다.
-			mainAdminService.중앙관리자회원가입(mainAdminJoinDto);
-			if (mainAdminJoinDto.getMainadminName() != null) {
-				return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
-			}
-			if (mainAdminJoinDto.getPassword() != null) {
-				return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
-			}
-			if (mainAdminJoinDto.getPassword() != null) {
-				return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
-			}
-			return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
-		} else {
+		if (mainAdminJoinDto.getMainadminName() == null || mainAdminJoinDto.getMainadminName().equals("")) {
+			System.out.println("중앙관리자 이름 " + mainAdminJoinDto.getMainadminName());
+			System.out.println("막음!");
 			return new CMRespDto<>(-1, "중앙관리자회원가입 실패", null);
 		}
-		// 로그인시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 구매자 / 일반관리자 페이지로 이동
-	}// 회원가입시 PasswordMainadmin에 5678을 넣지 않으면 가입불가
+		if (mainAdminJoinDto.getPassword() == null || mainAdminJoinDto.getPassword().equals("")) {
+			System.out.println("중앙관리자 비밀번호 " + mainAdminJoinDto.getPassword());
+			System.out.println("막음!");
+			return new CMRespDto<>(-1, "중앙관리자회원가입 실패", null);
+		}
+
+		if (mainAdminJoinDto.getPasswordMainadmin() == null || mainAdminJoinDto.getPasswordMainadmin().isEmpty()) {
+			System.out.println("중앙관리자 중앙관리자비밀번호 " + mainAdminJoinDto.getPasswordMainadmin());
+			System.out.println("막음!!");
+			return new CMRespDto<>(-1, "중앙관리자회원가입 실패", null);
+		}
+		if (mainAdminJoinDto.getPasswordMainadmin() == null || mainAdminJoinDto.getPasswordMainadmin().equals("5678")
+				|| mainAdminJoinDto.getPasswordMainadmin().isEmpty()) {
+			System.out.println("중앙관리자 전용 비밀번호" + mainAdminJoinDto.getPasswordMainadmin());
+			System.out.println("막음!");
+		}
+		System.out.println("이멜 실행됨!!!!!!!!!!!!");
+		if (mainAdminJoinDto.getEmail() == null || mainAdminJoinDto.getEmail().equals("")) {
+			System.out.println("중앙관리자 이메일" + mainAdminJoinDto.getEmail());
+			System.out.println("막음!");
+			return new CMRespDto<>(-1, "중앙관리자회원가입 실패", null);
+		}
+		if (mainAdminJoinDto != null) {
+			System.out.println("==============성공시======================");
+			System.out.println(mainAdminJoinDto.getMainadminName());
+			System.out.println(mainAdminJoinDto.getPassword());
+			System.out.println(mainAdminJoinDto.getPasswordMainadmin());
+			System.out.println(mainAdminJoinDto.getEmail());
+			System.out.println("==============성공시======================");
+			mainAdminService.중앙관리자회원가입(mainAdminJoinDto);
+		}
+
+		return new CMRespDto<>(1, "관리자회원가입 성공", null);
+
+	}
+
+	// 로그인시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 구매자 / 일반관리자 페이지로 이동// 회원가입시
+	// PasswordMainadmin에 5678을 넣지 않으면 가입불가
 
 	@GetMapping("/join/MainAdminNameCheck")
 	public @ResponseBody CMRespDto<Boolean> MainAdminNameSameCheck(String MainAdminName) {

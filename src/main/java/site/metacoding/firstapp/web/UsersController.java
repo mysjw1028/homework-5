@@ -35,15 +35,18 @@ public class UsersController {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
 
 		if (joinDto.getUserName() == null || joinDto.getUserName().equals("")) {
-			System.out.println("유저이름 "  + joinDto.getUserName());
+			System.out.println("유저이름 " + joinDto.getUserName());
+			System.out.println("막음!");
 			return new CMRespDto<>(-1, "회원가입 실패", null);
 		}
 		if (joinDto.getPassword() == null || joinDto.getPassword().equals("")) {
 			System.out.println("비밀번호  " + joinDto.getPassword());
+			System.out.println("막음!");
 			return new CMRespDto<>(-1, "회원가입 실패", null);
 		}
 		if (joinDto.getEmail() == null || joinDto.getEmail().equals("")) {
 			System.out.println("이메일 " + joinDto.getEmail());
+			System.out.println("막음!");
 			return new CMRespDto<>(-1, "회원가입 실패", null);
 		}
 		if (joinDto != null) {
