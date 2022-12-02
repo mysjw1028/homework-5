@@ -50,10 +50,16 @@ public class MainAdminController {
 	public @ResponseBody CMRespDto<?> 중앙관리자회원가입(@RequestBody MainAdminJoinDto mainAdminJoinDto) {
 		if (mainAdminJoinDto.getPasswordMainadmin().equals("5678")) {// String은 객체여서 equals("비교값")로 비교해야 한다.
 			mainAdminService.중앙관리자회원가입(mainAdminJoinDto);
+			if (mainAdminJoinDto.getMainadminName() != null) {
+				return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
+			} else if (mainAdminJoinDto.getPassword() != null) {
+				return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
+			} else if (mainAdminJoinDto.getPassword() != null) {
+				return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
+			}
 			return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
-
 		} else {
-			return new CMRespDto<>(0, "중앙관리자회원가입 실패", null);
+			return new CMRespDto<>(-1, "중앙관리자회원가입 실패", null);
 		}
 		// 로그인시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 구매자 / 일반관리자 페이지로 이동
 	}// 회원가입시 PasswordMainadmin에 5678을 넣지 않으면 가입불가
@@ -80,7 +86,7 @@ public class MainAdminController {
 			HttpServletResponse response) {
 
 		if (mainAdminLoginDto.isRemember()) {
-			Cookie cookie = new Cookie("mainadminName", mainAdminLoginDto.getMainadminName()); 
+			Cookie cookie = new Cookie("mainadminName", mainAdminLoginDto.getMainadminName());
 			cookie.setMaxAge(60 * 60 * 24);
 			response.addCookie(cookie);
 		} else {
