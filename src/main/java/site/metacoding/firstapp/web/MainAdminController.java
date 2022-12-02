@@ -134,10 +134,10 @@ public class MainAdminController {
 	@PostMapping("/Mainadmin/adminlist/{adminId}/edit")
 	public String 관리자정보수정(@PathVariable Integer adminId, AdminUpdateDto adminUpdateDto) {
 		mainAdminService.관리자정보수정(adminId, adminUpdateDto);
-		if (adminUpdateDto.getAdminName() == null && adminUpdateDto.equals(" ")) {
+		if (adminUpdateDto.getAdminName() == null || adminUpdateDto.equals("")) {
 			return "mainadmin/adminupdate";
 		}
-		if (adminUpdateDto.getEmail() == null && adminUpdateDto.equals(" ")) {
+		if (adminUpdateDto.getEmail() == null || adminUpdateDto.equals("")) {
 			return "mainadmin/adminupdate";
 		}
 		return "redirect:/";

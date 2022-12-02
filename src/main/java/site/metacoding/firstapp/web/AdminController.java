@@ -34,21 +34,29 @@ public class AdminController {
 	@PostMapping("/admin/join")
 	public @ResponseBody CMRespDto<?> 관리자회원가입(@RequestBody AdminJoinDto adminJoinDto) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
-		adminService.관리자회원가입(adminJoinDto);
-		if (adminJoinDto.getAdminName() == null && adminJoinDto.equals(" ")) {
+		if (adminJoinDto.getAdminName() == null || adminJoinDto.equals("")) {
+			System.out.println("관리자 이름 " + adminJoinDto.getAdminName());
+			System.out.println("실행!!");
 			return new CMRespDto<>(-1, "관리자회원가입 실패", null);
 		}
-		if (adminJoinDto.getPassword() == null && adminJoinDto.equals(" ")) {
+		if (adminJoinDto.getPassword() == null || adminJoinDto.equals("")) {
+			System.out.println("비밀번호  " + adminJoinDto.getPassword());
+			System.out.println("실행!!");
 			return new CMRespDto<>(-1, "관리자회원가입 실패", null);
 		}
-		if (adminJoinDto.getEmail() == null && adminJoinDto.equals(" ")) {
+		if (adminJoinDto.getEmail() == null || adminJoinDto.equals("")) {
+			System.out.println("이메일 " + adminJoinDto.getEmail());
+			System.out.println("실행!!");
 			return new CMRespDto<>(-1, "관리자회원가입 실패", null);
 		}
-		System.out.println("==============성공시======================");
-		System.out.println(adminJoinDto.getAdminName());
-		System.out.println(adminJoinDto.getPassword());
-		System.out.println(adminJoinDto.getEmail());
-		System.out.println("==============성공시======================");
+		if (adminJoinDto != null) {
+			System.out.println("==============성공시======================");
+			System.out.println(adminJoinDto.getAdminName());
+			System.out.println(adminJoinDto.getPassword());
+			System.out.println(adminJoinDto.getEmail());
+			System.out.println("==============성공시======================");
+			adminService.관리자회원가입(adminJoinDto);
+		}
 		return new CMRespDto<>(1, "관리자회원가입 성공", null);
 	}// 디비에 값 들어가는거 확인 완료
 
