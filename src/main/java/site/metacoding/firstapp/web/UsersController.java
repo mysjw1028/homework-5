@@ -33,8 +33,29 @@ public class UsersController {
 	@PostMapping("/join/insert")
 	public @ResponseBody CMRespDto<?> 회원가입(@RequestBody JoinDto joinDto) {
 		// 테스트할때 디비 / Dao /Dto 확인 후 값이 안들어가면 view name이 엔티티랑 같은지 확인하기!
-		usersService.일반회원가입(joinDto);
+
+		if (joinDto.getUserName() == null || joinDto.equals("")) {
+			System.out.println("유저이름 "  + joinDto.getUserName());
+			return new CMRespDto<>(-1, "회원가입 실패", null);
+		}
+		if (joinDto.getPassword() == null || joinDto.equals("")) {
+			System.out.println("비밀번호  " + joinDto.getPassword());
+			return new CMRespDto<>(-1, "회원가입 실패", null);
+		}
+		if (joinDto.getEmail() == null || joinDto.equals("")) {
+			System.out.println("이메일 " + joinDto.getEmail());
+			return new CMRespDto<>(-1, "회원가입 실패", null);
+		}
+		if (joinDto != null) {
+			System.out.println("==============성공시======================");
+			System.out.println(joinDto.getUserName());
+			System.out.println(joinDto.getPassword());
+			System.out.println(joinDto.getEmail());
+			System.out.println("==============성공시======================");
+			usersService.일반회원가입(joinDto);
+		}
 		return new CMRespDto<>(1, "일반 회원가입 성공", null);
+
 	}// role은 DB에 디폴트로 일반 회원으로 들어가서 null이 나온다.
 
 	@GetMapping("/login") // 화면 출력되는지 확인 완료

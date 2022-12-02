@@ -52,9 +52,11 @@ public class MainAdminController {
 			mainAdminService.중앙관리자회원가입(mainAdminJoinDto);
 			if (mainAdminJoinDto.getMainadminName() != null) {
 				return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
-			} else if (mainAdminJoinDto.getPassword() != null) {
+			}
+			if (mainAdminJoinDto.getPassword() != null) {
 				return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
-			} else if (mainAdminJoinDto.getPassword() != null) {
+			}
+			if (mainAdminJoinDto.getPassword() != null) {
 				return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
 			}
 			return new CMRespDto<>(1, "중앙관리자회원가입 성공", null);
@@ -132,6 +134,12 @@ public class MainAdminController {
 	@PostMapping("/Mainadmin/adminlist/{adminId}/edit")
 	public String 관리자정보수정(@PathVariable Integer adminId, AdminUpdateDto adminUpdateDto) {
 		mainAdminService.관리자정보수정(adminId, adminUpdateDto);
+		if (adminUpdateDto.getAdminName() == null && adminUpdateDto.equals(" ")) {
+			return "mainadmin/adminupdate";
+		}
+		if (adminUpdateDto.getEmail() == null && adminUpdateDto.equals(" ")) {
+			return "mainadmin/adminupdate";
+		}
 		return "redirect:/";
 	}
 
@@ -163,6 +171,12 @@ public class MainAdminController {
 	public String 구매자정보수정(@PathVariable Integer id, UsersUpdateDto usersUpdateDto) {
 		Users usersPS = usersDao.findById(id);
 		mainAdminService.구매자정보수정(id, usersUpdateDto);
+		if (usersUpdateDto.getUserName() == null && usersUpdateDto.equals(" ")) {
+			return "mainadmin/userupdate";
+		}
+		if (usersUpdateDto.getEmail() == null && usersUpdateDto.equals(" ")) {
+			return "mainadmin/userupdate";
+		}
 		return "redirect:/";
 	}
 

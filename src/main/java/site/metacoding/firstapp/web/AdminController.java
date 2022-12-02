@@ -37,9 +37,11 @@ public class AdminController {
 		adminService.관리자회원가입(adminJoinDto);
 		if (adminJoinDto.getAdminName() == null && adminJoinDto.equals(" ")) {
 			return new CMRespDto<>(-1, "관리자회원가입 실패", null);
-		} else if (adminJoinDto.getPassword() == null && adminJoinDto.equals(" ")) {
+		}
+		if (adminJoinDto.getPassword() == null && adminJoinDto.equals(" ")) {
 			return new CMRespDto<>(-1, "관리자회원가입 실패", null);
-		} else if (adminJoinDto.getEmail() == null && adminJoinDto.equals(" ")) {
+		}
+		if (adminJoinDto.getEmail() == null && adminJoinDto.equals(" ")) {
 			return new CMRespDto<>(-1, "관리자회원가입 실패", null);
 		}
 		System.out.println("==============성공시======================");
