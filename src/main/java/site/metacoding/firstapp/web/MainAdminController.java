@@ -53,7 +53,7 @@ public class MainAdminController {
 			System.out.println("막음!");
 			return new CMRespDto<>(-1, "중앙관리자회원가입 실패", null);
 		}
-		if (mainAdminJoinDto.getPassword() == null || mainAdminJoinDto.getPassword().equals("")) {
+		if (mainAdminJoinDto.getPassword() == null || mainAdminJoinDto.getPassword().isEmpty()) {
 			System.out.println("중앙관리자 비밀번호 " + mainAdminJoinDto.getPassword());
 			System.out.println("막음!");
 			return new CMRespDto<>(-1, "중앙관리자회원가입 실패", null);
@@ -70,7 +70,7 @@ public class MainAdminController {
 			System.out.println("막음!");
 		}
 		System.out.println("이멜 실행됨!!!!!!!!!!!!");
-		if (mainAdminJoinDto.getEmail() == null || mainAdminJoinDto.getEmail().equals("")) {
+		if (mainAdminJoinDto.getEmail() == null || mainAdminJoinDto.getEmail().isEmpty()) {
 			System.out.println("중앙관리자 이메일" + mainAdminJoinDto.getEmail());
 			System.out.println("막음!");
 			return new CMRespDto<>(-1, "중앙관리자회원가입 실패", null);
@@ -84,9 +84,7 @@ public class MainAdminController {
 			System.out.println("==============성공시======================");
 			mainAdminService.중앙관리자회원가입(mainAdminJoinDto);
 		}
-
 		return new CMRespDto<>(1, "관리자회원가입 성공", null);
-
 	}
 
 	// 로그인시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 구매자 / 일반관리자 페이지로 이동// 회원가입시
