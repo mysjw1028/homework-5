@@ -12,7 +12,8 @@
 
 	<select id="findById"
 		resultType="site.metacoding.firstapp.domain.Users">
-		SELECT * FROM users WHERE id = #{id}
+		SELECT * FROM users WHERE id =
+		#{id}
 	</select>
 
 	<select id="findByIdUserName"

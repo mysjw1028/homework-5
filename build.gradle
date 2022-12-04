@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-		implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+	implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
 	implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.65'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'

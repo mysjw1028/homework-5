@@ -29,13 +29,13 @@ public class BuyController {
 	private final ProductDao productDao;
 	private final BuyDao buyDao;
 
-	@GetMapping("/buy/{productId}")
+	@GetMapping("/u/buy/{productId}")
 	public String buyTable(@PathVariable Integer productId, Model model) {
 		model.addAttribute("product", productDao.findById(productId));
 		return "users/buy";
 	}
 
-	@PostMapping("/buy/{productId}")
+	@PostMapping("/u/buy/{productId}")
 	public String buy(BuyDto buyDto) {// 테이블 수정후 jsp name 확인하기
 		Users principal = (Users) session.getAttribute("principal");
 		if (principal == null) {
@@ -60,7 +60,7 @@ public class BuyController {
 
 	}
 
-	@GetMapping("/buy/buylist/{id}")
+	@GetMapping("/u/buy/buylist/{id}")
 	// 유저에 대한 구매목록 나오게 하는 주소
 	public String buylist(@PathVariable Integer id, Model model) {
 		// 2. 아이디를 받아
@@ -72,7 +72,7 @@ public class BuyController {
 		return "users/buylist";
 	}
 
-	@PostMapping("/buy/buylist/{id}/delete")
+	@PostMapping("/u/buy/buylist/{id}/delete")
 	public String 삭제하기(@PathVariable Integer id, BuyDto buyDto) {
 		buyDao.deleteById(id);
 		productDao.buyProductQty(buyDto);

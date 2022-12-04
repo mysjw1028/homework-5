@@ -162,15 +162,12 @@ public class MainAdminController {
 			System.out.println("이름 : " + adminUpdateDto.getAdminName());
 			System.out.println("실패!");
 			return new CMRespDto<>(-1, "구매자정보수정실패", null);
-
 		} else if (adminUpdateDto.getEmail() == null || adminUpdateDto.getEmail().equals("")) {
 			System.out.println(" 이메일변경  : " + adminUpdateDto.getEmail());
 			System.out.println("실패!");
 			return new CMRespDto<>(-1, "구매자정보수정 실패", null);
-
 		}
 		mainAdminService.관리자정보수정(adminId, adminUpdateDto);
-
 		System.out.println("===========성공시================");
 		System.out.println(adminUpdateDto.getAdminName());
 		System.out.println(adminUpdateDto.getEmail());
@@ -217,7 +214,6 @@ public class MainAdminController {
 
 		}
 		mainAdminService.구매자정보수정(id, usersUpdateDto);
-
 		System.out.println("===========성공시================");
 		System.out.println(usersUpdateDto.getUserName());
 		System.out.println(usersUpdateDto.getEmail());

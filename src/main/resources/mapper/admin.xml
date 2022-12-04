@@ -12,7 +12,8 @@
 
 	<select id="findById"
 		resultType="site.metacoding.firstapp.domain.Admin">
-		SELECT * FROM admin WHERE id = #{adminId}
+		SELECT * FROM admin WHERE id =
+		#{adminId}
 	</select>
 
 	<select id="findByIdAdminName"
