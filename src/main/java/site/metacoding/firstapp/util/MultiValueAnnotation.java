@@ -7,9 +7,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Auth {
-	int role(); //'일반' = users (디폴트값), '일반 관리자 ' = admin, (디폴트값) '중앙 관리자' = Mainadmin(디폴트값)
-
-
-	
+public @interface MultiValueAnnotation {
+    int role();
+     int roles();
 }
+//"user”; //미지정시 기본 값으로 user가 지정된다

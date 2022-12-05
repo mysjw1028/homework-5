@@ -24,6 +24,7 @@ import site.metacoding.firstapp.domain.MainAdminDao;
 import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.domain.UsersDao;
 import site.metacoding.firstapp.service.MainAdminService;
+import site.metacoding.firstapp.util.Auth;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto;
@@ -132,13 +133,14 @@ public class MainAdminController {
 	// 회원가입하면서 중앙관리자 체크함
 	// mainAdminLoginDto이 null이니까 LoginRespDto에 값을 넣어줄때 mainAdmin이 null일때
 	// maindamin.get... 메서드가 생성자체가 되지 않았고 그러므로 업는 값이라고 나타남
-
+	@Auth(role = 2)
 	@GetMapping("/Mainadmin/join/MainadminNameCheck")
 	public @ResponseBody CMRespDto<Boolean> adminameSameCheck(String MainAdminName) {
 		boolean isSame = mainAdminService.중앙관리자중복체크(MainAdminName);
 		return new CMRespDto<>(1, "성공", isSame);
 	}
-
+	
+	@Auth(role = 2)
 	@GetMapping("/Mainadmin/adminlistForm/{id}")
 	public String adminlist(@PathVariable Integer id, Model model) {// 주소창 입력시 화면에 출력
 		// 아이디를 받기 // 리스트에 담고
@@ -150,7 +152,7 @@ public class MainAdminController {
 		return "mainadmin/adminlist";
 	}
 
-	
+	@Auth(role = 2)
 	@PostMapping("/Mainadmin/adminlist/{adminId}/delete") // 변수랑 주소명 좀 맞춰라 ;;
 	public String 관리자삭제(@PathVariable Integer adminId) {
 		Admin adminPS = adminDao.findById(adminId);
@@ -158,7 +160,7 @@ public class MainAdminController {
 		return "redirect:/";
 	}
 
-	
+	@Auth(role = 2)
 	@PostMapping("/Mainadmin/adminlist/{adminId}/edit")
 	public @ResponseBody CMRespDto<?> 관리자정보수정(@PathVariable Integer adminId,
 			@RequestBody AdminUpdateDto adminUpdateDto) {
@@ -178,14 +180,14 @@ public class MainAdminController {
 		System.out.println("===============성공시========");
 		return new CMRespDto<>(1, "구매자정보수정 성공", null);
 	}
-
+	@Auth(role = 2)
 	@GetMapping("/Mainadmin/adminlist/{id}/editForm")
 	public String adminedit(@PathVariable Integer id, Model model) {
 		Admin adminPS = adminDao.findById(id);
 		model.addAttribute("admin", adminPS);
 		return "mainadmin/adminupdate";
 	}
-
+	@Auth(role = 2)
 	@GetMapping("/Mainadmin/userlistForm/{id}")
 	public String userslist(@PathVariable Integer id, Model model) {// 주소창 입력시 화면에 출력
 		List<UsersListDto> userslist = mainAdminDao.usersList(id);
@@ -196,7 +198,7 @@ public class MainAdminController {
 		return "mainadmin/userlist";
 	}
 
-
+	@Auth(role = 2)
 	@PostMapping("/Mainadmin/userlist/{id}/delete") // 변수랑 주소명 좀 맞춰라 ;;
 	public String 구매자삭제(@PathVariable Integer id) {
 		Users usersPS = usersDao.findById(id);
@@ -204,7 +206,7 @@ public class MainAdminController {
 		return "redirect:/";
 	}
 
-
+	@Auth(role = 2)
 	@PostMapping("/Mainadmin/userlist/{id}/edit")
 	public @ResponseBody CMRespDto<?> 구매자정보수정(@PathVariable Integer id, @RequestBody UsersUpdateDto usersUpdateDto) {
 
@@ -234,7 +236,7 @@ public class MainAdminController {
 //		  (usersUpdateDto.getEmail() == null || usersUpdateDto.getEmail().isEmpty()) {
 //		  return "mainadmin/userupdate"; } return "redirect:/";
 //		
-
+	@Auth(role = 2)
 	@GetMapping("/Mainadmin/userlist/{id}/editForm")
 	public String usersedit(@PathVariable Integer id, Model model) {
 		Users usersPS = usersDao.findById(id);

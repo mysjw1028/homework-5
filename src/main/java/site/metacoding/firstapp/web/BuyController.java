@@ -16,6 +16,8 @@ import site.metacoding.firstapp.domain.BuyDao;
 import site.metacoding.firstapp.domain.Product;
 import site.metacoding.firstapp.domain.ProductDao;
 import site.metacoding.firstapp.domain.Users;
+import site.metacoding.firstapp.util.Auth;
+import site.metacoding.firstapp.util.MultiValueAnnotation;
 import site.metacoding.firstapp.web.dto.LoginRespDto;
 import site.metacoding.firstapp.web.dto.request.buy.BuyDto;
 import site.metacoding.firstapp.web.dto.request.buy.BuyListDto;
@@ -29,12 +31,14 @@ public class BuyController {
 	private final ProductDao productDao;
 	private final BuyDao buyDao;
 
+	@Auth(role = 0)
 	@GetMapping("/buy/{productId}/buyForm")
 	public String buyTable(@PathVariable Integer productId, Model model) {
 		model.addAttribute("product", productDao.findById(productId));
 		return "users/buy";
 	}
 
+	@Auth(role = 0)
 	@PostMapping("/buy/{productId}")
 	public String buy(BuyDto buyDto) {// 테이블 수정후 jsp name 확인하기
 		Users principal = (Users) session.getAttribute("principal");
@@ -60,6 +64,7 @@ public class BuyController {
 
 	}
 
+	@MultiValueAnnotation(role = 0, roles = 2)
 	@GetMapping("/buy/buylist/{id}/buyListform")
 	// 유저에 대한 구매목록 나오게 하는 주소
 	public String buylist(@PathVariable Integer id, Model model) {
