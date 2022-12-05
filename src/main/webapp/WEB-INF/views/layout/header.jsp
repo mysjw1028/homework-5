@@ -46,7 +46,7 @@
 					</c:if>
 
 					<c:if test="${ principal.mainadminName != null}">
-						<li class="nav-item"><a class="nav-link" href="/ product/insert">상품 등록하기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/product/insert">상품 등록하기</a></li>
 						<li class="nav-item"><a class="nav-link" href="/Mainadmin/userlist/${principal.id}">개인회원 정보보기</a></li>
 						<li class="nav-item"><a class="nav-link" href="/Mainadmin/adminlist/${principal.id}">관리자 정보보기</a></li>
 					</c:if>
