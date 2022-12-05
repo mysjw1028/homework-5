@@ -38,7 +38,7 @@
 						<td>${users.email}</td>
 						<th class="hidden" name="id">구매자 아이디</th>
 
-						<form action="/Mainadmin/userlist/${users.id}/edit" method="GET">
+						<form action="/Mainadmin/userlist/${users.id}/editForm" method="GET">
 							<input type="hidden" value="${users.id}" name="userId">
 							<td><button type="submit" class="btn btn-primary">구매자 정보 수정</button></td>
 						</form>
@@ -48,7 +48,7 @@
 							<td><button type="submit" class="btn btn-danger">구매자 강제탈퇴</button></td>
 						</form>
 
-						<form action="/buy/buylist/${users.id}" method="GET">
+						<form action="/buy/buylist/${users.id}/buyListform" method="GET">
 							<input type="hidden" value="${users.id}" name="adminId">
 							<td><button type="submit" class="btn btn-danger">구매 내역 페이지 이동</button></td>
 						</form>

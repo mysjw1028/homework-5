@@ -44,7 +44,7 @@ public class ProductController {
 		return new CMRespDto<>(1, "상품등록성공", null);
 	}
 
-	@GetMapping("/product/insert")
+	@GetMapping("/product/insertForm")
 	public String insert() {
 		return "product/insert";
 	}

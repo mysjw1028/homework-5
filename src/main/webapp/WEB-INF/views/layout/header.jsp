@@ -40,14 +40,14 @@
 
 
 					<c:if test="${ principal.adminName != null}">
-						<li class="nav-item"><a class="nav-link" href="/ad/product/insert">상품 등록하기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/product/insertForm">상품 등록하기</a></li>
 					</c:if>
 
 					<c:if test="${ principal.mainadminName != null}">
-						<li class="nav-item"><a class="nav-link" href="/md/product/insert">상품 등록하기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/md/Mainadmin/userlist/${principal.id}">개인회원
+						<li class="nav-item"><a class="nav-link" href="/product/insertForm">상품 등록하기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/Mainadmin/userlistForm/${principal.id}">개인회원
 								정보보기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/md/Mainadmin/adminlist/${principal.id}">관리자
+						<li class="nav-item"><a class="nav-link" href="/Mainadmin/adminlistForm/${principal.id}">관리자
 								정보보기</a></li>
 					</c:if>
 				</ul>

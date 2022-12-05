@@ -235,7 +235,7 @@ public class MainAdminController {
 //		  return "mainadmin/userupdate"; } return "redirect:/";
 //		
 
-	@GetMapping("/Mainadmin/userlist/{id}/edit")
+	@GetMapping("/Mainadmin/userlist/{id}/editForm")
 	public String usersedit(@PathVariable Integer id, Model model) {
 		Users usersPS = usersDao.findById(id);
 		model.addAttribute("users", usersPS);

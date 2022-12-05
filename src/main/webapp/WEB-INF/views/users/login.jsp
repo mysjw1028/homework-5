@@ -17,8 +17,8 @@
 		<%-- 아이디 정보 저장하는 체크박스 --%>
 	</div>
 	<button id="btnuserLogin" type="button" class="btn btn-primary">개인 로그인</button>
-	<a class="btn btn-primary" href="/admin/login"> 관리자 로그인 페이지로 이동</a> <a class="btn btn-primary"
-		href="/mainadmin/loginpage">중앙 관리자 로그인 페이지로 이동</a>
+	<a class="btn btn-primary" href="/admin/loginForm"> 관리자 로그인 페이지로 이동</a> <a class="btn btn-primary"
+		href="/mainadmin/loginpageForm">중앙 관리자 로그인 페이지로 이동</a>
 	<%--a태그는 무조건 get을 때림 / 버튼 디자인은  class ="btn btn-primary "에 맞춰주면 됨--%>
 </div>
 
