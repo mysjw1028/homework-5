@@ -1,6 +1,7 @@
-package site.metacoding.firstapp.Service;
+package site.metacoding.firstapp.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.Users;
@@ -13,6 +14,7 @@ import site.metacoding.firstapp.web.dto.request.users.LoginDto;
 public class UsersService {
 	private final UsersDao usersDao;
 
+	@Transactional(rollbackFor = RuntimeException.class)
 	public void 일반회원가입(JoinDto joinDto) {
 		Users users = joinDto.toEntity();
 		usersDao.insert(users);
@@ -29,7 +31,7 @@ public class UsersService {
 
 	public Users 로그인(LoginDto loginDto) {
 		Users usersPS = usersDao.login(loginDto.getPassword(), loginDto.getUserName());
-		if (usersPS == null && usersPS.equals(" ")){
+		if (usersPS == null && usersPS.equals(" ")) {
 			return null;
 		}
 

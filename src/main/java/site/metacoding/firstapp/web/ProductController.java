@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.firstapp.Service.ProductService;
+import site.metacoding.firstapp.domain.MainAdminDao;
 import site.metacoding.firstapp.domain.Product;
 import site.metacoding.firstapp.domain.ProductDao;
+import site.metacoding.firstapp.service.ProductService;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.request.product.ProductUpdateDto;
 

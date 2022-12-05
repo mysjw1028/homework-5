@@ -1,4 +1,4 @@
-package site.metacoding.firstapp.handler.ex;
+package site.metacoding.firstapp.handler;
 
 public class MyApiException extends MyException {
 

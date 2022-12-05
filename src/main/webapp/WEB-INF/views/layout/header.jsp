@@ -6,8 +6,7 @@
 <title>숙제</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/insert.css" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -17,8 +16,7 @@
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="/">숙제</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-				data-bs-target="#collapsibleNavbar">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -42,13 +40,15 @@
 
 
 					<c:if test="${ principal.adminName != null}">
-						<li class="nav-item"><a class="nav-link" href="/product/insert">상품 등록하기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/ad/product/insert">상품 등록하기</a></li>
 					</c:if>
 
 					<c:if test="${ principal.mainadminName != null}">
-						<li class="nav-item"><a class="nav-link" href="/product/insert">상품 등록하기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/Mainadmin/userlist/${principal.id}">개인회원 정보보기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/Mainadmin/adminlist/${principal.id}">관리자 정보보기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/md/product/insert">상품 등록하기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/md/Mainadmin/userlist/${principal.id}">개인회원
+								정보보기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/md/Mainadmin/adminlist/${principal.id}">관리자
+								정보보기</a></li>
 					</c:if>
 				</ul>
 			</div>

@@ -1,6 +1,7 @@
-package site.metacoding.firstapp.Service;
+package site.metacoding.firstapp.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.Product;
@@ -21,7 +22,7 @@ public class ProductService {
 			return true;
 		}
 	}
-
+	@Transactional(rollbackFor = RuntimeException.class)
 	public void 상품수정(Integer id, ProductUpdateDto productUpdateDto) {
 		// 1. 영속화
 		Product productPS = productDao.findById(id);

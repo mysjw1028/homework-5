@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor // 서현 추가함
+@NoArgsConstructor 
 @Getter
 @Setter
 public class AuthRespDto {
@@ -16,7 +16,6 @@ public class AuthRespDto {
 	private Integer mainadminId;
 	private Integer adminId;
 
-	// 서현 추가함
 	public AuthRespDto(Integer id, Integer userId, Integer mainadminId, Integer adminId) {
 		this.id = id;
 		this.userId = userId;

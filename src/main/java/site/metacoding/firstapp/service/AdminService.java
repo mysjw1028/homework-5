@@ -1,6 +1,7 @@
-package site.metacoding.firstapp.Service;
+package site.metacoding.firstapp.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.Admin;
@@ -12,7 +13,7 @@ import site.metacoding.firstapp.web.dto.request.admin.AdminLoginDto;
 @Service
 public class AdminService {
 	private final AdminDao adminDao;
-
+	@Transactional(rollbackFor = RuntimeException.class)
 	public void 관리자회원가입(AdminJoinDto adminJoinDto) {
 		Admin admins = adminJoinDto.toEntity();
 		adminDao.insert(admins);

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.firstapp.Service.UsersService;
 import site.metacoding.firstapp.domain.Users;
+import site.metacoding.firstapp.service.UsersService;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 import site.metacoding.firstapp.web.dto.request.users.JoinDto;
 import site.metacoding.firstapp.web.dto.request.users.LoginDto;

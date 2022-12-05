@@ -12,7 +12,7 @@ public class SessionUsers {
 	public final String getRole = null;
 	private Integer id;
 	private Integer userId;
-	private String role; // '일반' = users (디폴트값), '회사' = companys
+	private String role; // '일반' = users (디폴트값), '일반 관리자 ' = admin, (디폴트값) '중앙 관리자' = Mainadmin(디폴트값)
 	private String email;
 	private Integer mainadminId;
 	private Integer adminId;

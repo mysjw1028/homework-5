@@ -1,4 +1,4 @@
-package site.metacoding.firstapp.handler.ex;
+package site.metacoding.firstapp.handler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import site.metacoding.firstapp.web.dto.Response.SessionUsers;
 
-public class MainAdminInterceptor implements HandlerInterceptor {
+public class AdminInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -19,7 +19,7 @@ public class MainAdminInterceptor implements HandlerInterceptor {
 		String httpMethod = request.getMethod();
 		if (httpMethod.equals("POST") || httpMethod.equals("GET")) {
 			if (sessionUser != null) {
-				if (sessionUser.getRole.equals("중앙 관리자")) {
+				if (sessionUser.getRole.equals("일반 관리자")) {
 					return true;
 				}
 				throw new RuntimeException("권한이 없습니다.");

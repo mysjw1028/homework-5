@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.firstapp.Service.MainAdminService;
 import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.AdminDao;
 import site.metacoding.firstapp.domain.MainAdmin;
 import site.metacoding.firstapp.domain.MainAdminDao;
 import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.domain.UsersDao;
+import site.metacoding.firstapp.service.MainAdminService;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto;
@@ -45,6 +46,7 @@ public class MainAdminController {
 	public String mainadminjoin() {
 		return "mainadmin/mainadminjoin";// 회원가입시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 메인 페이지로 이동
 	}
+
 
 	@PostMapping("/Mainadmin/joinpage/insert") // String은 객체여서 equals("비교값")로 비교해야 한다.
 	public @ResponseBody CMRespDto<?> 중앙관리자회원가입(@RequestBody MainAdminJoinDto mainAdminJoinDto) {
@@ -106,7 +108,7 @@ public class MainAdminController {
 		}
 		return "mainadmin/mainadminlogin";
 	}
-
+	
 	@PostMapping("/mainadmin/loginpage")
 	public @ResponseBody CMRespDto<?> 중앙관리자로그인(@RequestBody MainAdminLoginDto mainAdminLoginDto,
 			HttpServletResponse response) {
@@ -148,6 +150,7 @@ public class MainAdminController {
 		return "mainadmin/adminlist";
 	}
 
+	
 	@PostMapping("/Mainadmin/adminlist/{adminId}/delete") // 변수랑 주소명 좀 맞춰라 ;;
 	public String 관리자삭제(@PathVariable Integer adminId) {
 		Admin adminPS = adminDao.findById(adminId);
@@ -155,6 +158,7 @@ public class MainAdminController {
 		return "redirect:/";
 	}
 
+	
 	@PostMapping("/Mainadmin/adminlist/{adminId}/edit")
 	public @ResponseBody CMRespDto<?> 관리자정보수정(@PathVariable Integer adminId,
 			@RequestBody AdminUpdateDto adminUpdateDto) {
@@ -192,12 +196,14 @@ public class MainAdminController {
 		return "mainadmin/userlist";
 	}
 
+
 	@PostMapping("/Mainadmin/userlist/{id}/delete") // 변수랑 주소명 좀 맞춰라 ;;
 	public String 구매자삭제(@PathVariable Integer id) {
 		Users usersPS = usersDao.findById(id);
 		usersDao.deleteById(id);
 		return "redirect:/";
 	}
+
 
 	@PostMapping("/Mainadmin/userlist/{id}/edit")
 	public @ResponseBody CMRespDto<?> 구매자정보수정(@PathVariable Integer id, @RequestBody UsersUpdateDto usersUpdateDto) {

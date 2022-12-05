@@ -1,6 +1,7 @@
-package site.metacoding.firstapp.Service;
+package site.metacoding.firstapp.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.firstapp.domain.Admin;
@@ -21,6 +22,7 @@ public class MainAdminService {
 	private final AdminDao adminDao;
 	private final UsersDao usersDao;
 
+	@Transactional(rollbackFor = RuntimeException.class)
 	public void 중앙관리자회원가입(MainAdminJoinDto mainAdminJoinDto) {
 		MainAdmin mainadmins = mainAdminJoinDto.toEntity();
 		mainAdminDao.insert(mainadmins);
@@ -35,6 +37,7 @@ public class MainAdminService {
 		}
 	}
 
+	@Transactional(rollbackFor = RuntimeException.class)
 	public void 관리자정보수정(Integer id, AdminUpdateDto adminUpdateDto) {
 		// 1. 영속화
 		Admin adminPS = adminDao.findById(id);
@@ -46,6 +49,7 @@ public class MainAdminService {
 		adminDao.update(adminPS);
 	}
 
+	@Transactional(rollbackFor = RuntimeException.class)
 	public void 구매자정보수정(Integer id, UsersUpdateDto usersUpdateDto) {
 		// 1. 영속화
 		Users usersPS = usersDao.findById(id);
