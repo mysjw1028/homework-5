@@ -4,14 +4,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor 
+@NoArgsConstructor
 @Getter
 @Setter
 public class AuthRespDto {
 	private Integer id;
 	private Integer userId;
 	private String userPassword; // 비밀번호 숨기기
-	private String role;
+	private Integer role;
 	private String email;
 	private Integer mainadminId;
 	private Integer adminId;
