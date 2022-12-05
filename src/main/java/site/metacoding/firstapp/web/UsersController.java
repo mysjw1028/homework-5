@@ -25,7 +25,7 @@ public class UsersController {
 	private final UsersService usersService;
 	private final HttpSession session;
 
-	@GetMapping("/join") // 화면 출력되는지 확인 완료
+	@GetMapping("/joinForm") // 화면 출력되는지 확인 완료
 	public String join() {
 		return "users/join";
 	}
@@ -61,7 +61,7 @@ public class UsersController {
 
 	}// role은 DB에 디폴트로 일반 회원으로 들어가서 null이 나온다.
 
-	@GetMapping("/login") // 화면 출력되는지 확인 완료
+	@GetMapping("/loginForm") // 화면 출력되는지 확인 완료
 	public String login(Model model, HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 		for (Cookie cookie : cookies) {

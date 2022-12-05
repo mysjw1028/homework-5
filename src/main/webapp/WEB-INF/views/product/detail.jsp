@@ -43,7 +43,7 @@
 		</c:if>
 	</form>
 	<c:if test="${ principal.userName != null}">
-		<a href="/buy/${productId}"><button class="btn  btn-primary" type="button">상품구매</button></a>
+		<a href="/buy/${productId}/buyForm"><button class="btn  btn-primary" type="button">상품구매</button></a>
 	</c:if>
 </div>
 

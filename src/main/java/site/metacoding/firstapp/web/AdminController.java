@@ -25,7 +25,7 @@ public class AdminController {
 	private final AdminService adminService;
 	private final HttpSession session;
 
-	@GetMapping("/admin/join") // 화면 출력되는지 확인 완료
+	@GetMapping("/admin/joinForm") // 화면 출력되는지 확인 완료
 	public String adminjoin() {
 		return "admin/adminjoin";
 	}
@@ -59,7 +59,7 @@ public class AdminController {
 		return new CMRespDto<>(1, "관리자회원가입 성공", null);
 	}// 디비에 값 들어가는거 확인 완료
 
-	@GetMapping("/admin/login") // 화면 출력되는지 확인 완료
+	@GetMapping("/admin/loginForm") // 화면 출력되는지 확인 완료
 	public String acminlogin(Model model, HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 		for (Cookie cookie : cookies) {

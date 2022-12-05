@@ -15,7 +15,7 @@ $("#btnadminInsert").click(() => {
 function checkadminName() {
 	let adminName = $("#adminName").val();
 
-	$.ajax("/admin/join/adminNameCheck?adminName=" + adminName, {
+	$.ajax("/admin/joinForm/adminNameCheck?adminName=" + adminName, {
 		type: "GET",
 		dataType: "json",
 	}).done((res) => {

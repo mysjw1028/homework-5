@@ -29,7 +29,7 @@ public class BuyController {
 	private final ProductDao productDao;
 	private final BuyDao buyDao;
 
-	@GetMapping("/buy/{productId}")
+	@GetMapping("/buy/{productId}/buyForm")
 	public String buyTable(@PathVariable Integer productId, Model model) {
 		model.addAttribute("product", productDao.findById(productId));
 		return "users/buy";
@@ -60,7 +60,7 @@ public class BuyController {
 
 	}
 
-	@GetMapping("/buy/buylist/{id}")
+	@GetMapping("/buy/buylist/{id}/buyListform")
 	// 유저에 대한 구매목록 나오게 하는 주소
 	public String buylist(@PathVariable Integer id, Model model) {
 		// 2. 아이디를 받아

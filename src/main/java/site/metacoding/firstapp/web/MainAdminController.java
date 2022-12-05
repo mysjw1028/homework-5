@@ -42,7 +42,7 @@ public class MainAdminController {
 	private final UsersDao usersDao;
 	private final MainAdminService mainAdminService;
 
-	@GetMapping("/Mainadmin/joinpage")
+	@GetMapping("/Mainadmin/joinpageForm")
 	public String mainadminjoin() {
 		return "mainadmin/mainadminjoin";// 회원가입시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 메인 페이지로 이동
 	}
@@ -98,7 +98,7 @@ public class MainAdminController {
 		return new CMRespDto<>(1, "성공", isSame);
 	}
 
-	@GetMapping("/mainadmin/loginpage")
+	@GetMapping("/mainadmin/loginpageForm")
 	public String mainadminlogin(Model model, HttpServletRequest request) {// 주소창 입력시 화면에 출력
 		Cookie[] cookies = request.getCookies();
 		for (Cookie cookie : cookies) {
@@ -139,7 +139,7 @@ public class MainAdminController {
 		return new CMRespDto<>(1, "성공", isSame);
 	}
 
-	@GetMapping("/Mainadmin/adminlist/{id}")
+	@GetMapping("/Mainadmin/adminlistForm/{id}")
 	public String adminlist(@PathVariable Integer id, Model model) {// 주소창 입력시 화면에 출력
 		// 아이디를 받기 // 리스트에 담고
 		List<AdminListDto> adminList = mainAdminDao.adminList(id);
@@ -179,14 +179,14 @@ public class MainAdminController {
 		return new CMRespDto<>(1, "구매자정보수정 성공", null);
 	}
 
-	@GetMapping("/Mainadmin/adminlist/{id}/edit")
+	@GetMapping("/Mainadmin/adminlist/{id}/editForm")
 	public String adminedit(@PathVariable Integer id, Model model) {
 		Admin adminPS = adminDao.findById(id);
 		model.addAttribute("admin", adminPS);
 		return "mainadmin/adminupdate";
 	}
 
-	@GetMapping("/Mainadmin/userlist/{id}")
+	@GetMapping("/Mainadmin/userlistForm/{id}")
 	public String userslist(@PathVariable Integer id, Model model) {// 주소창 입력시 화면에 출력
 		List<UsersListDto> userslist = mainAdminDao.usersList(id);
 		for (UsersListDto e : userslist = mainAdminDao.usersList(id)) {
