@@ -11,18 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.firstapp.domain.Buy;
 import site.metacoding.firstapp.domain.BuyDao;
 import site.metacoding.firstapp.domain.Product;
 import site.metacoding.firstapp.domain.ProductDao;
 import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.util.Auth;
 import site.metacoding.firstapp.util.MultiValueAnnotation;
-import site.metacoding.firstapp.web.dto.LoginRespDto;
 import site.metacoding.firstapp.web.dto.request.buy.BuyDto;
 import site.metacoding.firstapp.web.dto.request.buy.BuyListDto;
-import site.metacoding.firstapp.web.dto.request.buy.BuyListUpdateDto;
-import site.metacoding.firstapp.web.dto.request.users.LoginDto;
 
 @RequiredArgsConstructor
 @Controller
@@ -32,14 +28,14 @@ public class BuyController {
 	private final BuyDao buyDao;
 
 	@Auth(role = 0)
-	@GetMapping("/buy/{productId}/buyForm")
+	@GetMapping("/s/buy/{productId}/buyForm")
 	public String buyTable(@PathVariable Integer productId, Model model) {
 		model.addAttribute("product", productDao.findById(productId));
 		return "users/buy";
 	}
 
 	@Auth(role = 0)
-	@PostMapping("/buy/{productId}")
+	@PostMapping("/s/buy/{productId}")
 	public String buy(BuyDto buyDto) {// 테이블 수정후 jsp name 확인하기
 		Users principal = (Users) session.getAttribute("principal");
 		if (principal == null) {
@@ -64,8 +60,8 @@ public class BuyController {
 
 	}
 
-	@MultiValueAnnotation(role = 0, roles = 2)
-	@GetMapping("/buy/buylist/{id}/buyListform")
+	@MultiValueAnnotation(roles = { 0, 2 })
+	@GetMapping("/s/buy/buylist/{id}/buyListform")
 	// 유저에 대한 구매목록 나오게 하는 주소
 	public String buylist(@PathVariable Integer id, Model model) {
 		// 2. 아이디를 받아
@@ -77,7 +73,8 @@ public class BuyController {
 		return "users/buylist";
 	}
 
-	@PostMapping("/buy/buylist/{id}/delete")
+	@MultiValueAnnotation(roles = { 0, 2 })
+	@PostMapping("/s/buy/buylist/{id}/delete")
 	public String 삭제하기(@PathVariable Integer id, BuyDto buyDto) {
 		buyDao.deleteById(id);
 		productDao.buyProductQty(buyDto);

@@ -59,7 +59,7 @@ public class RoleInterceptor implements HandlerInterceptor {
 		HttpSession sessions = request.getSession();
 
 		// 2. 권한 체크
-		int roles = multiValueAnnotation.roles(); // 0 일반 1 일반관리자 2중앙 관리자
+		int[] roles = multiValueAnnotation.roles(); // 0 일반 1 일반관리자 2중앙 관리자
 		SessionUsers tests = (SessionUsers) session.getAttribute("sessionUser");
 		int sessionUserRoles = test.getRole();
 

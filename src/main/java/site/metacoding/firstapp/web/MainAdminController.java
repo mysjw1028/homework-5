@@ -48,7 +48,6 @@ public class MainAdminController {
 		return "mainadmin/mainadminjoin";// 회원가입시 중앙관리자 패스워드 번호를 if 문 돌려서 4567아니면 메인 페이지로 이동
 	}
 
-
 	@PostMapping("/Mainadmin/joinpage/insert") // String은 객체여서 equals("비교값")로 비교해야 한다.
 	public @ResponseBody CMRespDto<?> 중앙관리자회원가입(@RequestBody MainAdminJoinDto mainAdminJoinDto) {
 		if (mainAdminJoinDto.getMainadminName() == null || mainAdminJoinDto.getMainadminName().equals("")) {
@@ -109,7 +108,7 @@ public class MainAdminController {
 		}
 		return "mainadmin/mainadminlogin";
 	}
-	
+
 	@PostMapping("/mainadmin/loginpage")
 	public @ResponseBody CMRespDto<?> 중앙관리자로그인(@RequestBody MainAdminLoginDto mainAdminLoginDto,
 			HttpServletResponse response) {
@@ -130,18 +129,19 @@ public class MainAdminController {
 		session.setAttribute("principal", principal);
 		return new CMRespDto<>(1, "로그인성공", null);
 	}
+
 	// 회원가입하면서 중앙관리자 체크함
 	// mainAdminLoginDto이 null이니까 LoginRespDto에 값을 넣어줄때 mainAdmin이 null일때
 	// maindamin.get... 메서드가 생성자체가 되지 않았고 그러므로 업는 값이라고 나타남
-	@Auth(role = 2)
+
 	@GetMapping("/Mainadmin/join/MainadminNameCheck")
 	public @ResponseBody CMRespDto<Boolean> adminameSameCheck(String MainAdminName) {
 		boolean isSame = mainAdminService.중앙관리자중복체크(MainAdminName);
 		return new CMRespDto<>(1, "성공", isSame);
 	}
-	
+
 	@Auth(role = 2)
-	@GetMapping("/Mainadmin/adminlistForm/{id}")
+	@GetMapping("/s/Mainadmin/adminlistForm/{id}")
 	public String adminlist(@PathVariable Integer id, Model model) {// 주소창 입력시 화면에 출력
 		// 아이디를 받기 // 리스트에 담고
 		List<AdminListDto> adminList = mainAdminDao.adminList(id);
@@ -153,7 +153,7 @@ public class MainAdminController {
 	}
 
 	@Auth(role = 2)
-	@PostMapping("/Mainadmin/adminlist/{adminId}/delete") // 변수랑 주소명 좀 맞춰라 ;;
+	@PostMapping("/s/Mainadmin/adminlist/{adminId}/delete") // 변수랑 주소명 좀 맞춰라 ;;
 	public String 관리자삭제(@PathVariable Integer adminId) {
 		Admin adminPS = adminDao.findById(adminId);
 		adminDao.deleteById(adminId);
@@ -161,7 +161,7 @@ public class MainAdminController {
 	}
 
 	@Auth(role = 2)
-	@PostMapping("/Mainadmin/adminlist/{adminId}/edit")
+	@PostMapping("/s/Mainadmin/adminlist/{adminId}/edit")
 	public @ResponseBody CMRespDto<?> 관리자정보수정(@PathVariable Integer adminId,
 			@RequestBody AdminUpdateDto adminUpdateDto) {
 		if (adminUpdateDto.getAdminName() == null || adminUpdateDto.getAdminName().isEmpty()) {
@@ -180,15 +180,17 @@ public class MainAdminController {
 		System.out.println("===============성공시========");
 		return new CMRespDto<>(1, "구매자정보수정 성공", null);
 	}
+
 	@Auth(role = 2)
-	@GetMapping("/Mainadmin/adminlist/{id}/editForm")
+	@GetMapping("/s/Mainadmin/adminlist/{id}/editForm")
 	public String adminedit(@PathVariable Integer id, Model model) {
 		Admin adminPS = adminDao.findById(id);
 		model.addAttribute("admin", adminPS);
 		return "mainadmin/adminupdate";
 	}
+
 	@Auth(role = 2)
-	@GetMapping("/Mainadmin/userlistForm/{id}")
+	@GetMapping("/s/Mainadmin/userlistForm/{id}")
 	public String userslist(@PathVariable Integer id, Model model) {// 주소창 입력시 화면에 출력
 		List<UsersListDto> userslist = mainAdminDao.usersList(id);
 		for (UsersListDto e : userslist = mainAdminDao.usersList(id)) {
@@ -199,7 +201,7 @@ public class MainAdminController {
 	}
 
 	@Auth(role = 2)
-	@PostMapping("/Mainadmin/userlist/{id}/delete") // 변수랑 주소명 좀 맞춰라 ;;
+	@PostMapping("/s/Mainadmin/userlist/{id}/delete") // 변수랑 주소명 좀 맞춰라 ;;
 	public String 구매자삭제(@PathVariable Integer id) {
 		Users usersPS = usersDao.findById(id);
 		usersDao.deleteById(id);
@@ -207,7 +209,7 @@ public class MainAdminController {
 	}
 
 	@Auth(role = 2)
-	@PostMapping("/Mainadmin/userlist/{id}/edit")
+	@PostMapping("/s/Mainadmin/userlist/{id}/edit")
 	public @ResponseBody CMRespDto<?> 구매자정보수정(@PathVariable Integer id, @RequestBody UsersUpdateDto usersUpdateDto) {
 
 		if (usersUpdateDto.getUserName() == null || usersUpdateDto.getUserName().isEmpty()) {
@@ -237,7 +239,7 @@ public class MainAdminController {
 //		  return "mainadmin/userupdate"; } return "redirect:/";
 //		
 	@Auth(role = 2)
-	@GetMapping("/Mainadmin/userlist/{id}/editForm")
+	@GetMapping("/s/Mainadmin/userlist/{id}/editForm")
 	public String usersedit(@PathVariable Integer id, Model model) {
 		Users usersPS = usersDao.findById(id);
 		model.addAttribute("users", usersPS);

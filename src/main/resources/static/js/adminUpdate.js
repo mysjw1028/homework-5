@@ -21,7 +21,7 @@ function update() {
 	let id
 		= $("#adminId").val();
 
-	$.ajax("/Mainadmin/adminlist/" + id + "/edit", {
+	$.ajax("/s/Mainadmin/adminlist/" + id + "/edit", {
 		type: "POST",
 		dataType: "json",
 		data: JSON.stringify(data), // http body에 들고갈 요청 데이터

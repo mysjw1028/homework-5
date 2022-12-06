@@ -2,7 +2,7 @@ package site.metacoding.firstapp.util;
 
 public class UsingMultiValueAnnotation {
 
-	@MultiValueAnnotation(roles = 1, role = 0) // name = user, roles = {“anonymous’}로 지정된다
+	@MultiValueAnnotation(roles = {1, 2}) // name = user, roles = {“anonymous’}로 지정된다
 	public void testMethod() {
 	}
 

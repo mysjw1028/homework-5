@@ -35,7 +35,7 @@
 					</c:choose>
 
 					<c:if test="${ principal.userName != null}">
-						<li class="nav-item"><a class="nav-link" href="/buy/buylist/${principal.id}/buyListform">구매내역보기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/s/buy/buylist/${principal.id}/buyListform">구매내역보기</a></li>
 					</c:if>
 
 
@@ -44,10 +44,10 @@
 					</c:if>
 
 					<c:if test="${ principal.mainadminName != null}">
-						<li class="nav-item"><a class="nav-link" href="/product/insertForm">상품 등록하기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/Mainadmin/userlistForm/${principal.id}">개인회원
+						<li class="nav-item"><a class="nav-link" href="/s/product/insertForm">상품 등록하기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/s/Mainadmin/userlistForm/${principal.id}">개인회원
 								정보보기</a></li>
-						<li class="nav-item"><a class="nav-link" href="/Mainadmin/adminlistForm/${principal.id}">관리자
+						<li class="nav-item"><a class="nav-link" href="/s/Mainadmin/adminlistForm/${principal.id}">관리자
 								정보보기</a></li>
 					</c:if>
 				</ul>

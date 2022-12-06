@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Auth {
-	int role(); //'일반' = users (디폴트값), '일반 관리자 ' = admin, (디폴트값) '중앙 관리자' = Mainadmin(디폴트값)
+	int role(); //'일반' = 0 (디폴트값), '일반 관리자 ' = 1, (디폴트값) '중앙 관리자' = 2(디폴트값)
 
 
 	

@@ -32,7 +32,7 @@ public class MainAdminAuthInterceptor implements HandlerInterceptor {
 		String httpMethod = request.getMethod();
 		if (httpMethod.equals("POST") || httpMethod.equals("GET")) {
 			if (mainadminId == sessionUserId) {
-				System.out.println("디버그 : " + "AdminAuth 인터셉터 통과");
+				System.out.println("디버그 : " + "MainAdminAuth 인터셉터 통과");
 				return true;
 			}
 			throw new RuntimeException("권한이 없습니다.");

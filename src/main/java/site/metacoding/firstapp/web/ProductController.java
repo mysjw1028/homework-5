@@ -38,22 +38,22 @@ public class ProductController {
 		return "product/detail";
 	}
 
-	@MultiValueAnnotation (role = 2, roles = 0 )
-	@PostMapping("/product/insert") // 3번 insert -> 데이터에 값넣기-> post로 넣기
+	@MultiValueAnnotation(roles = {1, 2})
+	@PostMapping("/s/product/insert") // 3번 insert -> 데이터에 값넣기-> post로 넣기
 	public @ResponseBody CMRespDto<?> 추가하기(@RequestBody Product product) {
 		productDao.insert(product);
 		return new CMRespDto<>(1, "상품등록성공", null);
 	}
 
 	@Auth(role = 1)
-	@GetMapping("/product/insertForm")
+	@GetMapping("/s/product/insertForm")
 	public String insert() {
 		return "product/insert";
 	}
 
 	// **********************POSTMAN으로 테스트****************//
 	@Auth(role = 1)
-	@PostMapping("/product/{productId}/edit") // 4번 update -> 수정하기 -> post로 값 수정
+	@PostMapping("/s/product/{productId}/edit") // 4번 update -> 수정하기 -> post로 값 수정
 	public @ResponseBody CMRespDto<?> 수정하기(@PathVariable Integer productId, @RequestBody ProductUpdateDto productDto) {
 		if (productDto.getProductName() == null || productDto.getProductName().isEmpty()) {
 			System.out.println("상품이름 : " + productDto.getProductName());
@@ -81,7 +81,7 @@ public class ProductController {
 	}
 
 	@Auth(role = 1)
-	@GetMapping("/product/{productId}/edit")
+	@GetMapping("/s/product/{productId}/edit")
 	public String edit(@PathVariable Integer productId, Model model) {
 		Product productPS = productDao.findById(productId);
 		model.addAttribute("product", productPS);
@@ -90,7 +90,7 @@ public class ProductController {
 	}
 
 	@Auth(role = 1)
-	@PostMapping("/product/{productId}/delete") // 5번 deleteById -> 삭제하기 -> post로 값 삭제
+	@PostMapping("/s/product/{productId}/delete") // 5번 deleteById -> 삭제하기 -> post로 값 삭제
 	public String 삭제하기(@PathVariable Integer productId) {
 		Product productPS = productDao.findById(productId);
 		productDao.deleteById(productId);

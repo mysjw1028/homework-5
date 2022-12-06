@@ -8,7 +8,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MultiValueAnnotation {
-    int role();
-     int roles();
+
+	int[] roles();
 }
-//"user”; //미지정시 기본 값으로 user가 지정된다
