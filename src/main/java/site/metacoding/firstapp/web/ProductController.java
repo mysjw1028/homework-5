@@ -38,7 +38,7 @@ public class ProductController {
 		return "product/detail";
 	}
 
-	@MultiValueAnnotation(roles = {1, 2})
+	@MultiValueAnnotation(roles = {1 ,2})
 	@PostMapping("/s/product/insert") // 3번 insert -> 데이터에 값넣기-> post로 넣기
 	public @ResponseBody CMRespDto<?> 추가하기(@RequestBody Product product) {
 		productDao.insert(product);

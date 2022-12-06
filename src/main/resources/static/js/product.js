@@ -65,7 +65,7 @@ function insert() {
 		productQty: $("#productQty").val()
 	};
 
-	$.ajax("/product/insert", {
+	$.ajax("/s/product/insert", {
 		type: "POST",
 		dataType: "json",
 		data: JSON.stringify(data), // http body에 들고갈 요청 데이터

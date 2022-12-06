@@ -11,18 +11,16 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-public class SessionUsers {
+public class SessionAdmin {
 	private Integer id;
 	private Integer adminId;
 	private Integer mainadminId;
 	private String username;
 	private int role;
-	private String sessionUser;
-	
 
-	public SessionUsers(UserFindByAllUsernameDto userFindByAllUsernameDto) {
-		this.id = userFindByAllUsernameDto.getId();
-		this.username = userFindByAllUsernameDto.getUsername();
-		this.role = userFindByAllUsernameDto.getRole();
+	public SessionAdmin(AdminFindByAllAdminnameDto AdminFindByAllAdminnameDto) {
+		this.adminId = AdminFindByAllAdminnameDto.getAdminId();
+		this.username = AdminFindByAllAdminnameDto.getAdminname();
+		this.role = AdminFindByAllAdminnameDto.getRole();
 	}
 }

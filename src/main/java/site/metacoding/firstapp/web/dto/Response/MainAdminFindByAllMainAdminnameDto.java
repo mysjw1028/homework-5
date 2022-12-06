@@ -7,9 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserFindByAllUsernameDto {
-	private Integer id;
-	private String username;
+public class MainAdminFindByAllMainAdminnameDto {
+	private Integer MainAdminId;
+	private String mainadminname;
 	private String password;
 	private int role;
 }

@@ -36,7 +36,6 @@
 						<td>${admin.no}</td>
 						<td>${admin.adminName}</td>
 						<td>${admin.email}</td>
-
 						<form action="/s/Mainadmin/adminlist/${admin.id}/editForm" method="GET">
 							<input type="hidden" value="${admin.adminId}" name="adminId">
 							<td><button type="submit" class="btn btn-primary">관리자 정보 수정</button></td>
@@ -48,7 +47,7 @@
 						</form>
 						<td>${admin.createdAt}</td>
 						<td class="hidden" name="id">${admin.id}</td>
-						
+
 					</tr>
 				</c:forEach>
 

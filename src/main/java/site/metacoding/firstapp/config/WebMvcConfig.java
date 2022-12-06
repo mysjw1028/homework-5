@@ -14,16 +14,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new RoleInterceptor()).order(0);
-		registry.addInterceptor(new UsersAuthInterceptor()).addPathPatterns("/s/user/**")
-				.excludePathPatterns("/user/login").excludePathPatterns("/user/loginForm");
+		registry.addInterceptor(new UsersAuthInterceptor()).addPathPatterns("/s/user/**");// 포함하고
 
-		registry.addInterceptor(new UsersAuthInterceptor()).addPathPatterns("/s/buy/**");
-
-		registry.addInterceptor(new AdminAuthInterceptor()).addPathPatterns("/s/product/**");
-
+		registry.addInterceptor(new AdminAuthInterceptor()).addPathPatterns("/s/admin/**")
+				.excludePathPatterns("/s/product/**");
 		registry.addInterceptor(new MainAdminAuthInterceptor()).addPathPatterns("/s/Mainadmin/**")
-				.excludePathPatterns("/Mainadmin/loginpage");
+				.excludePathPatterns("/s/product/**")
+				.excludePathPatterns("/s/Mainadmin/userlist/**")
+				.excludePathPatterns("/s/Mainadmin/adminlist/**");
+
 	}
 
 }

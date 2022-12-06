@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import site.metacoding.firstapp.domain.Admin;
+import site.metacoding.firstapp.web.dto.Response.SessionAdmin;
 import site.metacoding.firstapp.web.dto.Response.SessionUsers;
 
 @Component
@@ -19,18 +21,18 @@ public class AdminAuthInterceptor implements HandlerInterceptor {
 		// url요청의 {id}
 		String uri = request.getRequestURI();
 		String[] uriArray = uri.split("/");
-		int adminId = Integer.parseInt(uriArray[uriArray.length - 1]);
-		System.out.println("디버그 : " + adminId);
+		int reqId = Integer.parseInt(uriArray[uriArray.length - 1]);
+		System.out.println("디버그 : " + reqId);
 
 		// 세션의 id
 		HttpSession session = request.getSession();
-		SessionUsers sessionUser = (SessionUsers) session.getAttribute("sessionUser");
-		int sessionUserId = sessionUser.getId();
+		Admin sessionAdmin = (Admin) session.getAttribute("principal");
+		int sessionAdminId = sessionAdmin.getId();
 
 		// 업데이트 보여주기
 		String httpMethod = request.getMethod();
 		if (httpMethod.equals("POST") || httpMethod.equals("GET")) {
-			if (adminId == sessionUserId) {
+			if (reqId == sessionAdminId) {
 				System.out.println("디버그 : " + "AdminAuth 인터셉터 통과");
 				return true;
 			}

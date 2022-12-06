@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <div id="container">
-	<form action="/product/${product.productId}/delete" method="POST">
+	<form action="/s/product/${product.productId}/delete" method="POST">
 
 
 		<h1>상세보기</h1>
@@ -30,19 +30,19 @@
 		</table>
 
 
-		<c:if test="${ principal.adminName != null}" >
-			<a href="/product/${productId}/edit"><button id="btnUpdate" type="button"
-					class="btn btn-primary">상품수정</button></a>
-					
-			<a href="/product/${productId}/delete"><button id="btnDelete" class="btn btn-danger">상품삭제</button></a>
+		<c:if test="${principal.adminName != null}">
+			<a href="/s/product/${productId}/edit"><button id="btnUpdate" type="button" class="btn btn-primary">상품수정</button></a>
+
+			<a href="/s/product/${productId}/delete"><button id="btnDelete" class="btn btn-danger">상품삭제</button></a>
 		</c:if>
-		<c:if test="${ principal.mainadminName != null}">
-			<a href="/product/${productId}/edit"><button id="btnUpdate" type="button"
-					class="btn btn-primary">상품수정</button></a>
-			<a href="/product/${productId}/delete"><button id="btnDelete" class="btn btn-danger">상품삭제</button></a>
+		<c:if test="${principal.mainadminName != null}">
+			<a href="/s/product/${productId}/edit"><button id="btnUpdate" type="button" class="btn btn-primary">상품수정</button></a>
+			<a href="/s/product/${productId}/delete">
+				<button id="btnDelete" class="btn btn-danger">상품삭제</button>
+			</a>
 		</c:if>
 	</form>
-	<c:if test="${ principal.userName != null}">
+	<c:if test="${principal.userName != null}">
 		<a href="/s/buy/${productId}/buyForm"><button class="btn  btn-primary" type="button">상품구매</button></a>
 	</c:if>
 </div>

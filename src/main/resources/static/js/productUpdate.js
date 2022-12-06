@@ -66,7 +66,7 @@ function update() {
 	};
 	let productId = $("#productId").val();
 
-	$.ajax("/product/" + productId + "/edit", {
+	$.ajax("/s/product/" + productId + "/edit", {
 		type: "POST",
 		dataType: "json",
 		data: JSON.stringify(data), // http body에 들고갈 요청 데이터

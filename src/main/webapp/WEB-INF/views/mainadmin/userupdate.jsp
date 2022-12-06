@@ -20,5 +20,6 @@
 	<button id="btnusernameUpdateCheck" type="button" class="btn btn-primary">구매자 정보 수정 완료</button>
 </div>
 
+<script src="/js/userupdate.js"></script>
 
 <%@ include file="../layout/footer.jsp"%>

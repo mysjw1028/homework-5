@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 
 <div id=cotainer>
-	<form action="/buy/${productId}" method="POST">
+	<form action="/s/buy/${productId}" method="POST">
 		<h3>구매하기</h3>
 		<table class="table table-product" id="datatable" border="2">
 			<thead>

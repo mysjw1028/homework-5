@@ -40,7 +40,7 @@
 
 
 					<c:if test="${ principal.adminName != null}">
-						<li class="nav-item"><a class="nav-link" href="/product/insertForm">상품 등록하기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/s/product/insertForm">상품 등록하기</a></li>
 					</c:if>
 
 					<c:if test="${ principal.mainadminName != null}">
