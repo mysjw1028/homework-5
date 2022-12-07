@@ -144,7 +144,6 @@ public class MainAdminController {
 		return new CMRespDto<>(1, "성공", isSame);
 	}
 
-	@Auth(role = 2)
 	@GetMapping("/s/Mainadmin/adminlistForm/{id}")
 	public String adminlist(@PathVariable Integer id, Model model) {// 주소창 입력시 화면에 출력
 		// 아이디를 받기 // 리스트에 담고
@@ -156,7 +155,6 @@ public class MainAdminController {
 		return "mainadmin/adminlist";
 	}
 
-	@Auth(role = 2)
 	@PostMapping("/s/Mainadmin/adminlist/{adminId}/delete") // 변수랑 주소명 좀 맞춰라 ;;
 	public String 관리자삭제(@PathVariable Integer adminId) {
 		Admin adminPS = adminDao.findById(adminId);
@@ -164,7 +162,6 @@ public class MainAdminController {
 		return "redirect:/";
 	}
 
-	@Auth(role = 2)
 	@PostMapping("/s/Mainadmin/adminlist/{adminId}/edit")
 	public @ResponseBody CMRespDto<?> 관리자정보수정(@PathVariable Integer adminId,
 			@RequestBody AdminUpdateDto adminUpdateDto) {
@@ -185,7 +182,6 @@ public class MainAdminController {
 		return new CMRespDto<>(1, "구매자정보수정 성공", null);
 	}
 
-	@Auth(role = 2)
 	@GetMapping("/s/Mainadmin/adminlist/editForm/{id}")
 	public String adminedit(@PathVariable Integer id, Model model) {
 		Admin adminPS = adminDao.findById(id);
@@ -193,7 +189,6 @@ public class MainAdminController {
 		return "mainadmin/adminupdate";
 	}
 
-	@Auth(role = 2)
 	@GetMapping("/s/Mainadmin/userlistForm/{id}")
 	public String userslist(@PathVariable Integer id, Model model) {// 주소창 입력시 화면에 출력
 		List<UsersListDto> userslist = mainAdminDao.usersList(id);
@@ -204,7 +199,6 @@ public class MainAdminController {
 		return "mainadmin/userlist";
 	}
 
-	@Auth(role = 2)
 	@PostMapping("/s/Mainadmin/userlist/{id}/delete") // 변수랑 주소명 좀 맞춰라 ;;
 	public String 구매자삭제(@PathVariable Integer id) {
 		Users usersPS = usersDao.findById(id);
@@ -212,7 +206,6 @@ public class MainAdminController {
 		return "redirect:/";
 	}
 
-	@Auth(role = 2)
 	@PostMapping("/s/Mainadmin/userlist/{id}/edit")
 	public @ResponseBody CMRespDto<?> 구매자정보수정(@PathVariable Integer id, @RequestBody UsersUpdateDto usersUpdateDto) {
 
@@ -235,7 +228,6 @@ public class MainAdminController {
 		return new CMRespDto<>(1, "구매자정보수정 성공", null);
 	}
 
-	@Auth(role = 2)
 	@GetMapping("/s/Mainadmin/userlist/editForm/{id}")
 	public String usersedit(@PathVariable Integer id, Model model) {
 		Users usersPS = usersDao.findById(id);

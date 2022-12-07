@@ -38,21 +38,18 @@ public class ProductController {
 		return "product/detail";
 	}
 
-	@MultiValueAnnotation(roles = { 1, 2 })
 	@PostMapping("/s/product/insert") // 3번 insert -> 데이터에 값넣기-> post로 넣기
 	public @ResponseBody CMRespDto<?> 추가하기(@RequestBody Product product) {
 		productDao.insert(product);
 		return new CMRespDto<>(1, "상품등록성공", null);
 	}
 
-	@MultiValueAnnotation(roles = { 1, 2 })
 	@GetMapping("/s/product/insertForm")
 	public String insert() {
 		return "product/insert";
 	}
 
 	// **********************POSTMAN으로 테스트****************//
-	@MultiValueAnnotation(roles = { 1, 2 })
 	@PostMapping("/s/product/{productId}/edit") // 4번 update -> 수정하기 -> post로 값 수정
 	public @ResponseBody CMRespDto<?> 수정하기(@PathVariable Integer productId, @RequestBody ProductUpdateDto productDto) {
 		if (productDto.getProductName() == null || productDto.getProductName().isEmpty()) {
@@ -72,7 +69,6 @@ public class ProductController {
 		return new CMRespDto<>(1, "상품수정성공", null);
 	}
 
-	@MultiValueAnnotation(roles = { 1, 2 })
 	@GetMapping("/s/product/{productId}/edit")
 	public String edit(@PathVariable Integer productId, Model model) {
 		Product productPS = productDao.findById(productId);
@@ -81,7 +77,6 @@ public class ProductController {
 		return "product/update";
 	}
 
-	@MultiValueAnnotation(roles = { 1, 2 })
 	@PostMapping("/s/product/{productId}/delete") // 5번 deleteById -> 삭제하기 -> post로 값 삭제
 	public String 삭제하기(@PathVariable Integer productId) {
 		Product productPS = productDao.findById(productId);
@@ -89,7 +84,6 @@ public class ProductController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/product/productNameCheck")
 	public @ResponseBody CMRespDto<Boolean> productNumberSameCheck(String productName) {
 		boolean isSame = productService.상품명중복체크(productName);
 		return new CMRespDto<>(1, "성공", isSame);
