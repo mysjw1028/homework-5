@@ -60,7 +60,7 @@ public class BuyController {
 
 	}
 
-	@MultiValueAnnotation(roles = { 0, 2 })
+	@MultiValueAnnotation(roles = {0 , 2})
 	@GetMapping("/s/buy/buylist/{id}/buyListform")
 	// 유저에 대한 구매목록 나오게 하는 주소
 	public String buylist(@PathVariable Integer id, Model model) {
@@ -73,7 +73,7 @@ public class BuyController {
 		return "users/buylist";
 	}
 
-	@MultiValueAnnotation(roles = { 0, 2 })
+	@MultiValueAnnotation(roles = {0 , 2})
 	@PostMapping("/s/buy/buylist/{id}/delete")
 	public String 삭제하기(@PathVariable Integer id, BuyDto buyDto) {
 		buyDao.deleteById(id);

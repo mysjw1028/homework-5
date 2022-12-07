@@ -17,6 +17,7 @@ public class AdminAuthInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		System.out.println("디버그 :  일반 관리자 인터셉터");
 
 		// url요청의 {id}
 		String uri = request.getRequestURI();

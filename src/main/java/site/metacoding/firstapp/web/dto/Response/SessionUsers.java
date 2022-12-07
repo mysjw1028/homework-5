@@ -16,7 +16,7 @@ public class SessionUsers {
 	private Integer adminId;
 	private Integer mainadminId;
 	private String username;
-	private int role;
+	private String role;
 	private String sessionUser;
 	
 
@@ -25,4 +25,9 @@ public class SessionUsers {
 		this.username = userFindByAllUsernameDto.getUsername();
 		this.role = userFindByAllUsernameDto.getRole();
 	}
+
+
+
+
+
 }

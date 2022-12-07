@@ -20,6 +20,7 @@ public class MainAdmin {
 	private Timestamp createdAt;
 
 	//디비에 없는 값
+	private Integer userId;
 	private String userName;
 	private String adminName;
 	// 엔티티가 아닌 필드 번호로해서 보일려고

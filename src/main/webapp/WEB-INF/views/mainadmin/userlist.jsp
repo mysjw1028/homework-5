@@ -38,9 +38,9 @@
 						<td>${users.email}</td>
 						<th class="hidden" name="id">구매자 아이디</th>
 
-						<form action="/s/Mainadmin/userlist/${users.id}/editForm" method="GET">
+						<form action="/s/Mainadmin/userlist/editForm/${users.id}" method="GET">
 							<input type="hidden" value="${users.id}" name="userId">
-							<td><button type="submit" class="btn btn-primary">구매자 정보 수정</button></td>
+						<td><button type="submit" class="btn btn-primary">구매자 정보 수정</button></td>
 						</form>
 
 						<form action="/s/Mainadmin/userlist/${users.id}/delete" method="POST">

@@ -34,8 +34,8 @@ public class MulteRoleInterceptor implements HandlerInterceptor {
 		// 2. 권한 체크
 		int[] roles = multiValueAnnotation.roles(); // 0 일반 1 일반관리자 2중앙 관리자
 		SessionUsers tests = (SessionUsers) sessions.getAttribute("sessionUser");
-		int sessionUserRoles = tests.getRole();
-		int[] role = { 0, 1,  2 };
+		int sessionUserRoles = tests.getId();
+		int[] role = { 0, 1, 2 };
 		if (sessionUserRoles == roles[0]) {
 			System.out.println("디버그 : " + "role 통과");
 			return true;

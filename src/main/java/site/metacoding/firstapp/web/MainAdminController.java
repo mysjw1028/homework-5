@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -25,6 +26,7 @@ import site.metacoding.firstapp.domain.Users;
 import site.metacoding.firstapp.domain.UsersDao;
 import site.metacoding.firstapp.service.MainAdminService;
 import site.metacoding.firstapp.util.Auth;
+import site.metacoding.firstapp.util.MultiValueAnnotation;
 import site.metacoding.firstapp.web.dto.CMRespDto;
 
 import site.metacoding.firstapp.web.dto.request.mainadmin.AdminListDto;
@@ -127,6 +129,8 @@ public class MainAdminController {
 			return new CMRespDto<>(-1, "로그인실패", null);
 		}
 		session.setAttribute("principal", principal);
+		System.out.println("디버그                   " + principal.getRole());
+
 		return new CMRespDto<>(1, "로그인성공", null);
 	}
 
@@ -182,7 +186,7 @@ public class MainAdminController {
 	}
 
 	@Auth(role = 2)
-	@GetMapping("/s/Mainadmin/adminlist/{id}/editForm")
+	@GetMapping("/s/Mainadmin/adminlist/editForm/{id}")
 	public String adminedit(@PathVariable Integer id, Model model) {
 		Admin adminPS = adminDao.findById(id);
 		model.addAttribute("admin", adminPS);
@@ -231,15 +235,8 @@ public class MainAdminController {
 		return new CMRespDto<>(1, "구매자정보수정 성공", null);
 	}
 
-//		  Users usersPS = usersDao.findById(id); mainAdminService.구매자정보수정(id,
-//		  usersUpdateDto); if (id == null || id.equals("")) { return
-//		  "mainadmin/userupdate"; } if (usersUpdateDto.getUserName() == null ||
-//		  usersUpdateDto.getUserName().isEmpty()) { return "mainadmin/userupdate"; } if
-//		  (usersUpdateDto.getEmail() == null || usersUpdateDto.getEmail().isEmpty()) {
-//		  return "mainadmin/userupdate"; } return "redirect:/";
-//		
 	@Auth(role = 2)
-	@GetMapping("/s/Mainadmin/userlist/{id}/editForm")
+	@GetMapping("/s/Mainadmin/userlist/editForm/{id}")
 	public String usersedit(@PathVariable Integer id, Model model) {
 		Users usersPS = usersDao.findById(id);
 		model.addAttribute("users", usersPS);

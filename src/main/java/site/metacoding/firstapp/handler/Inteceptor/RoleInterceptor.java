@@ -36,7 +36,7 @@ public class RoleInterceptor implements HandlerInterceptor {
 		// 2. 권한 체크
 		int role = auth.role(); // 0 일반 1 일반관리자 2중앙 관리자
 		SessionUsers test = (SessionUsers) session.getAttribute("sessionUser");
-		int sessionUserRole = test.getRole();
+		int sessionUserRole = test.getId();
 
 		if (role == sessionUserRole) {
 			System.out.println("디버그 : " + "role 통과");

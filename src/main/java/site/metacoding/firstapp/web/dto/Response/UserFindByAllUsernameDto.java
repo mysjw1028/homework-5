@@ -11,5 +11,5 @@ public class UserFindByAllUsernameDto {
 	private Integer id;
 	private String username;
 	private String password;
-	private int role;
+	private String role;
 }

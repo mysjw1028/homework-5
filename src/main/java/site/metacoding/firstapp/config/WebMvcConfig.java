@@ -16,12 +16,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new UsersAuthInterceptor()).addPathPatterns("/s/user/**");// 포함하고
 
-		registry.addInterceptor(new AdminAuthInterceptor()).addPathPatterns("/s/admin/**")
-				.excludePathPatterns("/s/product/**");
-		registry.addInterceptor(new MainAdminAuthInterceptor()).addPathPatterns("/s/Mainadmin/**")
-				.excludePathPatterns("/s/product/**")
-				.excludePathPatterns("/s/Mainadmin/userlist/**")
-				.excludePathPatterns("/s/Mainadmin/adminlist/**");
+		registry.addInterceptor(new AdminAuthInterceptor()).addPathPatterns("/s/admin/**");
+
+		registry.addInterceptor(new MainAdminAuthInterceptor()).addPathPatterns("/s/Mainadmin/**");
 
 	}
 
