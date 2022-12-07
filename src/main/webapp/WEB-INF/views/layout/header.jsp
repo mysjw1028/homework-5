@@ -35,7 +35,7 @@
 					</c:choose>
 
 					<c:if test="${ principal.userName != null}">
-						<li class="nav-item"><a class="nav-link" href="/s/buy/buylist/${principal.id}/buyListform">구매내역보기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/s/buy/buylist/buyListform/${principal.id}">구매내역보기</a></li>
 					</c:if>
 
 

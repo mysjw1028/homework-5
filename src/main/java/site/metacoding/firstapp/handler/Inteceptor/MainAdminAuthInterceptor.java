@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.firstapp.domain.Admin;
 import site.metacoding.firstapp.domain.MainAdmin;
 import site.metacoding.firstapp.web.dto.Response.SessionMainAdmin;
 import site.metacoding.firstapp.web.dto.Response.SessionUsers;
@@ -25,7 +26,7 @@ public class MainAdminAuthInterceptor implements HandlerInterceptor {
 		String uri = request.getRequestURI();// 아이디값이 = 세션아이디값이 같도록
 		String[] uriArray = uri.split("/");
 		System.out.println(uriArray.length);
-		System.out.println("주소 위치 변경" + uriArray[uriArray.length - 1]);
+		System.out.println("id     " + uriArray[uriArray.length - 1]);
 		int reqId = Integer.parseInt(uriArray[uriArray.length - 1]);
 		System.out.println("디버그 : " + reqId);
 
@@ -43,6 +44,7 @@ public class MainAdminAuthInterceptor implements HandlerInterceptor {
 				System.out.println("디버그 : " + "MainAdminAuth 인터셉터 통과");
 				return true;
 			}
+
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			throw new RuntimeException("권한이 없습니다.");
 		}

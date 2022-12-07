@@ -14,11 +14,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new UsersAuthInterceptor()).addPathPatterns("/s/user/**");// 포함하고
+		registry.addInterceptor(new UsersAuthInterceptor()).addPathPatterns("/s/user/**")// 포함하고
+				.addPathPatterns("/s/buy/**");
+		registry.addInterceptor(new AdminAuthInterceptor()).addPathPatterns("/s/admin/**")
+				.addPathPatterns("/s/product/**");
 
-		registry.addInterceptor(new AdminAuthInterceptor()).addPathPatterns("/s/admin/**");
-
-		registry.addInterceptor(new MainAdminAuthInterceptor()).addPathPatterns("/s/Mainadmin/**");
+		registry.addInterceptor(new MainAdminAuthInterceptor()).addPathPatterns("/s/Mainadmin/**")
+				.addPathPatterns("/s/product/**").excludePathPatterns("/s/Mainadmin/userlist/**")
+				.excludePathPatterns("/s/Mainadmin/adminlist/**");
+		// 권한이 없다고 계속 나와서 예외로 뺌 (excludePathPatterns -> 예외로 빼는것)
 
 	}
 

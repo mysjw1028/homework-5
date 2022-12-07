@@ -28,7 +28,7 @@ public class BuyController {
 	private final BuyDao buyDao;
 
 	@Auth(role = 0)
-	@GetMapping("/s/buy/{productId}/buyForm")
+	@GetMapping("/s/buy/buyForm/{productId}")
 	public String buyTable(@PathVariable Integer productId, Model model) {
 		model.addAttribute("product", productDao.findById(productId));
 		return "users/buy";
@@ -61,7 +61,7 @@ public class BuyController {
 	}
 
 	@MultiValueAnnotation(roles = {0 , 2})
-	@GetMapping("/s/buy/buylist/{id}/buyListform")
+	@GetMapping("/s/buy/buylist/buyListform/{id}")
 	// 유저에 대한 구매목록 나오게 하는 주소
 	public String buylist(@PathVariable Integer id, Model model) {
 		// 2. 아이디를 받아
@@ -74,7 +74,7 @@ public class BuyController {
 	}
 
 	@MultiValueAnnotation(roles = {0 , 2})
-	@PostMapping("/s/buy/buylist/{id}/delete")
+	@PostMapping("/s/buy/buylist/delete/{id}")
 	public String 삭제하기(@PathVariable Integer id, BuyDto buyDto) {
 		buyDao.deleteById(id);
 		productDao.buyProductQty(buyDto);

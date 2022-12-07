@@ -129,7 +129,7 @@ public class MainAdminController {
 			return new CMRespDto<>(-1, "로그인실패", null);
 		}
 		session.setAttribute("principal", principal);
-		System.out.println("디버그                   " + principal.getRole());
+		System.out.println("디버그  중앙 관리자 role " + principal.getRole());
 
 		return new CMRespDto<>(1, "로그인성공", null);
 	}

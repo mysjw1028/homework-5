@@ -51,7 +51,7 @@
 
 
 
-						<form action="/s/buy/buylist/${buy.id}/delete" method="POST">
+						<form action="/s/buy/buylist/delete/${buy.id}" method="POST">
 							<input type="hidden" value="${buy.buyQty}" name="buyQty"> <input type="hidden"
 								value="${buy.productId}" name="productId">
 							<td><button type="submit" class="btn btn-danger">구매취소</button></td>

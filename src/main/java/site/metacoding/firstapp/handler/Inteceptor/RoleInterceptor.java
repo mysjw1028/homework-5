@@ -32,6 +32,7 @@ public class RoleInterceptor implements HandlerInterceptor {
 
 		// 1. 세션 체크 => 근데 필터로 거르니 체크 안 해도 됨
 		HttpSession session = request.getSession();
+		
 
 		// 2. 권한 체크
 		int role = auth.role(); // 0 일반 1 일반관리자 2중앙 관리자
