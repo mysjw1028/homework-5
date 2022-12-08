@@ -30,7 +30,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
-							<li class="nav-item"><a class="nav-link" href="/product">상품전체보기페이지</a></li>
+							<li class="nav-item"><a class="nav-link" href="/productForm">상품전체보기페이지</a></li>
 						</c:otherwise>
 					</c:choose>
 

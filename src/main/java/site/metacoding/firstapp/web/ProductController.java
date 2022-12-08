@@ -25,14 +25,14 @@ public class ProductController {
 	private final ProductDao productDao;
 	private final ProductService productService;
 
-	@GetMapping({ "/", "/product" }) // 1번 findAll -> 전체보여주기
+	@GetMapping({ "/", "/productForm" }) // 1번 findAll -> 전체보여주기
 	public String findAll(Model model) {
 		List<Product> productList = productDao.findAll();
 		model.addAttribute("product", productList);
 		return "product/product";
 	}
 
-	@GetMapping("/product/{productId}") // 2번 findById -> 상세보기
+	@GetMapping("/productForm/{productId}") // 2번 findById -> 상세보기
 	public String findById(@PathVariable Integer productId, Model model) {
 		model.addAttribute("product", productDao.findById(productId));
 		return "product/detail";
@@ -69,7 +69,7 @@ public class ProductController {
 		return new CMRespDto<>(1, "상품수정성공", null);
 	}
 
-	@GetMapping("/s/product/{productId}/edit")
+	@GetMapping("/s/product/{productId}/editForm")
 	public String edit(@PathVariable Integer productId, Model model) {
 		Product productPS = productDao.findById(productId);
 		model.addAttribute("product", productPS);

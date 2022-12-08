@@ -24,7 +24,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="product" items="${product}">
-					<tr class="company_body" onclick="location.href='/product/${product.productId}'" style="cursor: pointer">
+					<tr class="company_body" onclick="location.href='/productForm/${product.productId}'" style="cursor: pointer">
 						<td>${product.no}</td>
 						<td>${product.productName}</td>
 						<td>${product.productPrice}</td>

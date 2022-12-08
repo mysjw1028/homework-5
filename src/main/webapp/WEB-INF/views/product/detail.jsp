@@ -31,12 +31,12 @@
 
 
 		<c:if test="${principal.adminName != null}">
-			<a href="/s/product/${productId}/edit"><button id="btnUpdate" type="button" class="btn btn-primary">상품수정</button></a>
+			<a href="/s/product/${productId}/editForm"><button id="btnUpdate" type="button" class="btn btn-primary">상품수정</button></a>
 
 			<a href="/s/product/${productId}/delete"><button id="btnDelete" class="btn btn-danger">상품삭제</button></a>
 		</c:if>
 		<c:if test="${principal.mainadminName != null}">
-			<a href="/s/product/${productId}/edit"><button id="btnUpdate" type="button" class="btn btn-primary">상품수정</button></a>
+			<a href="/s/product/${productId}/editForm"><button id="btnUpdate" type="button" class="btn btn-primary">상품수정</button></a>
 			<a href="/s/product/${productId}/delete">
 				<button id="btnDelete" class="btn btn-danger">상품삭제</button>
 			</a>
