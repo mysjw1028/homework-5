@@ -61,7 +61,7 @@ public class ProductController {
 			return new CMRespDto<>(-1, "상품수정실패", null);
 
 		} else if (productDto.getProductQty() == null || productDto.getProductQty().equals("")) {
-	
+
 			return new CMRespDto<>(-1, "상품수정실패", null);
 		}
 		productService.상품수정(productId, productDto);
@@ -84,6 +84,7 @@ public class ProductController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/product/productNameCheck")
 	public @ResponseBody CMRespDto<Boolean> productNumberSameCheck(String productName) {
 		boolean isSame = productService.상품명중복체크(productName);
 		return new CMRespDto<>(1, "성공", isSame);
