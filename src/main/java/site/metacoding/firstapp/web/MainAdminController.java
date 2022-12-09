@@ -53,39 +53,23 @@ public class MainAdminController {
 	@PostMapping("/Mainadmin/joinpage/insert") // String은 객체여서 equals("비교값")로 비교해야 한다.
 	public @ResponseBody CMRespDto<?> 중앙관리자회원가입(@RequestBody MainAdminJoinDto mainAdminJoinDto) {
 		if (mainAdminJoinDto.getMainadminName() == null || mainAdminJoinDto.getMainadminName().equals("")) {
-			System.out.println("중앙관리자 이름 " + mainAdminJoinDto.getMainadminName());
-			System.out.println("막음!");
 			return new CMRespDto<>(-1, "중앙관리자회원가입 실패", null);
 		}
 		if (mainAdminJoinDto.getPassword() == null || mainAdminJoinDto.getPassword().isEmpty()) {
-			System.out.println("중앙관리자 비밀번호 " + mainAdminJoinDto.getPassword());
-			System.out.println("막음!");
 			return new CMRespDto<>(-1, "중앙관리자회원가입 실패", null);
 		}
 
 		if (mainAdminJoinDto.getPasswordMainadmin() == null || mainAdminJoinDto.getPasswordMainadmin().isEmpty()) {
-			System.out.println("중앙관리자 중앙관리자비밀번호 " + mainAdminJoinDto.getPasswordMainadmin());
-			System.out.println("막음!!");
+
 			return new CMRespDto<>(-1, "중앙관리자회원가입 실패", null);
 		}
 		if (mainAdminJoinDto.getPasswordMainadmin() == null || mainAdminJoinDto.getPasswordMainadmin().equals("5678")
 				|| mainAdminJoinDto.getPasswordMainadmin().isEmpty()) {
-			System.out.println("중앙관리자 전용 비밀번호" + mainAdminJoinDto.getPasswordMainadmin());
-			System.out.println("막음!");
 		}
-		System.out.println("이멜 실행됨!!!!!!!!!!!!");
 		if (mainAdminJoinDto.getEmail() == null || mainAdminJoinDto.getEmail().isEmpty()) {
-			System.out.println("중앙관리자 이메일" + mainAdminJoinDto.getEmail());
-			System.out.println("막음!");
 			return new CMRespDto<>(-1, "중앙관리자회원가입 실패", null);
 		}
 		if (mainAdminJoinDto != null) {
-			System.out.println("==============성공시======================");
-			System.out.println(mainAdminJoinDto.getMainadminName());
-			System.out.println(mainAdminJoinDto.getPassword());
-			System.out.println(mainAdminJoinDto.getPasswordMainadmin());
-			System.out.println(mainAdminJoinDto.getEmail());
-			System.out.println("==============성공시======================");
 			mainAdminService.중앙관리자회원가입(mainAdminJoinDto);
 		}
 		return new CMRespDto<>(1, "관리자회원가입 성공", null);
@@ -129,8 +113,6 @@ public class MainAdminController {
 			return new CMRespDto<>(-1, "로그인실패", null);
 		}
 		session.setAttribute("principal", principal);
-		System.out.println("디버그  중앙 관리자 role " + principal.getRole());
-
 		return new CMRespDto<>(1, "로그인성공", null);
 	}
 
@@ -166,19 +148,12 @@ public class MainAdminController {
 	public @ResponseBody CMRespDto<?> 관리자정보수정(@PathVariable Integer adminId,
 			@RequestBody AdminUpdateDto adminUpdateDto) {
 		if (adminUpdateDto.getAdminName() == null || adminUpdateDto.getAdminName().isEmpty()) {
-			System.out.println("이름 : " + adminUpdateDto.getAdminName());
-			System.out.println("실패!");
 			return new CMRespDto<>(-1, "구매자정보수정실패", null);
-		} else if (adminUpdateDto.getEmail() == null || adminUpdateDto.getEmail().equals("")) {
-			System.out.println(" 이메일변경  : " + adminUpdateDto.getEmail());
-			System.out.println("실패!");
+		}
+		if (adminUpdateDto.getEmail() == null || adminUpdateDto.getEmail().equals("")) {
 			return new CMRespDto<>(-1, "구매자정보수정 실패", null);
 		}
 		mainAdminService.관리자정보수정(adminId, adminUpdateDto);
-		System.out.println("===========성공시================");
-		System.out.println(adminUpdateDto.getAdminName());
-		System.out.println(adminUpdateDto.getEmail());
-		System.out.println("===============성공시========");
 		return new CMRespDto<>(1, "구매자정보수정 성공", null);
 	}
 
@@ -208,23 +183,14 @@ public class MainAdminController {
 
 	@PostMapping("/s/Mainadmin/userlist/{id}/edit")
 	public @ResponseBody CMRespDto<?> 구매자정보수정(@PathVariable Integer id, @RequestBody UsersUpdateDto usersUpdateDto) {
-
 		if (usersUpdateDto.getUserName() == null || usersUpdateDto.getUserName().isEmpty()) {
-			System.out.println("이름 : " + usersUpdateDto.getUserName());
-			System.out.println("실패!");
 			return new CMRespDto<>(-1, "구매자정보수정실패", null);
 
 		} else if (usersUpdateDto.getEmail() == null || usersUpdateDto.getEmail().equals("")) {
-			System.out.println(" 이메일변경  : " + usersUpdateDto.getEmail());
-			System.out.println("실패!");
 			return new CMRespDto<>(-1, "구매자정보수정 실패", null);
 
 		}
 		mainAdminService.구매자정보수정(id, usersUpdateDto);
-		System.out.println("===========성공시================");
-		System.out.println(usersUpdateDto.getUserName());
-		System.out.println(usersUpdateDto.getEmail());
-		System.out.println("===============성공시========");
 		return new CMRespDto<>(1, "구매자정보수정 성공", null);
 	}
 
